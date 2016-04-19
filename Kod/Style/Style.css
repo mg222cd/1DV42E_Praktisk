@@ -1,0 +1,73 @@
+/**
+* @author Marike Grinde, 2014
+*/
+
+/*
+* TYPOGRAPHY
+*/
+body{
+	font-family: helvetica;
+	background-color: #ECF0F1;
+	color: #2C3E50;
+}
+/*
+* DESIGN
+*/
+.tight{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+/*
+* HEADER
+*/
+header{
+	width: 80%;
+	margin: auto;
+	height: 10%;
+	color: #3498DB;
+	border-bottom-color: #2980B9;
+	border-bottom-style: solid;;
+	border-bottom-width: 3%;
+}
+header img{
+	width: 60%;
+	height: 60%;
+}
+.form-inline{
+	margin-top: 20%;
+}
+.form-group{
+}
+.form-control{
+}
+.btn{
+}
+/*
+* CONTENT
+*/
+#content{
+	width: 80%;
+	/*padding-left: 50px;*/
+	margin: auto;
+	margin-top: 2%;
+	margin-bottom: 5%;
+}
+
+#link{
+	margin-top: 30px;
+}
+
+/*
+* FOOTER
+*/
+footer{
+	width: 80%;
+	margin: auto;
+	border-top-color: #FFFFFF;
+	border-top-style: solid;;
+	border-top-width: 3px;
+}
+footer p{
+	padding-top: 1%;
+	font-size: 75%;
+}
