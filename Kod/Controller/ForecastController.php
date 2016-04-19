@@ -10,8 +10,8 @@ class ForecastController{
 		$this->searchView = new \View\SearchView();
 	}
 	
-	public function forecastScenarios(){
-		return $this->searchView->getCityHeader();
+	public function forecastScenarios($searchHeader){
+		return $searchHeader;
 		// Fixa djungeln med webservice och träffar. se testfall...
 	}
 }

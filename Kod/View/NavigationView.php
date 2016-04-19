@@ -8,7 +8,6 @@ namespace View;
 */
 class NavigationView{
 	private static $action = 'action';
-	public static $actionShowForecast = 'showForecast';
 	public static $actionSearch = 'search'; 
 	public static $actionStart = 'start';
 
