@@ -57,6 +57,16 @@ header img{
 	margin-top: 30px;
 }
 
+h1{
+	margin-top: 0px;
+	font-size: 160%;
+	font-weight: bold;
+}
+
+.darkblueAsInHeader{
+	color: #2980B9;
+}
+
 /*
 * FOOTER
 */

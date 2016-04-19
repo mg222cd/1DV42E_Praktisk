@@ -2,33 +2,26 @@
 namespace View;
 
 class SearchView{
-	private $searchButton;
-	private $message = 'Ett testmeddelande';
-	private $city;
+	private $errorMessage = '';
+	private $html = '';
+	private $givenCity;
 
-	public function searchForm(){
-		$html = '
-			<div class="row">
-				<div class="col-xs-12 col-sm-12"> 
-		        <form method="post" role="form" action="?action='.NavigationView::$actionShowForecast.'">
-			        <div class="col-xs-12 col-sm-6">
-				        <div class="form-group">
-					        <input type="text" class="form-control" maxlength="255" name="city" id="city" placeholder="Sök väder via ort" autofocus="">
-				        </div>
-			        </div>
-			        <div class="col-xs-12 col-sm-6">
-			            <div class="form-group">
-			            	<input type="submit" value="Sök" name="searchButton" class="btn btn-default">
-			            </div>
-		            </div>
-		        </form>
-		        	<div class="col-xs-12 col-sm-6">
-		        		<p>'.$this->message.'</p>
-		        	</div>
 
-	        	</div>
-        	</div>
-		';
-		return $html;
+	public function getCity(){
+		if (isset($_POST['city']) && $_POST['city'] != '') {
+			$this->givenCity = $_POST['city'];
+			return $this->givenCity;
+		}
+		$this->errorMessage = 'Ingen ort har angivits. Försök igen.';
+		return NULL;
+	}
+
+	public function getErrorMessage(){
+		return $this->errorMessage;
+	}
+
+	public function getCityHeader(){
+		$this->html='<h1>Sökresultat för <span class ="darkblueAsInHeader">'.$this->givenCity.'</span>:<h1>';
+		return $this->html;
 	}
 }

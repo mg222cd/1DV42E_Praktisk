@@ -11,7 +11,15 @@ class SearchController{
 	}
 	
 	public function searchScenarios(){
-		//TODO: if -- search is made... else show search form
-		return $this->searchView->searchForm();
+		//Kontroll att något angivits.
+		if ($this->searchView->getCity() != null) {
+			return $this->searchView->getCityHeader();
+			//ändra till att visa en rubrik där angiven stad finns med.
+
+		}
+		return $this->searchView->getErrorMessage();
+
+		//Fixa rubrik. Sökresultat för....
+		//djungeln med webservice och träffar. se testfall...
 	}
 }
