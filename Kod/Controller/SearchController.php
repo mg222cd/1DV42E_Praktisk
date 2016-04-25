@@ -2,9 +2,15 @@
 namespace Controller;
 
 require_once("./View/SearchView.php");
+require_once("./Model/GeonamesModel.php");
 
 class SearchController{
 	private $searchView;
+	private $city;
+	private $html;
+	private $genamesResults;
+	private $webserviceStatusGeonames;
+	private $geonamesModel;
 
 	public function __construct(){
 		$this->searchView = new \View\SearchView();
@@ -12,14 +18,21 @@ class SearchController{
 	
 	public function searchScenarios(){
 		//Kontroll att något angivits.
-		if ($this->searchView->getCity() != null) {
-			return $this->searchView->getCityHeader();
-			//ändra till att visa en rubrik där angiven stad finns med.
-
+		$this->city = $this->searchView->getCity();
+		if ($this->city != null) {
+			$this->html = $this->searchView->getCityHeader();
+			//lägg till genames-grejer till htlm under rubtiken
+			$this->html .= $this->geonamesScenarios();
+			return $this->html;
 		}
 		return $this->searchView->getErrorMessage();
-
-		//Fixa rubrik. Sökresultat för....
-		//djungeln med webservice och träffar. se testfall...
 	}
+
+	public function geonamesScenarios(){
+		return "teststräng från geonames Scenarios ....     " . $this->city;
+	}
+
+
+
+
 }

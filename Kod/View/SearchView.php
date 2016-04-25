@@ -6,7 +6,6 @@ class SearchView{
 	private $html = '';
 	private $givenCity;
 
-
 	public function getCity(){
 		if (isset($_POST['city']) && $_POST['city'] != '') {
 			$this->givenCity = $_POST['city'];
@@ -24,4 +23,5 @@ class SearchView{
 		$this->html='<h1>Sökresultat för <span class ="darkblueAsInHeader">'.$this->givenCity.'</span>:<h1>';
 		return $this->html;
 	}
+
 }
