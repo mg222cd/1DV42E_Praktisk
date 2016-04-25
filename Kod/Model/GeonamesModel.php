@@ -31,5 +31,11 @@ class GeonamesModel{
 		return true;
 	}
 
+	public function getGeonames($city){
+		$urlRequestGeonames = 'http://api.geonames.org/searchJSON?name='.$city.'&style=full&maxRows=100&username=marikegrinde';
+		$data = $this->geonamesRequest($urlRequestGeonames);
+		return $data;
+	}
+
 
 }

@@ -1,17 +1,20 @@
 <?php
 namespace Controller;
 
-require_once("./View/SearchView.php");
-require_once("./Model/GeonamesModel.php");
+require_once('./View/SearchView.php');
+require_once('./Model/GeonamesModel.php');
+require_once('./View/ForecastView.php');
 
 class SearchController{
 	private $searchView;
 	private $city;
 	private $html;
 	private $geonamesModel;
+	private $forecastView;
 
 	public function __construct(){
 		$this->searchView = new \View\SearchView();
+		$this->forecastView = new \View\ForecastView();
 	}
 	
 	public function searchScenarios(){
@@ -28,17 +31,24 @@ class SearchController{
 
 	private function geonamesScenarios(){
 		$this->geonamesModel = new \Model\GeonamesModel($this->city);
-		//KOLLA om geonames fungerar, isåfall, kör på o sök mot YR och SMHI. om inte, skriv meddelande o sök från databas
+		//KOLLA om geonames webservice fungerar.
 		if ($this->geonamesModel->testGeonames() == TRUE) {
-			return "FUNKAR. fortsätt med koden här...";
-			//Genames webservice funkar, kör på med...
-			// ... Staden hos Geonames (OBS OM STADEN INNEHÅLLER MELLANSLAG)
+			$resultsFromGeonames = $this->geonamesModel->getGeonames($this->city);
+			// ... Kolla om staden hittades hos geonames
+			if ($forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 0) {
+				return $this->forecastView->noResultsFoundErrorMessage();
+			}
+			elseif ($forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
+				//visa prognos direkt
+			}
+			// ... visa i lista ... (OBS OM STADEN INNEHÅLLER MELLANSLAG)
 			// ... YR och SMHI
+			return 'Många träffar...' . $resultsFromGeonames;
 		}
-		//Geonames är nere...
+		// Geonames är nere...
 		//...skriv ut medd om detta
 		//...gör sökning
-		return "Geonames är nere...";
+		return $this->forecastView->geonamesWebserviceErrorMessage();
 	}
 
 
