@@ -30,15 +30,15 @@ class SearchController{
 		$this->geonamesModel = new \Model\GeonamesModel($this->city);
 		//KOLLA om geonames fungerar, isåfall, kör på o sök mot YR och SMHI. om inte, skriv meddelande o sök från databas
 		if ($this->geonamesModel->testGeonames() == TRUE) {
+			return "FUNKAR. fortsätt med koden här...";
 			//Genames webservice funkar, kör på med...
 			// ... Staden hos Geonames (OBS OM STADEN INNEHÅLLER MELLANSLAG)
 			// ... YR och SMHI
-			return null;
 		}
 		//Geonames är nere...
 		//...skriv ut medd om detta
 		//...gör sökning
-		return null;
+		return "Geonames är nere...";
 	}
 
 
