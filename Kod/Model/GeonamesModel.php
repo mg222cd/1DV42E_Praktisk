@@ -38,4 +38,14 @@ class GeonamesModel{
 		$data = $this->geonamesRequest($urlRequestGeonames);
 		return $data;
 	}
+
+	//Filtrates oyt html and tags
+	public function sanitizeText($city){
+		$sanitizedText = strip_tags($city);
+		if ($sanitizedText != $city) {
+			return $sanitizedText;
+		}
+		return $city;
+	}
+
 }
