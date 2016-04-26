@@ -39,12 +39,14 @@ class SearchController{
 				return $this->forecastView->noResultsFoundErrorMessage();
 			}
 			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
-				//visa prognos direkt
+				return 'En träff...     ' . $resultsFromGeonames;
+				//TODO: 
+				//visa prognos direkt (& lägg in vald ort i db).
 			}
 			// ... visa i lista ... 
 			// KOM IHÅG ... (OBS OM STADEN INNEHÅLLER MELLANSLAG) ... om för många träffar
 			// ... YR och SMHI
-			return 'Många träffar...' . $resultsFromGeonames;
+			return 'Många träffar...     ' . $resultsFromGeonames;
 		}
 		// Geonames är nere...
 		//...skriv ut medd om detta
