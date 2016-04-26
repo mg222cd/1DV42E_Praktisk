@@ -11,7 +11,7 @@ class SearchView{
 			$this->givenCity = $_POST['city'];
 			return $this->givenCity;
 		}
-		$this->errorMessage = 'Ingen ort har angivits. Försök igen.';
+		$this->errorMessage = '<p>Ingen ort har angivits. Försök igen.</p>';
 		return NULL;
 	}
 
@@ -20,7 +20,7 @@ class SearchView{
 	}
 
 	public function getCityHeader(){
-		$this->html='<h1>Sökresultat för <span class ="darkblueAsInHeader">'.$this->givenCity.'</span>:<h1>';
+		$this->html='<h1>Sökresultat för <span class ="darkblueAsInHeader">'.$this->givenCity.'</span>:</h1>';
 		return $this->html;
 	}
 

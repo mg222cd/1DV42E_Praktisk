@@ -35,13 +35,14 @@ class SearchController{
 		if ($this->geonamesModel->testGeonames() == TRUE) {
 			$resultsFromGeonames = $this->geonamesModel->getGeonames($this->city);
 			// ... Kolla om staden hittades hos geonames
-			if ($forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 0) {
+			if ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 0) {
 				return $this->forecastView->noResultsFoundErrorMessage();
 			}
-			elseif ($forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
+			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
 				//visa prognos direkt
 			}
-			// ... visa i lista ... (OBS OM STADEN INNEHÅLLER MELLANSLAG)
+			// ... visa i lista ... 
+			// KOM IHÅG ... (OBS OM STADEN INNEHÅLLER MELLANSLAG) ... om för många träffar
 			// ... YR och SMHI
 			return 'Många träffar...' . $resultsFromGeonames;
 		}

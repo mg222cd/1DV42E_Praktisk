@@ -21,5 +21,11 @@ class ForecastView{
 		</p>';
 		return $this->statusMessage;
 	}
+
+	public function numberOfResultsFromGeonames ($data){
+		$dataDecoded = json_decode($data, true);
+		$numberOfResults = $dataDecoded['totalResultsCount'];
+		return $numberOfResults;
+	}
 	
 }
