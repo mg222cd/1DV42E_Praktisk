@@ -43,12 +43,22 @@ class SearchController{
 				return 'En träff...     ' . $resultsFromGeonames;
 				//TODO: visa prognos direkt (& lägg in vald ort i db).
 				//TODO: Validate input
-
 			}
-			// ... visa i lista ... 
-			// TODO: Begränsning och en till elseif-sats om det är mer än t.ex 2000 träffar.
-			// ... YR och SMHI
-			return 'Många träffar...     ' . $resultsFromGeonames;
+			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 
+				&& $this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) <= 10) {
+				//TODO... Visa kort lista med träffar
+				return '2-10 träffar...     ' . $resultsFromGeonames;
+				//return $this->forecastView->shortList();
+			}
+			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) >= 11
+				&& $this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) <= 2000) {
+				//TODO... Förfinad filtrering och sen paginerade träffar.
+				return '11-2000 träffar...     ' . $resultsFromGeonames;
+			}
+			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2001) {
+				//För många träffar, bara förfining.
+				return 'Många träffar... Över 2000...     ' . $resultsFromGeonames;
+			}
 		}
 		// Geonames är nere...
 		//...skriv ut medd om detta
