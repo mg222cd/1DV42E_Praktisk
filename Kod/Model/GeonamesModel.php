@@ -33,8 +33,14 @@ class GeonamesModel{
 
 	public function getGeonames($city){
 		$urlRequestGeonames = 'http://api.geonames.org/searchJSON?name='.$city.'&style=full&maxRows=100&username=marikegrinde';
+		//var_dump($urlRequestGeonames);die();
 		$data = $this->geonamesRequest($urlRequestGeonames);
+		var_dump($data);die();
 		return $data;
+	}
+
+	private function replaceWhitespaces($city){
+		
 	}
 
 
