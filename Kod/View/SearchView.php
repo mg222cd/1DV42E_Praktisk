@@ -19,8 +19,8 @@ class SearchView{
 		return $this->errorMessage;
 	}
 
-	public function getCityHeader(){
-		$this->html='<h1>Sökresultat för <span class ="darkblueAsInHeader">'.$this->givenCity.'</span>:</h1>';
+	public function getCityHeader($city){
+		$this->html='<h1>Sökresultat för <span class ="darkblueAsInHeader">'.$city.'</span>:</h1>';
 		return $this->html;
 	}
 

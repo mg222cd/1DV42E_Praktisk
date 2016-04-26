@@ -4,9 +4,11 @@ namespace Model;
 class GeonamesModel{
 	private $city;
 
+	/*
 	public function __construct($city){
 		$this->city = $city;
 	}
+	*/
 
 	public function geonamesRequest($url){
 		//curl
@@ -42,8 +44,9 @@ class GeonamesModel{
 	//Filtrates oyt html and tags
 	public function sanitizeText($city){
 		$sanitizedText = strip_tags($city);
-		if ($sanitizedText != $city) {
-			return $sanitizedText;
+		$trimmedText = trim($sanitizedText);
+		if ($trimmedText != $city) {
+			return $trimmedText;
 		}
 		return $city;
 	}

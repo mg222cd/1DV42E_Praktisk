@@ -15,13 +15,15 @@ class SearchController{
 	public function __construct(){
 		$this->searchView = new \View\SearchView();
 		$this->forecastView = new \View\ForecastView();
+		$this->geonamesModel = new \Model\GeonamesModel();
 	}
 	
 	public function searchScenarios(){
 		//Kontroll att något angivits.
 		$this->city = $this->searchView->getCity();
 		if ($this->city != null) {
-			$this->html = $this->searchView->getCityHeader();
+			$this->city = $this->geonamesModel->sanitizeText($this->city);
+			$this->html = $this->searchView->getCityHeader($this->city);
 			//lägg till genames-grejer till htlm under rubtiken
 			$this->html .= $this->geonamesScenarios();
 			return $this->html;
@@ -30,21 +32,21 @@ class SearchController{
 	}
 
 	private function geonamesScenarios(){
-		$this->geonamesModel = new \Model\GeonamesModel($this->city);
-		//KOLLA om geonames webservice fungerar.
+		//Kontroll om geonames webservice fungerar.
 		if ($this->geonamesModel->testGeonames() == TRUE) {
 			$resultsFromGeonames = $this->geonamesModel->getGeonames($this->city);
-			// ... Kolla om staden hittades hos geonames
+			// ... Logik för antal träffar
 			if ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 0) {
 				return $this->forecastView->noResultsFoundErrorMessage();
 			}
 			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
 				return 'En träff...     ' . $resultsFromGeonames;
-				//TODO: 
-				//visa prognos direkt (& lägg in vald ort i db).
+				//TODO: visa prognos direkt (& lägg in vald ort i db).
+				//TODO: Validate input
+
 			}
 			// ... visa i lista ... 
-			// KOM IHÅG ... (OBS OM STADEN INNEHÅLLER MELLANSLAG) ... om för många träffar
+			// TODO: Begränsning och en till elseif-sats om det är mer än t.ex 2000 träffar.
 			// ... YR och SMHI
 			return 'Många träffar...     ' . $resultsFromGeonames;
 		}
