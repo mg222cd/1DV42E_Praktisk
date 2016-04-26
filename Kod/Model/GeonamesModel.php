@@ -32,16 +32,10 @@ class GeonamesModel{
 	}
 
 	public function getGeonames($city){
-		$urlRequestGeonames = 'http://api.geonames.org/searchJSON?name='.$city.'&style=full&maxRows=100&username=marikegrinde';
-		//var_dump($urlRequestGeonames);die();
+		//mellanslags-fix
+		$cityWithoutSpaces = preg_replace('/\s+/', '%20', $city);
+		$urlRequestGeonames = 'http://api.geonames.org/searchJSON?name='.$cityWithoutSpaces.'&style=full&maxRows=100&username=marikegrinde';
 		$data = $this->geonamesRequest($urlRequestGeonames);
-		var_dump($data);die();
 		return $data;
 	}
-
-	private function replaceWhitespaces($city){
-		
-	}
-
-
 }
