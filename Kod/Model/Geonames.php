@@ -7,7 +7,7 @@ class Geonames{
 	private $name;
 	private $adminName1;
 	private $adminName2;
-	private $countryName
+	private $countryName;
 	private $lat;
 	private $lang;
 

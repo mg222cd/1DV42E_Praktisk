@@ -19,4 +19,13 @@ class GeonamesRepository extends DatabaseConnection{
 		$this->dbTable = 'geonames';
 	}
 
+	/*
+	public function addCity($geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lang){
+		return NULL;
+	}*/
+
+	public function addCity($cityArray){
+		var_dump($cityArray);die();
+	}
+
 }

@@ -38,7 +38,8 @@ class GeonamesModel{
 		$cityWithoutSpaces = preg_replace('/\s+/', '%20', $city);
 		$urlRequestGeonames = 'http://api.geonames.org/searchJSON?name='.$cityWithoutSpaces.'&style=full&maxRows=100&username=marikegrinde';
 		$data = $this->geonamesRequest($urlRequestGeonames);
-		return $data;
+		$dataDecoded = json_decode($data, true);
+		return $dataDecoded;
 	}
 
 	//Filtrates oyt html and tags

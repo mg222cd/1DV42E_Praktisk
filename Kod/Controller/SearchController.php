@@ -4,6 +4,7 @@ namespace Controller;
 require_once('./View/SearchView.php');
 require_once('./Model/GeonamesModel.php');
 require_once('./View/ForecastView.php');
+require_once('./Model/GeonamesRepository.php');
 
 class SearchController{
 	private $searchView;
@@ -11,11 +12,13 @@ class SearchController{
 	private $html;
 	private $geonamesModel;
 	private $forecastView;
+	private $geonamesRepo;
 
 	public function __construct(){
 		$this->searchView = new \View\SearchView();
 		$this->forecastView = new \View\ForecastView();
 		$this->geonamesModel = new \Model\GeonamesModel();
+		$this->geonamesRepo = new \Model\GeonamesRepository();
 	}
 	
 	public function searchScenarios(){
@@ -40,9 +43,22 @@ class SearchController{
 				return $this->forecastView->noResultsFoundErrorMessage();
 			}
 			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
-				return 'En träff...     ' . $resultsFromGeonames;
+				if ($this->geonamesRepo->addCity($resultsFromGeonames)) {
+					return 'FUNKAR ATT LÄGGA IN I DB!';
+				}
+				/*
+				if ($this->geonamesRepo->addCity($geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lang)) {
+					return 'FUNKAR ATT LÄGGA IN I DB!';
+				}*/
+				//return 'En träff...     ' . $resultsFromGeonames;
 				//TODO: visa prognos direkt (& lägg in vald ort i db).
-				//TODO: Validate input
+				/*
+				if ($this->workoutRepo->addWorkout($userId, $workoutTypeId, $wdate, $distance, $wtime, $comment) == TRUE) {
+					$this->workoutView->succeedAdd();
+					header('Location: ./');
+					die();
+				}*/
+
 			}
 			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 
 				&& $this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) <= 10) {
@@ -60,9 +76,7 @@ class SearchController{
 				return 'Många träffar... Över 2000...     ' . $resultsFromGeonames;
 			}
 		}
-		// Geonames är nere...
-		//...skriv ut medd om detta
-		//...gör sökning
+		// Geonames är nere... TODO... Sökning mot DB
 		return $this->forecastView->geonamesWebserviceErrorMessage();
 	}
 
