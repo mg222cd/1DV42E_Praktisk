@@ -13,19 +13,27 @@ class GeonamesRepository extends DatabaseConnection{
 	private $adminName2 = 'adminName2';
 	private $countryName = 'countryName';
 	private $lat ='lat';
-	private $lang ='lang';
+	private $lng ='lang';
 	
 	public function __construct(){
 		$this->dbTable = 'geonames';
 	}
 
-	/*
-	public function addCity($geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lang){
-		return NULL;
-	}*/
-
 	public function addCity($cityArray){
-		var_dump($cityArray);die();
+		//var_dump($cityArray);die();
+		//var_dump($cityArray["geonames"][0]['geonameId']);die();
+
+		
+		$geonames = new \model\Geonames(
+			$cityArray["geonames"][0]['geonameId'], 
+			$cityArray["geonames"][0]['name'], 
+			$cityArray["geonames"][0]['adminName1'], 
+			$cityArray["geonames"][0]['adminName1'], 
+			$cityArray["geonames"][0]['countryName'],
+			$cityArray["geonames"][0]['lat'],
+			$cityArray["geonames"][0]['lng']);
+
+		var_dump($geonames);die();
 	}
 
 }
