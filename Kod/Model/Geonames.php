@@ -26,7 +26,7 @@ class Geonames{
 		return $this->geonamesPk;
 	}
 
-	public function getGeonamesId(){
+	public function getGeonameId(){
 		return $this->geonameId;
 	}
 
@@ -38,7 +38,7 @@ class Geonames{
 		return $this->adminName1;
 	}
 
-	public function getAdminaName2(){
+	public function getAdminName2(){
 		return $this->adminName2;
 	}
 

@@ -13,27 +13,50 @@ class GeonamesRepository extends DatabaseConnection{
 	private $adminName2 = 'adminName2';
 	private $countryName = 'countryName';
 	private $lat ='lat';
-	private $lng ='lang';
+	private $lng ='lng';
 	
 	public function __construct(){
 		$this->dbTable = 'geonames';
 	}
 
-	public function addCity($cityArray){
-		//var_dump($cityArray);die();
-		//var_dump($cityArray["geonames"][0]['geonameId']);die();
-
-		
+	public function addCity($cityArray){		
 		$geonames = new \model\Geonames(
 			$cityArray["geonames"][0]['geonameId'], 
 			$cityArray["geonames"][0]['name'], 
 			$cityArray["geonames"][0]['adminName1'], 
-			$cityArray["geonames"][0]['adminName1'], 
+			$cityArray["geonames"][0]['adminName2'], 
 			$cityArray["geonames"][0]['countryName'],
 			$cityArray["geonames"][0]['lat'],
 			$cityArray["geonames"][0]['lng']);
 
-		var_dump($geonames);die();
+		try{
+			$db = $this->connection();
+			
+			$sql = "INSERT INTO $this->dbTable ("
+				.$this->geonameId.","
+				.$this->name.","
+				.$this->adminName1.","
+				.$this->adminName2.","
+				.$this->countryName.","
+				.$this->lat.","
+				.$this->lng.")
+               VALUES (?, ?, ?, ?, ?, ?, ?);";
+			$params = array (
+				$geonames->getGeonameId(), 
+				$geonames->getName(),
+				$geonames->getAdminName1(),
+				$geonames->getAdminName2(),
+				$geonames->getCountryName(),
+				$geonames->getLat(),
+				$geonames->getLng());
+			$query = $db->prepare($sql);
+			$query->execute($params);
+			return TRUE;
+		}
+		catch(\PDOException $e){
+			throw new \Exception('Ett fel uppstod då orten skulle läggas till i databasen.');
+		}
+
 	}
 
 }
