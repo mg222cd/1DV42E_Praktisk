@@ -9,7 +9,7 @@ class Geonames{
 	private $adminName2;
 	private $countryName;
 	private $lat;
-	private $lang;
+	private $lng;
 
 	public function __construct($geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lang){
 		//$this->geonamesPk = $geonamesPk;
@@ -19,6 +19,38 @@ class Geonames{
 		$this->adminName2 = $adminName2;
 		$this->countryName = $countryName;
 		$this->lat = $lat;
-		$this->lang = $lang;
+		$this->lng = $lang;
+	}
+
+	public function getGeonamesPk(){
+		return $this->geonamesPk;
+	}
+
+	public function getGeonamesId(){
+		return $this->geonameId;
+	}
+
+	public function getName(){
+		return $this->name;
+	}
+
+	public function getAdminName1(){
+		return $this->adminName1;
+	}
+
+	public function getAdminaName2(){
+		return $this->adminName2;
+	}
+
+	public function getCountryName(){
+		return $this->countryName;
+	}
+
+	public function getLat(){
+		return $this->lat;
+	}
+
+	public function getLng(){
+		return $this->lng;
 	}
 }
