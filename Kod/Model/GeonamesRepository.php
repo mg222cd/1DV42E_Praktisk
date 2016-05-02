@@ -61,12 +61,11 @@ class GeonamesRepository extends DatabaseConnection{
 	public function getGeonames($cityname){
 		try {
 			$db = $this->connection();
-			$sql = '
-					SELECT $this->dbTable.geonamesPk, $this->dbTable.geonameId, $this->dbTable.name, $this->dbTable.adminName1, 
-							$this->dbTable.adminName2, $this->dbTable.lat, $this->workouttypeTable.lng 
+			$sql = "SELECT $this->dbTable.geonamesPk, $this->dbTable.geonameId, $this->dbTable.name, $this->dbTable.adminName1, 
+							$this->dbTable.adminName2, $this->dbTable.countryName, $this->dbTable.lat, $this->dbTable.lng 
 					FROM $this->dbTable
 					WHERE name = :name
-					';
+					";
 
 			$params = array(':name' => $cityname);
 			$query = $db->prepare($sql);
@@ -83,6 +82,7 @@ class GeonamesRepository extends DatabaseConnection{
 				$lng = $geonames['lng'];
 				$this->geonamesList[] = new \Model\Geonames($geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lng);
 			}
+			var_dump($this->geonamesList);die();
 			return $this->geonamesList;
 		} catch (Exception $e) {
 			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');

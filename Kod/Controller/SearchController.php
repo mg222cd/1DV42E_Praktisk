@@ -60,7 +60,7 @@ class SearchController{
 			}
 			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2001) {
 				//För många träffar, bara förfining.
-				return 'Många träffar... Över 2000...     ' . $resultsFromGeonames;
+				return 'Många träffar... Över 2000...';
 			}
 		}
 		// Geonames är nere... TODO... Sökning mot DB
