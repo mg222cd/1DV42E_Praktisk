@@ -3,7 +3,8 @@ namespace Controller;
 
 require_once('./View/SearchView.php');
 require_once('./Model/GeonamesModel.php');
-require_once('./View/ForecastView.php');
+//require_once('./View/ForecastView.php');
+require_once('./View/GeonamesView.php');
 require_once('./Model/GeonamesRepository.php');
 
 class SearchController{
@@ -11,14 +12,16 @@ class SearchController{
 	private $city;
 	private $html;
 	private $geonamesModel;
-	private $forecastView;
+	//private $forecastView;
 	private $geonamesRepo;
+	private $geonamesView;
 
 	public function __construct(){
 		$this->searchView = new \View\SearchView();
-		$this->forecastView = new \View\ForecastView();
+		//$this->forecastView = new \View\ForecastView();
 		$this->geonamesModel = new \Model\GeonamesModel();
 		$this->geonamesRepo = new \Model\GeonamesRepository();
+		$this->geonamesView = new \View\GeonamesView();
 	}
 	
 	public function searchScenarios(){
@@ -39,32 +42,32 @@ class SearchController{
 		if ($this->geonamesModel->testGeonames() == TRUE) {
 			$resultsFromGeonames = $this->geonamesModel->getGeonames($this->city);
 			// ... Logik för antal träffar
-			if ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 0) {
-				return $this->forecastView->noResultsFoundErrorMessage();
+			if ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) == 0) {
+				return $this->geonamesView->noResultsFoundErrorMessage();
 			}
-			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
+			elseif ($this->fgeonamesView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
 				if ($this->geonamesRepo->addCity($resultsFromGeonames)) {
 					return 'FUNKAR ATT LÄGGA IN I DB!   NÄSTA GREJ: Visa orten på karta och vis prognos!';
 				}
 			}
-			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 
-				&& $this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) <= 10) {
+			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 
+				&& $this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) <= 10) {
 				//TODO... Visa kort lista med träffar
 				return '2-10 träffar...     ' . $resultsFromGeonames;
-				//return $this->forecastView->shortList();
+				//return $this->geonamesView->shortList();
 			}
-			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) >= 11
-				&& $this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) <= 2000) {
+			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 11
+				&& $this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) <= 2000) {
 				//TODO... Förfinad filtrering och sen paginerade träffar.
 				return '11-2000 träffar...     ' . $resultsFromGeonames;
 			}
-			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2001) {
+			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2001) {
 				//För många träffar, bara förfining.
 				return 'Många träffar... Över 2000...';
 			}
 		}
 		// Geonames är nere... TODO... Sökning mot DB
-		return $this->forecastView->geonamesWebserviceErrorMessage() . $this->forecastView->hitList($this->geonamesRepo->getGeonames($this->city));
+		return $this->geonamesView->geonamesWebserviceErrorMessage() . $this->geonamesView->hitList($this->geonamesRepo->getGeonames($this->city));
 	}
 
 
