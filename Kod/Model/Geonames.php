@@ -12,7 +12,7 @@ class Geonames{
 	private $lng;
 
 	public function __construct($geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lang){
-		//$this->geonamesPk = $geonamesPk;
+		$this->geonamesPk = $geonamesPk;
 		$this->geonameId = $geonameId;
 		$this->name = $name;
 		$this->adminName1 = $adminName1;

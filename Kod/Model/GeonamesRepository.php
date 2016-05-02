@@ -5,7 +5,7 @@ require_once("./Model/DatabaseConnection.php");
 require_once("./Model/Geonames.php");
 
 class GeonamesRepository extends DatabaseConnection{
-	//private $geonamesList = array();
+	private $geonamesList = array();
 	private $geonamesPk = 'geonamesPk';
 	private $geonameId = 'geonameId';
 	private $name = 'name';
@@ -21,6 +21,7 @@ class GeonamesRepository extends DatabaseConnection{
 
 	public function addCity($cityArray){		
 		$geonames = new \model\Geonames(
+			null, //GeonamesPk 
 			$cityArray["geonames"][0]['geonameId'], 
 			$cityArray["geonames"][0]['name'], 
 			$cityArray["geonames"][0]['adminName1'], 
@@ -28,7 +29,6 @@ class GeonamesRepository extends DatabaseConnection{
 			$cityArray["geonames"][0]['countryName'],
 			$cityArray["geonames"][0]['lat'],
 			$cityArray["geonames"][0]['lng']);
-
 		try{
 			$db = $this->connection();
 			
@@ -56,7 +56,37 @@ class GeonamesRepository extends DatabaseConnection{
 		catch(\PDOException $e){
 			throw new \Exception('Ett fel uppstod då orten skulle läggas till i databasen.');
 		}
+	}
 
+	public function getGeonames($cityname){
+		try {
+			$db = $this->connection();
+			$sql = '
+					SELECT $this->dbTable.geonamesPk, $this->dbTable.geonameId, $this->dbTable.name, $this->dbTable.adminName1, 
+							$this->dbTable.adminName2, $this->dbTable.lat, $this->workouttypeTable.lng 
+					FROM $this->dbTable
+					WHERE name = :name
+					';
+
+			$params = array(':name' => $cityname);
+			$query = $db->prepare($sql);
+			$query->execute($params);
+
+			foreach ($query->fetchAll() as $geonames) {
+				$geonamesPk = $geonames['geonamesPk'];
+				$geonameId = $geonames['geonameId'];
+				$name = $geonames['name'];
+				$adminName1 = $geonames['adminName1'];
+				$adminName2 = $geonames['adminName2'];
+				$countryName = $geonames['countryName'];
+				$lat = $geonames['lat'];
+				$lng = $geonames['lng'];
+				$this->geonamesList[] = new \Model\Geonames($geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lng);
+			}
+			return $this->geonamesList;
+		} catch (Exception $e) {
+			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
+		}
 	}
 
 }

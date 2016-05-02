@@ -23,7 +23,6 @@ class ForecastView{
 	}
 
 	public function numberOfResultsFromGeonames ($data){
-		//$dataDecoded = json_decode($data, true);
 		$numberOfResults = $data['totalResultsCount'];
 		return $numberOfResults;
 	}

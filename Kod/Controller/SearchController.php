@@ -44,21 +44,8 @@ class SearchController{
 			}
 			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
 				if ($this->geonamesRepo->addCity($resultsFromGeonames)) {
-					return 'FUNKAR ATT LÄGGA IN I DB!';
+					return 'FUNKAR ATT LÄGGA IN I DB!   NÄSTA GREJ: Visa orten på karta och vis prognos!';
 				}
-				/*
-				if ($this->geonamesRepo->addCity($geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lang)) {
-					return 'FUNKAR ATT LÄGGA IN I DB!';
-				}*/
-				//return 'En träff...     ' . $resultsFromGeonames;
-				//TODO: visa prognos direkt (& lägg in vald ort i db).
-				/*
-				if ($this->workoutRepo->addWorkout($userId, $workoutTypeId, $wdate, $distance, $wtime, $comment) == TRUE) {
-					$this->workoutView->succeedAdd();
-					header('Location: ./');
-					die();
-				}*/
-
 			}
 			elseif ($this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 
 				&& $this->forecastView->numberOfResultsFromGeonames($resultsFromGeonames) <= 10) {
