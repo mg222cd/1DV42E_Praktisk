@@ -31,13 +31,14 @@ class ForecastView{
 		$resultsrow='';
 		foreach ($geonamesList as $geonames) {
 			$resultsrow .= '<tr>
-								<td>'
+								<td>
+								<a class="" href="?forecast='.$geonames->getName().'"</a>'
 								 . $geonames->getName() . ', ' 
-								 . $geonames->getAdminName1() .  ', '
 								 . $geonames->getAdminName2() .  ', '
+								 . $geonames->getAdminName1() .  ', '
 								 . $geonames->getCountryName() .
-								  '</td>
-								</td>
+								 '
+								 </td>
 							<tr>';
 		}
 		$html= "

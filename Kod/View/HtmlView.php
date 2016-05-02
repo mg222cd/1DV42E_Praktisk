@@ -28,12 +28,12 @@ class HTMLView{
                     </a>
                     </div>
                     <div class="col-md-4">     
-                    <form class="form-inline" method="post" role="form" action="?action='.NavigationView::$actionSearch.'">
+                    <form class="form-inline" method="get" role="form" action="?'.NavigationView::$actionSearch.'">
                         <div class="form-group">
-                          <input type="text" class="form-control" maxlength="255" name="city" id="city" placeholder="Sök väder via ort" autofocus="">
+                          <input type="text" class="form-control" maxlength="255" name="search" id="search" placeholder="Sök väder via ort" autofocus="">
                         </div>
                         <div class="form-group">
-                          <input type="submit" value="Sök" name="searchButton" class="btn btn-default">
+                          <input type="submit" value="Sök" class="btn btn-default">
                         </div>
                     </form>
                     </div>
