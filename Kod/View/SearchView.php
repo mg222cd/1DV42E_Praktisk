@@ -7,8 +7,8 @@ class SearchView{
 	private $givenCity;
 
 	public function getCity(){
-		if (isset($_POST['city']) && $_POST['city'] != '') {
-			$this->givenCity = $_POST['city'];
+		if (isset($_GET['search']) && $_GET['search'] != '') {
+			$this->givenCity = $_GET['search'];
 			return $this->givenCity;
 		}
 		$this->errorMessage = '<p>Ingen ort har angivits. Försök igen.</p>';
