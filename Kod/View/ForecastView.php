@@ -27,4 +27,30 @@ class ForecastView{
 		return $numberOfResults;
 	}
 	
+	public function hitList($geonamesList){
+		$resultsrow='';
+		foreach ($geonamesList as $geonames) {
+			$resultsrow .= '<tr>
+								<td>'
+								 . $geonames->getName() . ', ' 
+								 . $geonames->getAdminName1() .  ', '
+								 . $geonames->getAdminName2() .  ', '
+								 . $geonames->getCountryName() .
+								  '</td>
+								</td>
+							<tr>';
+		}
+		$html= "
+			<div class 'row'>
+			<div class='col-xs-12'>
+			<div id='workoutTable' class='table-responsive'>
+			<table class='table table-bordered table table-striped '>
+				".$resultsrow."
+			</table>
+			</div>
+			</div>
+			</div>
+		";
+		return $html;
+	}
 }

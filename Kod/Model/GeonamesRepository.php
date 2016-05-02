@@ -82,7 +82,6 @@ class GeonamesRepository extends DatabaseConnection{
 				$lng = $geonames['lng'];
 				$this->geonamesList[] = new \Model\Geonames($geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lng);
 			}
-			var_dump($this->geonamesList);die();
 			return $this->geonamesList;
 		} catch (Exception $e) {
 			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
