@@ -64,7 +64,7 @@ class SearchController{
 			}
 		}
 		// Geonames är nere... TODO... Sökning mot DB
-		return $this->forecastView->geonamesWebserviceErrorMessage();
+		return $this->forecastView->geonamesWebserviceErrorMessage() . $this->geonamesRepo->getGeonames($this->city);
 	}
 
 
