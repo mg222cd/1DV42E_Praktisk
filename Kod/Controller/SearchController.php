@@ -45,7 +45,7 @@ class SearchController{
 			if ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) == 0) {
 				return $this->geonamesView->noResultsFoundErrorMessage();
 			}
-			elseif ($this->fgeonamesView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
+			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
 				if ($this->geonamesRepo->addCity($resultsFromGeonames)) {
 					return 'FUNKAR ATT LÄGGA IN I DB!   NÄSTA GREJ: Visa orten på karta och vis prognos!';
 				}

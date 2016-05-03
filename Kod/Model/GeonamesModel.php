@@ -11,7 +11,6 @@ class GeonamesModel{
 	*/
 
 	public function geonamesRequest($url){
-		//curl
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept' => 'application/json; charset=utf-8'));
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -30,7 +29,8 @@ class GeonamesModel{
 		if ($testData == false) {
 			return false;
 		}
-		return true;
+		return false;
+		//return true;
 	}
 
 	public function getGeonames($city){
