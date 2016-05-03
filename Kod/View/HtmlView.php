@@ -50,7 +50,10 @@ class HTMLView{
                   <p class="tight">Denna sida är skapad av Marike Grinde</br>
                   i kursen 1DV42E, Självständigt arbete, Fakulteten för teknik, Linnéuniversitetet</p>
                 </footer>
-              </div>  
+              </div>
+              <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+              <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQJxS29ljc_bbRXhzBGxGI6Nzrv2v273E&sensor=false"></script>
+              <script src="Map.js"></script>  
               </body>
               </html>';
     }
