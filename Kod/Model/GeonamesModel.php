@@ -30,8 +30,7 @@ class GeonamesModel{
 		if ($testData == false) {
 			return false;
 		}
-		return false;
-		//return true;
+		return true;
 	}
 
 	public function getGeonames($city){

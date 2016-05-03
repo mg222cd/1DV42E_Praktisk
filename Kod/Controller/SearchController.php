@@ -66,7 +66,7 @@ class SearchController{
 				return 'Många träffar... Över 2000...';
 			}
 		}
-		// Geonames är nere... TODO... Sökning mot DB
+		// Geonames är nere... 
 		return $this->geonamesView->geonamesWebserviceErrorMessage() . $this->geonamesView->hitList($this->geonamesRepo->getGeonames($this->city));
 	}
 

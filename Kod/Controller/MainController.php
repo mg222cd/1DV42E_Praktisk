@@ -19,6 +19,7 @@ class MainController{
 			case 'search':
 				return $this->searchController->searchScenarios();
 				break;
+			//TODO case forecast controller
 			default:
 				return $this->startView->startForm();
 				break;
