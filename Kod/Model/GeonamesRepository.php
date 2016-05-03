@@ -12,6 +12,7 @@ class GeonamesRepository extends DatabaseConnection{
 	private $adminName1 = 'adminName1';
 	private $adminName2 = 'adminName2';
 	private $countryName = 'countryName';
+	private $fcodeName = 'fcodeName';
 	private $lat ='lat';
 	private $lng ='lng';
 	
@@ -27,6 +28,7 @@ class GeonamesRepository extends DatabaseConnection{
 			$cityArray["geonames"][0]['adminName1'], 
 			$cityArray["geonames"][0]['adminName2'], 
 			$cityArray["geonames"][0]['countryName'],
+			$cityArray["geonames"][0]['fcodeName'],
 			$cityArray["geonames"][0]['lat'],
 			$cityArray["geonames"][0]['lng']);
 		try{
@@ -38,15 +40,17 @@ class GeonamesRepository extends DatabaseConnection{
 				.$this->adminName1.","
 				.$this->adminName2.","
 				.$this->countryName.","
+				.$this->fcodeName.","
 				.$this->lat.","
 				.$this->lng.")
-               VALUES (?, ?, ?, ?, ?, ?, ?);";
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 			$params = array (
 				$geonames->getGeonameId(), 
 				$geonames->getName(),
 				$geonames->getAdminName1(),
 				$geonames->getAdminName2(),
 				$geonames->getCountryName(),
+				$geonames->getFcodeName(),
 				$geonames->getLat(),
 				$geonames->getLng());
 			$query = $db->prepare($sql);
@@ -62,7 +66,7 @@ class GeonamesRepository extends DatabaseConnection{
 		try {
 			$db = $this->connection();
 			$sql = "SELECT $this->dbTable.geonamesPk, $this->dbTable.geonameId, $this->dbTable.name, $this->dbTable.adminName1, 
-							$this->dbTable.adminName2, $this->dbTable.countryName, $this->dbTable.lat, $this->dbTable.lng 
+							$this->dbTable.adminName2, $this->dbTable.countryName, $this->dbTable.fcodeName, $this->dbTable.lat, $this->dbTable.lng 
 					FROM $this->dbTable
 					WHERE name = :name
 					";
@@ -78,9 +82,10 @@ class GeonamesRepository extends DatabaseConnection{
 				$adminName1 = $geonames['adminName1'];
 				$adminName2 = $geonames['adminName2'];
 				$countryName = $geonames['countryName'];
+				$fcodeName = $geonames['fcodeName'];
 				$lat = $geonames['lat'];
 				$lng = $geonames['lng'];
-				$this->geonamesList[] = new \Model\Geonames($geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $lat, $lng);
+				$this->geonamesList[] = new \Model\Geonames($geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $fcodeName, $lat, $lng);
 			}
 			return $this->geonamesList;
 		} catch (Exception $e) {

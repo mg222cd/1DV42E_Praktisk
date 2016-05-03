@@ -33,7 +33,8 @@ class GeonamesView{
 			$resultsrow .= '<tr>
 								<td>
 								<a class="" href="?forecast='.$geonames->getName().'~'.$geonames->getGeonameId().'"</a>'
-								 . $geonames->getName() . ', ' 
+								 . $geonames->getName() . ' - '
+								 . $geonames->getFcodeName() . ', ' 
 								 . $geonames->getAdminName2() .  ', '
 								 . $geonames->getAdminName1() .  ', '
 								 . $geonames->getCountryName() .
