@@ -47,7 +47,6 @@ header img{
 */
 #content{
 	width: 80%;
-	/*padding-left: 50px;*/
 	margin: auto;
 	margin-top: 2%;
 	margin-bottom: 5%;
@@ -65,6 +64,22 @@ h1{
 
 .darkblueAsInHeader{
 	color: #2980B9;
+}
+
+/*
+* GOOGLE MAPS
+*/
+
+html, body, #map-canvas{
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+
+#map-canvas {
+  min-height: 300px;
+  width: 100%;
 }
 
 /*

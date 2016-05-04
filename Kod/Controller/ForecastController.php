@@ -1,11 +1,16 @@
 <?php
 namespace Controller;
 
-//klass används ej
+require_once('./View/ForecastView.php');
 
 class ForecastController{
+	private $forecastView;
+
+	public function __construct(){
+		$this->forecastView = new \View\ForecastView();
+	}
 	
 	public function forecastScenarios(){
-		return null;
+		return $this->forecastView->getForecast() . $this->forecastView->getMap();
 	}
 }
