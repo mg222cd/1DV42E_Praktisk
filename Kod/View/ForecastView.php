@@ -12,9 +12,15 @@ class ForecastView{
 		$this->goolemapsKey = $this->settings->getKey();
 	}
 
+	public function getMainStructure(){
+		$html ='
+		';
+		return $html;
+	}
+
 	public function getForecast(){
 		$html ='
-			<div class="col-md8">
+			<div class="col-md-8">
 				<p>
 					Här kommer prognosdata att visas!
 				</p>
@@ -25,7 +31,7 @@ class ForecastView{
 
 	public function getMap(){
 		$html='
-			<div class="col-md4">
+			<div class="col-md-4">
 				<div id="map-canvas"></div>
 			</div>
 			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key='.$this->goolemapsKey.'"></script>
