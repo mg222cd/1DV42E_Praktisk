@@ -11,6 +11,6 @@ class ForecastController{
 	}
 	
 	public function forecastScenarios(){
-		return $this->forecastView->getMainStructure() . $this->forecastView->getForecast() . $this->forecastView->getMap();
+		return $this->forecastView->getForecast() . $this->forecastView->getMap();
 	}
 }
