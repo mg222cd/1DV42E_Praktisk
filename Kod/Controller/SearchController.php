@@ -47,7 +47,9 @@ class SearchController{
 			}
 			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
 				if ($this->geonamesRepo->addCity($resultsFromGeonames)) {
-					return 'FUNKAR ATT LÄGGA IN I DB!   NÄSTA GREJ: Visa orten på karta och vis prognos!';
+					$_SESSION['lat'] = $resultsFromGeonames["geonames"][0]['lat'];
+					$_SESSION['lng'] = $resultsFromGeonames["geonames"][0]['lng'];
+					header('Location: ?forecast=Bruksvallarna');
 				}
 			}
 			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 

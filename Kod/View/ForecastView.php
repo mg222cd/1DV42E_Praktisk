@@ -12,12 +12,6 @@ class ForecastView{
 		$this->goolemapsKey = $this->settings->getKey();
 	}
 
-	public function getMainStructure(){
-		$html ='
-		';
-		return $html;
-	}
-
 	public function getForecast(){
 		$html ='
 			<div class="col-md-8">

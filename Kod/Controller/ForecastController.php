@@ -11,6 +11,7 @@ class ForecastController{
 	}
 	
 	public function forecastScenarios(){
+		//var_dump($_SESSION);
 		return $this->forecastView->getForecast() . $this->forecastView->getMap();
 	}
 }
