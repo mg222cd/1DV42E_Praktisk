@@ -30,7 +30,6 @@ class ForecastView{
 			</div>
 			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key='.$this->goolemapsKey.'"></script>
             <script src="Map.js"></script>
-            <script src="Message.js"></script>
 		';
 		return $html;
 	}
