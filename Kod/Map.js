@@ -3,15 +3,17 @@ function initialize () {
     var lat;
     var lng;
 
-    console.log(lat);
-
     $.get('./Helpers/Lat.php', function ( data ) {
         lat = data;
+        console.log(lat);
     });
 
     $.get('./Helpers/Lng.php', function ( data ) {
         lng = data;
+        console.log(lng);
     });
+
+    console.log(lat, lng);
 
     var myLatLng = { lat:lat, lng:lng };
 
