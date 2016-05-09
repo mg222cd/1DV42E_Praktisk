@@ -12,6 +12,11 @@ class ForecastView{
 		$this->goolemapsKey = $this->settings->getKey();
 	}
 
+	public function getForecastHeader($city){
+		$this->html='<h1>Väderprognos för <span class ="darkblueAsInHeader">'.$city.'</span>:</h1>';
+		return $this->html;
+	}
+
 	public function getForecast(){
 		$html ='
 			<div class="col-md-8">
