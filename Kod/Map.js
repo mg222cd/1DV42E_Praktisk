@@ -2,7 +2,8 @@
 function initialize(){
     var lat = '';
         $.ajax({ type: "GET",   
-         url: "./Helpers/Lat.php",   
+         url: "./Helpers/Lat.php",
+         contentType: "text",   
          async: false,
          success : function(text)
          {
@@ -13,7 +14,8 @@ function initialize(){
 
     var lng = '';
         $.ajax({ type: "GET",   
-         url: "./Helpers/Lng.php",   
+         url: "./Helpers/Lng.php",
+         contentType: "text",    
          async: false,
          success : function(text)
          {
@@ -28,7 +30,7 @@ function initialize(){
     var myLatLng = { lat:lat, lng:lng};
 
     var mapOptions = {
-        center: new google.maps.LatLng(62.7013, 12.38913),
+        center: new google.maps.LatLng(lat, lng),
         zoom: 8
     };
     

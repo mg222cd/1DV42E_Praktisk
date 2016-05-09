@@ -29,7 +29,6 @@ class GeonamesModel{
 		if ($testData == false) {
 			return false;
 		}
-		//return false;
 		return true;
 	}
 

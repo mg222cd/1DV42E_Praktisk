@@ -51,7 +51,7 @@ class HTMLView{
                   i kursen 1DV42E, Självständigt arbete, Fakulteten för teknik, Linnéuniversitetet</p>
                 </footer>
               </div>
-              <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>   
+              <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>   
               </body>
               </html>';
     }

@@ -49,7 +49,7 @@ class SearchController{
 				if ($this->geonamesRepo->addCity($resultsFromGeonames)) {
 					$_SESSION['lat'] = $resultsFromGeonames["geonames"][0]['lat'];
 					$_SESSION['lng'] = $resultsFromGeonames["geonames"][0]['lng'];
-					header('Location: ?forecast=Bruksvallarna');
+					header('Location: ?forecast='.$resultsFromGeonames["geonames"][0]['name'].'~'.$resultsFromGeonames["geonames"][0]['geonameId']);
 				}
 			}
 			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 
