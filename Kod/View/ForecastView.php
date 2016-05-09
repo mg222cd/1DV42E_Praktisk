@@ -12,6 +12,14 @@ class ForecastView{
 		$this->goolemapsKey = $this->settings->getKey();
 	}
 
+	public function getGeonameId(){
+		$citynameAndGeonameId = $_GET['forecast'];
+		$explodedCitynameAndGeonameId = explode('~', $citynameAndGeonameId);
+		$geonameId = $explodedCitynameAndGeonameId[1];
+		return $geonameId;
+
+	}
+
 	public function getForecastHeader($city){
 		$this->html='<h1>Väderprognos för <span class ="darkblueAsInHeader">'.$city.'</span>:</h1>';
 		return $this->html;

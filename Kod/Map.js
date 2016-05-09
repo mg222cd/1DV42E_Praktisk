@@ -1,4 +1,3 @@
-"use strict";
 function initialize(){
     var lat = '';
         $.ajax({ type: "GET",   

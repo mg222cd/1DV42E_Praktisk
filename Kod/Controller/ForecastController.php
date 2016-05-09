@@ -5,16 +5,21 @@ require_once('./View/ForecastView.php');
 
 class ForecastController{
 	private $forecastView;
-	private $name;
-	private $geonameId;
+	private $geonamesRepo;
+	private $choosenCity;
 
 	public function __construct(){
 		$this->forecastView = new \View\ForecastView();
+		$this->geonamesRepo = new \Model\GeonamesRepository();
 	}
 	
 	public function forecastScenarios(){
 		//Få ut en korrekt rubrik:
 		//Hämta hela geonames-objektet ur databasen
+
+		$geonameId = $this->forecastView->getGeonameId();
+		var_dump($geonameId);
+		//$this->choosenCity = $this->geonamesRepo->getGeonamesObjectByGeonameId($this->forecastView->getGeonameId());
 		
 		//Testa om YR och SMHI's webservices fungerar, om inte, skriv ut felmedd om begränsade resultat
 		//Oavsett om meddelande om felmedd om begränsade resultat eller ej, hämta och skriv ut prognos från YR och SMHI
