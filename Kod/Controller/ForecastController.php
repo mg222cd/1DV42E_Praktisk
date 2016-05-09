@@ -16,10 +16,7 @@ class ForecastController{
 	public function forecastScenarios(){
 		//Få ut en korrekt rubrik:
 		//Hämta hela geonames-objektet ur databasen
-
-		$geonameId = $this->forecastView->getGeonameId();
-		var_dump($geonameId);
-		//$this->choosenCity = $this->geonamesRepo->getGeonamesObjectByGeonameId($this->forecastView->getGeonameId());
+		$this->choosenCity = $this->geonamesRepo->getGeonamesObjectByGeonameId($this->forecastView->getGeonameId());
 		
 		//Testa om YR och SMHI's webservices fungerar, om inte, skriv ut felmedd om begränsade resultat
 		//Oavsett om meddelande om felmedd om begränsade resultat eller ej, hämta och skriv ut prognos från YR och SMHI

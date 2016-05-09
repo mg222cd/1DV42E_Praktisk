@@ -93,5 +93,9 @@ class GeonamesRepository extends DatabaseConnection{
 		}
 	}
 
+	public function getGeonamesObjectByGeonameId($geonameId){
+		return null;
+	}
+
 
 }
