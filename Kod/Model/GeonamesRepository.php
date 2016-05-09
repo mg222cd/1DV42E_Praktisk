@@ -5,6 +5,7 @@ require_once("./Model/DatabaseConnection.php");
 require_once("./Model/Geonames.php");
 
 class GeonamesRepository extends DatabaseConnection{
+	private $geonamesObject;
 	private $geonamesList = array();
 	private $geonamesPk = 'geonamesPk';
 	private $geonameId = 'geonameId';
@@ -94,7 +95,37 @@ class GeonamesRepository extends DatabaseConnection{
 	}
 
 	public function getGeonamesObjectByGeonameId($geonameId){
-		return null;
+		try {
+			$db = $this->connection();
+			$sql = "SELECT $this->dbTable.geonamesPk, $this->dbTable.geonameId, $this->dbTable.name, $this->dbTable.adminName1, 
+							$this->dbTable.adminName2, $this->dbTable.countryName, $this->dbTable.fcodeName, $this->dbTable.lat, $this->dbTable.lng 
+					FROM $this->dbTable
+					WHERE geonameId = :geonameId
+					";
+
+			$params = array(':geonameId' => $geonameId);
+			$query = $db->prepare($sql);
+			$query->execute($params);
+
+			$geonames = $query->fetchAll();
+			//var_dump($geonames[0]['geonamesPk']);die();
+			$geonamesPk = $geonames[0]['geonamesPk'];
+			$geonameId = $geonames[0]['geonameId'];
+			$name = $geonames[0]['name'];
+			$adminName1 = $geonames[0]['adminName1'];
+			$adminName2 = $geonames[0]['adminName2'];
+			$countryName = $geonames[0]['countryName'];
+			$fcodeName = $geonames[0]['fcodeName'];
+			$lat = $geonames[0]['lat'];
+			$lng = $geonames[0]['lng'];
+			$this->geonamesObject = new \Model\Geonames(
+					$geonamesPk, $geonameId, $name, $adminName1, $adminName2, $countryName, $fcodeName, $lat, $lng
+					);
+
+			return $this->geonamesObject;
+		} catch (Exception $e) {
+			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
+		}
 	}
 
 
