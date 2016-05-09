@@ -1,11 +1,31 @@
 "use strict";
 function initialize(){
-    var lat = getLat();
-    var lng = getLng();
+    var lat = '';
+        $.ajax({ type: "GET",   
+         url: "./Helpers/Lat.php",   
+         async: false,
+         success : function(text)
+         {
+             lat = text;
+         }
+    });
+    
 
-    console.log(lat, lng); // <-- Putput blir "undefined, undefined"
+    var lng = '';
+        $.ajax({ type: "GET",   
+         url: "./Helpers/Lng.php",   
+         async: false,
+         success : function(text)
+         {
+             lng = text;
+         }
+    });    
 
-    var myLatLng = { lat:lat, lng:lng };
+    //gör om datatyp från string till float
+    lat = parseFloat(lat);
+    lng = parseFloat(lng);
+
+    var myLatLng = { lat:lat, lng:lng};
 
     var mapOptions = {
         center: new google.maps.LatLng(62.7013, 12.38913),
@@ -18,19 +38,6 @@ function initialize(){
     var marker = new google.maps.Marker({
         position : myLatLng,
         map : map
-    });
-}
-
-function getLat(){
-    $.get('./Helpers/Lat.php', function (data){
-        console.log(data); //<-- Funkar!
-        return data;
-    });
-}
-function getLng(){
-    $.get('./Helpers/Lng.php', function (data){
-        console.log(data); //<-- Funkar!
-        return data;
     });
 }
 
