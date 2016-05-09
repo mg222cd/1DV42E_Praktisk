@@ -1,19 +1,9 @@
 "use strict";
-function initialize () {
-    var lat;
-    var lng;
+function initialize(){
+    var lat = getLat();
+    var lng = getLng();
 
-    $.get('./Helpers/Lat.php', function ( data ) {
-        lat = data;
-        console.log(lat);
-    });
-
-    $.get('./Helpers/Lng.php', function ( data ) {
-        lng = data;
-        console.log(lng);
-    });
-
-    console.log(lat, lng);
+    console.log(lat, lng); // <-- Putput blir "undefined, undefined"
 
     var myLatLng = { lat:lat, lng:lng };
 
@@ -31,29 +21,17 @@ function initialize () {
     });
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
-
-/*
-function initialize () {
-    var myLatLng = {lat: 62.7013, lng: 12.38913};
-
-    var mapOptions = {
-        center: new google.maps.LatLng(62.7013, 12.38913),
-        zoom: 8
-    };
-    
-    var map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
-
-    var marker = new google.maps.Marker({
-        position : myLatLng,
-        map : map
+function getLat(){
+    $.get('./Helpers/Lat.php', function (data){
+        console.log(data); //<-- Funkar!
+        return data;
     });
-
-    $.get('./Helpers/Lat.php', function ( data ) {
-    console.log(data)
+}
+function getLng(){
+    $.get('./Helpers/Lng.php', function (data){
+        console.log(data); //<-- Funkar!
+        return data;
     });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-*/
