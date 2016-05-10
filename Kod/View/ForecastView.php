@@ -6,6 +6,9 @@ require_once('./Helpers/Settings.php');
 class ForecastView{
 	private $goolemapsKey;
 	private $settings;
+	private $statusMessageWebservices;
+	private $forecastHeader;
+	private $map;
 
 	public function __construct(){
 		$this->settings = new \Settings\Settings();
@@ -22,6 +25,14 @@ class ForecastView{
 
 	public function getForecastHeader($cityObject){
 		$cityname = $cityObject->getName();
+		$this->forecastHeader='<h1>Väderprognos för <span class ="darkblueAsInHeader">'.$cityname.'</span>:</h1>';
+		return $this->forecastHeader;
+	}
+
+	public function getWebserviceStatus($onlineStatusYr, $onlineStatusSmhi){
+		if ($onlineStatusYr == true && $onlineStatusSmhi == true) {
+			$this->statusMessageWebservices='<h1>Väderprognos för <span class ="darkblueAsInHeader">'.$cityname.'</span>:</h1>';
+		}
 		$this->html='<h1>Väderprognos för <span class ="darkblueAsInHeader">'.$cityname.'</span>:</h1>';
 		return $this->html;
 	}
@@ -38,18 +49,14 @@ class ForecastView{
 	}
 
 	public function getMap(){
-		$html='
+		$map='
 			<div class="col-md-4">
 				<div id="map-canvas"></div>
 			</div>
 			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key='.$this->goolemapsKey.'"></script>
             <script src="Map.js"></script>
 		';
-		return $html;
-	}
-
-	public function getKey(){
-
+		return $map;
 	}
 
 }
