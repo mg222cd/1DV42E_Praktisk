@@ -12,8 +12,10 @@ class ForecastController{
 	private $yrModel;
 	private $smhiModel;
 	private $choosenCity;
-	private $yrWebservice;
-	private $smhiWebservice;
+	private $yrWebserviceStatus;
+	private $smhiWebserviceStatus;
+	private $forecastYr;
+	private $forecastSmhi;
 
 	public function __construct(){
 		$this->forecastView = new \View\ForecastView();
@@ -23,17 +25,23 @@ class ForecastController{
 	}
 	
 	public function forecastScenarios(){
-		//Hämta hela geonames-objektet ur databasen
+		//Grundläggande parametrar
 		$this->choosenCity = $this->geonamesRepo->getGeonamesObjectByGeonameId($this->forecastView->getGeonameId());
-		//Testa om YR och SMHI's webservices fungerar, om inte, skriv ut felmedd om begränsade resultat
-		$this->yrWebservice = $this->yrModel->testYrWebservice($this->choosenCity);
-		$this->smhiWebservice = $this->smhiModel->testSmhiWebservice($this->choosenCity);
-		//Oavsett om meddelande om felmedd om begränsade resultat eller ej, hämta och skriv ut prognos från YR och SMHI
-		//Lägg till prognoser i DB
-		//cachningstrategi
+		$this->yrWebserviceStatus = $this->yrModel->testYrWebservice($this->choosenCity);
+		$this->smhiWebserviceStatus = $this->smhiModel->testSmhiWebservice($this->choosenCity);
+		//Hämta prognoser.
+		// 1a. Kolla om prognos från Yr redan finns i DB, isåfall, hämta den.
+		// 2a. Om prognos ej finns i DB, hämta från YrWebservice
+		// 3a. Spara prognosen i databasen
+
+		// 1b. Kolla om prognos från Yr redan finns i DB, isåfall, hämta den.
+		// 2b. Om prognos ej finns i DB, hämta från YrWebservice
+		// 3b. Spara prognosen i databasen
+		
+		// 4. Skicka båda prognoserna till funktion i Vyn, som snyggar till dem.
 		return 
 			$this->forecastView->getForecastHeader($this->choosenCity) .
-			$this->forecastView->getWebserviceStatus($this->yrWebservice, $this->smhiWebservice) .
+			$this->forecastView->getWebserviceStatus($this->yrWebserviceStatus, $this->smhiWebserviceStatus) .
 			$this->forecastView->getForecast() . 
 			$this->forecastView->getMap();
 	}
