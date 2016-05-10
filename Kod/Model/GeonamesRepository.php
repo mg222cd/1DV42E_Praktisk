@@ -35,7 +35,7 @@ class GeonamesRepository extends DatabaseConnection{
 		try{
 			$db = $this->connection();
 			
-			$sql = "INSERT INTO $this->dbTable ("
+			$sql = "INSERT IGNORE INTO $this->dbTable ("
 				.$this->geonameId.","
 				.$this->name.","
 				.$this->adminName1.","
@@ -123,6 +123,34 @@ class GeonamesRepository extends DatabaseConnection{
 					);
 
 			return $this->geonamesObject;
+		} catch (Exception $e) {
+			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
+		}
+	}
+
+	public function cityIsAlreadyInDatabase($cityArray){
+		$geonameId = $cityArray["geonames"][0]['geonameId'];
+		try {
+			$db = $this->connection();
+			$sql = "SELECT $this->dbTable.geonamesPk, $this->dbTable.geonameId, $this->dbTable.name, $this->dbTable.adminName1, 
+							$this->dbTable.adminName2, $this->dbTable.countryName, $this->dbTable.fcodeName, $this->dbTable.lat, $this->dbTable.lng 
+					FROM $this->dbTable
+					WHERE geonameId = :geonameId
+					";
+
+			$params = array(':geonameId' => $geonameId);
+			$query = $db->prepare($sql);
+			$query->execute($params);
+
+			$geonames = $query->fetchAll();
+			$hits = count($geonames);
+			if ($hits == 0) {
+				return FALSE;
+			}
+			else if ($hits >= 1) {
+				return TRUE;
+			}
+			
 		} catch (Exception $e) {
 			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
 		}

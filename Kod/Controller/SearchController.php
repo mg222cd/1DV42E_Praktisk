@@ -46,11 +46,14 @@ class SearchController{
 				return $this->geonamesView->noResultsFoundErrorMessage();
 			}
 			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
-				if ($this->geonamesRepo->addCity($resultsFromGeonames)) {
-					$_SESSION['lat'] = $resultsFromGeonames["geonames"][0]['lat'];
-					$_SESSION['lng'] = $resultsFromGeonames["geonames"][0]['lng'];
-					header('Location: ?forecast='.$resultsFromGeonames["geonames"][0]['name'].'~'.$resultsFromGeonames["geonames"][0]['geonameId']);
+				$cityExistInDB = $this->geonamesRepo->cityIsAlreadyInDatabase($resultsFromGeonames);
+				//Om stad ej finns i DB redan så läggs den till där nu
+				if ($cityExistInDB == FALSE) {
+					$add = $this->geonamesRepo->addCity($resultsFromGeonames);
 				}
+				$_SESSION['lat'] = $resultsFromGeonames["geonames"][0]['lat'];
+				$_SESSION['lng'] = $resultsFromGeonames["geonames"][0]['lng'];
+				header('Location: ?forecast='.$resultsFromGeonames["geonames"][0]['name'].'~'.$resultsFromGeonames["geonames"][0]['geonameId']);
 			}
 			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 
 				&& $this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) <= 10) {
