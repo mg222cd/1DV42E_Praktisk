@@ -62,6 +62,10 @@ h1{
 	font-weight: bold;
 }
 
+.statusmessage{
+	padding-bottom: 5%;
+}
+
 .darkblueAsInHeader{
 	color: #2980B9;
 }

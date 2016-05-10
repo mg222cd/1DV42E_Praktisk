@@ -1,13 +1,14 @@
 <?php
 namespace Model;
 
-class YrModel{
+class SmhiModel{
 	private $city;
 	private $url;
 
-	public function yrRequest($url){
+
+	public function smhiRequest($url){
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept' => 'application/xml; charset=utf-8'));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept' => 'application/json; charset=utf-8'));
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -18,30 +19,16 @@ class YrModel{
 		return $data;
 	}
 	
-	public function testYrWebservice(){
-		$testUrlString = 'http://www.yr.no/sted/Sweden/Jämtland/Bruksvallarna/forecast.xml';
-		$testData = $this->yrRequest($testUrlString);
+	public function testSmhiWebservice(){
+		$testUrlString = 'http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/58.59/lon/16.18/data.json';
+		$testData = $this->smhiRequest($testUrlString);
 		if ($testData == false) {
 			return false;
 		}
 		return true;
 	}
 
-	private function getUrl($geonamesObject){
-		$country = $geonamesObject->getCountryName();
-		$adminName1 = $geonamesObject->getAdminName1();
-		$adminName2 = $geonamesObject->getAdminName2();
-		$name = $geonamesObject->getName();
-		if ($country == 'norway') {
-			$this->url = 'http://www.yr.no/sted/Norge/'.$adminName1.'/'.$adminName2.'/'.$name.'/forecast.xml';
-		}
-		else{
-			$this->url = 'http://www.yr.no/sted/'.$country.'/'.$adminName1.'/'.$name.'/forecast.xml';
-		}
-		return $this->url;
-	}
-
-	
+	/*
 	public function getYrForecast($cityObject){
 		$url = $this->getUrl();
 		$data = $this->yrRequest($url);
@@ -49,6 +36,7 @@ class YrModel{
 		xml_parse_into_struct($xmlParser, $data, $values, $index); 
 		return $xmlParser;
 	}
+	*/
 
 	//Filtrates oyt html and tags
 	public function sanitizeText($forecast){

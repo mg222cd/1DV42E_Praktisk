@@ -35,10 +35,12 @@ class ForecastView{
 		}
 		if ($onlineStatusYr == false || $onlineStatusSmhi == false) {
 			$this->statusMessageWebservices='
+			<div class="statusmessage">
 			Observera! 
 			Det verkar som om en eller flera av externa webservices (varifrån Svenskt Väder hämtar sina prognoser) för tillfället ligget nere. 
 			På grund av detta är prognosdatat nedan ofullständigt. 
 			Svenskt Väder beklagar detta, och ber dig att försöka igen senare.
+			</div>
 			';
 		}
 		return $this->statusMessageWebservices;
