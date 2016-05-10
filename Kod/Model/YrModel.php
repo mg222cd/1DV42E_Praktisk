@@ -3,6 +3,7 @@ namespace Model;
 
 class YrModel{
 	private $city;
+	private $url;
 
 	public function yrRequest($url){
 		$ch = curl_init();
@@ -30,7 +31,22 @@ class YrModel{
 		return true;
 	}
 
+	private function getUrl($geonamesObject){
+		$country = $geonamesObject->getCountryName();
+		$adminName1 = $geonamesObject->getAdminName1();
+		$adminName2 = $geonamesObject->getAdminName2();
+		$name = $geonamesObject->getName();
+		if ($country == 'norway') {
+			$this->url = 'http://www.yr.no/sted/Norge/'.$adminName1.'/'.$adminName2.'/'.$name.'/forecast.xml';
+		}
+		else{
+			$this->url = 'http://www.yr.no/sted/'.$country.'/'.$adminName1.'/'.$name.'/forecast.xml';
+		}
+		return $this->url;
+	}
+
 	/*
+	getYrForecast
 	public function getGeonames($city){
 		//mellanslags-fix
 		$cityWithoutSpaces = preg_replace('/\s+/', '%20', $city);
