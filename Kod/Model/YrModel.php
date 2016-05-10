@@ -43,11 +43,10 @@ class YrModel{
 
 	
 	public function getYrForecast($cityObject){
-		$url = $this->getUrl();
-		$data = $this->yrRequest($url);
-		$xmlParser = xml_parser_create();
-		xml_parse_into_struct($xmlParser, $data, $values, $index); 
-		return $xmlParser;
+		$urlRequestYr = $this->getUrl($cityObject);
+		$data = $this->yrRequest($urlRequestYr);
+		$dataDecoded = new \SimpleXMLElement($data);
+		return $dataDecoded;
 	}
 
 	//Filtrates oyt html and tags

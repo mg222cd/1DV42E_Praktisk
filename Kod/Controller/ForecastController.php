@@ -32,12 +32,14 @@ class ForecastController{
 		//Hämta prognoser.
 		// 1a. Kolla om prognos från Yr redan finns i DB, isåfall, hämta den.
 		// 2a. Om prognos ej finns i DB, hämta från YrWebservice
+		$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
 		// 3a. Spara prognosen i databasen
 
-		// 1b. Kolla om prognos från Yr redan finns i DB, isåfall, hämta den.
-		// 2b. Om prognos ej finns i DB, hämta från YrWebservice
+		// 1b. Kolla om prognos från Smhi redan finns i DB, isåfall, hämta den.
+		// 2b. Om prognos ej finns i DB, hämta från SmhiWebservice
+		$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
 		// 3b. Spara prognosen i databasen
-		
+
 		// 4. Skicka båda prognoserna till funktion i Vyn, som snyggar till dem.
 		return 
 			$this->forecastView->getForecastHeader($this->choosenCity) .

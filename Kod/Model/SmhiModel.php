@@ -28,15 +28,14 @@ class SmhiModel{
 		return true;
 	}
 
-	/*
-	public function getYrForecast($cityObject){
-		$url = $this->getUrl();
-		$data = $this->yrRequest($url);
-		$xmlParser = xml_parser_create();
-		xml_parse_into_struct($xmlParser, $data, $values, $index); 
-		return $xmlParser;
+	public function getSmhiForecast($cityObject){
+		$lat = $cityObject->getLat();
+		$lng = $cityObject->getLng();
+		$urlRequestSmhi = 'http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/'.$lat.'/lon/'.$lng.'/data.json';
+		$data = $this->smhiRequest($urlRequestSmhi);
+		$dataDecoded = json_decode($data, true);
+		return $dataDecoded;
 	}
-	*/
 
 	//Filtrates oyt html and tags
 	public function sanitizeText($forecast){
