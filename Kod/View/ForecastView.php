@@ -31,10 +31,17 @@ class ForecastView{
 
 	public function getWebserviceStatus($onlineStatusYr, $onlineStatusSmhi){
 		if ($onlineStatusYr == true && $onlineStatusSmhi == true) {
-			$this->statusMessageWebservices='<h1>Väderprognos för <span class ="darkblueAsInHeader">'.$cityname.'</span>:</h1>';
+			$this->statusMessageWebservices='';
 		}
-		$this->html='<h1>Väderprognos för <span class ="darkblueAsInHeader">'.$cityname.'</span>:</h1>';
-		return $this->html;
+		if ($onlineStatusYr == false || $onlineStatusSmhi == false) {
+			$this->statusMessageWebservices='
+			Observera! 
+			Det verkar som om en eller flera av externa webservices (varifrån Svenskt Väder hämtar sina prognoser) för tillfället ligget nere. 
+			På grund av detta är prognosdatat nedan ofullständigt. 
+			Svenskt Väder beklagar detta, och ber dig att försöka igen senare.
+			';
+		}
+		return $this->statusMessageWebservices;
 	}
 
 	public function getForecast(){
