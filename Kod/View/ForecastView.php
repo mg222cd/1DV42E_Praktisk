@@ -20,8 +20,9 @@ class ForecastView{
 
 	}
 
-	public function getForecastHeader($city){
-		$this->html='<h1>Väderprognos för <span class ="darkblueAsInHeader">'.$city.'</span>:</h1>';
+	public function getForecastHeader($cityObject){
+		$cityname = $cityObject->getName();
+		$this->html='<h1>Väderprognos för <span class ="darkblueAsInHeader">'.$cityname.'</span>:</h1>';
 		return $this->html;
 	}
 
