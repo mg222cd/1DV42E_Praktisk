@@ -5,6 +5,7 @@ require_once('./View/ForecastView.php');
 require_once('./Model/GeonamesRepository.php');
 require_once('./Model/YrModel.php');
 require_once('./Model/SmhiModel.php');
+require_once('./Model/YrRepository.php');
 
 class ForecastController{
 	private $forecastView;
@@ -16,12 +17,14 @@ class ForecastController{
 	private $smhiWebserviceStatus;
 	private $forecastYr;
 	private $forecastSmhi;
+	private $yrRepo;
 
 	public function __construct(){
 		$this->forecastView = new \View\ForecastView();
 		$this->geonamesRepo = new \Model\GeonamesRepository();
 		$this->yrModel = new \Model\YrModel();
 		$this->smhiModel = new \Model\SmhiModel();
+		$this->yrRepo = new \Model\YrRepository();
 	}
 	
 	public function forecastScenarios(){
