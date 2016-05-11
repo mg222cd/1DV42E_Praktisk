@@ -33,15 +33,19 @@ class ForecastController{
 		$this->yrWebserviceStatus = $this->yrModel->testYrWebservice($this->choosenCity);
 		$this->smhiWebserviceStatus = $this->smhiModel->testSmhiWebservice($this->choosenCity);
 		//Hämta prognoser.
-		// 1a. Kolla om prognos från Yr redan finns i DB, isåfall, hämta den.
-		// 2a. Om prognos ej finns i DB, hämta från YrWebservice
-		$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
-		// 3a. Spara prognosen i databasen
-		$addYrToDB = $this->yrRepo->addYrForecast($this->forecastYr, $this->choosenCity->getGeonamesPk());
-		// 1b. Kolla om prognos från Smhi redan finns i DB, isåfall, hämta den.
-		// 2b. Om prognos ej finns i DB, hämta från SmhiWebservice
-		$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
-		// 3b. Spara prognosen i databasen
+		// 1a. Kolla om prognos från Yr redan finns i DB
+		$validYrForecast = $this->yrRepo->isThereValidForecastInDatabase($this->choosenCity);
+		if ($validYrForecast == false) {
+			//2a. Prognos finns inte, hämta från YR's webservice och spara i DB
+			$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
+			$addYrToDB = $this->yrRepo->addYrForecast($this->forecastYr, $this->choosenCity->getGeonamesPk());
+		}
+		//3a. Hämta prognos ut databas Yr
+
+		// 1b. Kolla om prognos från Smhi redan finns i DB
+			//2a. Prognos finns inte, hämta från SMHI's webservice och spara i DB
+			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
+		//3a. Hämta prognos ut databas Smhi
 
 		// 4. Skicka båda prognoserna till funktion i Vyn, som snyggar till dem.
 		return 

@@ -91,6 +91,10 @@ class YrRepository extends DatabaseConnection{
 		}
 	}
 
+	public function isThereValidForecastInDatabase($yrObject){
+		return TRUE;
+	}
+
 	/*
 	public function getGeonames($cityname){
 		try {
