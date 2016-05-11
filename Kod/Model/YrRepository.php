@@ -26,10 +26,12 @@ class YrRepository extends DatabaseConnection{
 	}
 	
 	public function addYrForecast($yrObject, $geonamesPk){
-		//gör om obj till array så det blir mer lättarbetat
 		$yrArray = 	(array) $yrObject; //<-- kanske ej behövs
-		//tiden just nu
-		$timeOfStorage = date("Y-m-d H:i:s");
+		$timeOfStorage = $this->helper->getCurrentTime();;
+		$lastupdate = $this->helper->getLastUpdate($yrObject);
+		$nextUpdate = $this->helper->getNextUpdate($yrObject); 
+
+		var_dump($timeOfStorage, $lastupdate, $nextUpdate);die();
 
 		/*
 		echo '<pre>';
@@ -41,9 +43,7 @@ class YrRepository extends DatabaseConnection{
 
 		//$lastUpdate = (string) $yrObject->meta->lastupdate; 
 		//var_dump($lastUpdate);die();
-		$lastupdate = $this->helper->getLastUpdate($yrObject);
-		$nextUpdate; 
-		$timeperiod;
+		
 
 		$yr = new \model\Yr(
 			null, // <- yrPk 
