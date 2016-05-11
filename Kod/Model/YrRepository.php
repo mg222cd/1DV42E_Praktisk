@@ -1,8 +1,9 @@
 <?php
 namespace Model;
 
-require_once("./Model/DatabaseConnection.php");
-require_once("./Model/Yr.php");
+require_once('./Model/DatabaseConnection.php');
+require_once('./Model/Yr.php');
+require_once('./Model/RepositoryHelpclass.php');
 
 class YrRepository extends DatabaseConnection{
 	private $yrObject;
@@ -17,9 +18,11 @@ class YrRepository extends DatabaseConnection{
 	private $temperature = 'temperature';
 	private $windDirectionDeg = 'windDirectionDeg';
 	private $windSpeed = 'windSpeed';
+	private $helper;
 	
 	public function __construct(){
 		$this->dbTable = 'yr';
+		$this->helper = new \Model\RepositoryHelpclass();
 	}
 	
 	public function addYrForecast($yrObject, $geonamesPk){
@@ -36,8 +39,9 @@ class YrRepository extends DatabaseConnection{
 		die();
 		*/
 
-		$lastUpdate = (string) $yrObject->meta->lastupdate; 
-		var_dump($lastUpdate);die();
+		//$lastUpdate = (string) $yrObject->meta->lastupdate; 
+		//var_dump($lastUpdate);die();
+		$lastupdate = $this->helper->getLastUpdate($yrObject);
 		$nextUpdate; 
 		$timeperiod;
 
