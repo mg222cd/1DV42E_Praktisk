@@ -6,8 +6,7 @@ class RepositoryHelpclass {
 
 	public function getCurrentTime(){
 		$now = new \DateTime();
-		$now->format('Y-m-d H:i:s');
-		return $now;
+		return $now->format('Y-m-d H:i:s');
 	}
 	
 	public function getLastUpdate($yrObject){
@@ -20,8 +19,7 @@ class RepositoryHelpclass {
 		$time = explode(':', $explodedField[1]);
 		//Sätter tiden på plats
 		$date->setTime($time[0], $time[1], $time[2]);
-		$date->format('Y-m-d H:i:s');
-		return $date;
+		return $date->format('Y-m-d H:i:s');
 	}
 
 	public function getNextUpdate($yrObject){
@@ -34,8 +32,7 @@ class RepositoryHelpclass {
 		$time = explode(':', $explodedField[1]);
 		//Sätter tiden på plats
 		$date->setTime($time[0], $time[1], $time[2]);
-		$date->format('Y-m-d H:i:s');
-		return $date;
+		return $date->format('Y-m-d H:i:s');
 	}
 
 }

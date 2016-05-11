@@ -30,7 +30,7 @@ class YrRepository extends DatabaseConnection{
 		$timeOfStorage = $this->helper->getCurrentTime();;
 		$lastupdate = $this->helper->getLastUpdate($yrObject);
 		$nextUpdate = $this->helper->getNextUpdate($yrObject); 
-		//krånglar sig igenom alla nästlade objekt och arrayer så att det slutl blir ett Yr-objekt
+		//krånglar igenom alla nästlade objekt och arrayer så att det slutl blir ett Yr-objekt
 		$forecast = (array) $yrObject->forecast->tabular;
 		$forecasts = (array) $forecast['time'];
 		foreach ($forecasts as $forecast) {
@@ -48,42 +48,38 @@ class YrRepository extends DatabaseConnection{
 				$windSpeed = (string) $eachForecast["windSpeed"]["mps"]
 				);
 		}
-		
-		echo '<pre>';
-		print_r($this->yrList);
-		echo '</pre>';
-		exit;
-		die();
-		
 
-		try{
-			$db = $this->connection();
-			
-			$sql = "INSERT INTO $this->dbTable ("
-				.$this->geonameId.","
-				.$this->name.","
-				.$this->adminName1.","
-				.$this->adminName2.","
-				.$this->countryName.","
-				.$this->fcodeName.","
-				.$this->lat.","
-				.$this->lng.")
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-			$params = array (
-				$geonames->getGeonameId(), 
-				$geonames->getName(),
-				$geonames->getAdminName1(),
-				$geonames->getAdminName2(),
-				$geonames->getCountryName(),
-				$geonames->getFcodeName(),
-				$geonames->getLat(),
-				$geonames->getLng());
-			$query = $db->prepare($sql);
-			$query->execute($params);
-			return TRUE;
+		foreach ($this->yrList as $value) {
+			try{
+				$db = $this->connection();
+				
+				$sql = "INSERT INTO $this->dbTable ("
+					.$this->geonamesPk.","
+					.$this->timeOfStorage.","
+					.$this->lastUpdate.","
+					.$this->nextUpdate.","
+					.$this->timeperiod.","
+					.$this->symbolId.","
+					.$this->temperature.","
+					.$this->windDirectionDeg.","
+					.$this->windSpeed.")
+	               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				$params = array (
+					$value->getGeonamesPk(),
+					$value->getTimeOfStorage(),
+					$value->getLastUpdate(),
+					$value->getNextUpdate(),
+					$value->getTimeperiod(),
+					$value->getSymbolId(),
+					$value->getTemperature(),
+					$value->getWindDirectionDeg(),
+					$value->getWindSpeed());
+				$query = $db->prepare($sql);
+				$query->execute($params);
 		}
 		catch(\PDOException $e){
-			throw new \Exception('Ett fel uppstod då orten skulle läggas till i databasen.');
+			throw new \Exception($e->getMessage());
+		}
 		}
 	}
 
