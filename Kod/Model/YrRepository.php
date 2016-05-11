@@ -26,41 +26,40 @@ class YrRepository extends DatabaseConnection{
 	}
 	
 	public function addYrForecast($yrObject, $geonamesPk){
-		$yrArray = 	(array) $yrObject; //<-- kanske ej behövs
+		//prognosens datumparametrar
 		$timeOfStorage = $this->helper->getCurrentTime();;
 		$lastupdate = $this->helper->getLastUpdate($yrObject);
 		$nextUpdate = $this->helper->getNextUpdate($yrObject); 
-
-		var_dump($timeOfStorage, $lastupdate, $nextUpdate);die();
-
-		/*
+		//krånglar sig igenom alla nästlade objekt och arrayer så att det slutl blir ett Yr-objekt
+		$forecast = (array) $yrObject->forecast->tabular;
+		$forecasts = (array) $forecast['time'];
+		foreach ($forecasts as $forecast) {
+			$eachForecast = (array) $forecast;
+			$this->yrList[] = new \Model\Yr(
+				null, //<-- YrPk inte satt ännu
+				$geonamesPk,
+				$timeOfStorage,
+				$lastupdate,
+				$nextUpdate,
+				$timeperiod = (int) $eachForecast["@attributes"]["period"],
+				$symbolId = (string) $eachForecast["symbol"]["var"],
+				$temperature = (int) $eachForecast["temperature"]["value"],
+				$windDirectionDeg = (float) $eachForecast["windDirection"]["deg"],
+				$windSpeed = (string) $eachForecast["windSpeed"]["mps"]
+				);
+		}
+		
 		echo '<pre>';
-		print_r($yrObject);
+		print_r($this->yrList);
 		echo '</pre>';
 		exit;
 		die();
-		*/
-
-		//$lastUpdate = (string) $yrObject->meta->lastupdate; 
-		//var_dump($lastUpdate);die();
 		
-
-		$yr = new \model\Yr(
-			null, // <- yrPk 
-			$geonamesPk, //klar
-			$timeOfStorage, 
-			$lastUpdate, 
-			$nextUpdate, 
-			$timeperiod, 
-			$symbolId, 
-			$temperature, 
-			$windDirectionDeg, 
-			$windSpeed);
 
 		try{
 			$db = $this->connection();
 			
-			$sql = "INSERT IGNORE INTO $this->dbTable ("
+			$sql = "INSERT INTO $this->dbTable ("
 				.$this->geonameId.","
 				.$this->name.","
 				.$this->adminName1.","
