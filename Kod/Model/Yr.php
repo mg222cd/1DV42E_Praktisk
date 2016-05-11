@@ -15,8 +15,8 @@ class Yr{
 	private $windDirectionDeg; //double
 	private $windSpeed; //varchar255
 
-	public function __construct($yrPk, $geonamesPk, $timeOfStorage, $lastUpdate, $timeFrom, $timeTo,
-		$nextUpdate, $timeperiod, $symbolId, $temperature, $windDirectionDeg, $windSpeed){
+	public function __construct($yrPk, $geonamesPk, $timeOfStorage, $lastUpdate, $nextUpdate, $timeFrom, $timeTo,
+		$timeperiod, $symbolId, $temperature, $windDirectionDeg, $windSpeed){
 
 		$this->yrPk = $yrPk;
 		$this->geonamesPk = $geonamesPk;

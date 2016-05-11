@@ -13,6 +13,8 @@ class YrRepository extends DatabaseConnection{
 	private $timeOfStorage = 'timeOfStorage';
 	private $lastUpdate = 'lastUpdate';
 	private $nextUpdate = 'nextUpdate';
+	private $timeFrom = 'timeFrom';
+	private $timeTo = 'timeTo';
 	private $timeperiod = 'timeperiod';
 	private $symbolId = 'symbolId';
 	private $temperature = 'temperature';
@@ -41,6 +43,8 @@ class YrRepository extends DatabaseConnection{
 				$timeOfStorage,
 				$lastupdate,
 				$nextUpdate,
+				$timeFrom = $this->helper->getTimeFrom($eachForecast), 
+				$timeTo = $this->helper->getTimeTo($eachForecast), 
 				$timeperiod = (int) $eachForecast["@attributes"]["period"],
 				$symbolId = (string) $eachForecast["symbol"]["var"],
 				$temperature = (int) $eachForecast["temperature"]["value"],
@@ -58,17 +62,21 @@ class YrRepository extends DatabaseConnection{
 					.$this->timeOfStorage.","
 					.$this->lastUpdate.","
 					.$this->nextUpdate.","
+					.$this->timeFrom.","
+					.$this->timeTo.","
 					.$this->timeperiod.","
 					.$this->symbolId.","
 					.$this->temperature.","
 					.$this->windDirectionDeg.","
 					.$this->windSpeed.")
-	               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 				$params = array (
 					$value->getGeonamesPk(),
 					$value->getTimeOfStorage(),
 					$value->getLastUpdate(),
 					$value->getNextUpdate(),
+					$value->getTimeFrom(),
+					$value->getTimeTo(),
 					$value->getTimeperiod(),
 					$value->getSymbolId(),
 					$value->getTemperature(),
