@@ -10,6 +10,12 @@ class RepositoryHelpclass {
 	}
 	
 	public function getLastUpdate($yrObject){
+		echo '<pre>';
+		print_r($yrObject);
+		echo '</pre>';
+		exit;
+		die();
+
 		//hämta rätt fält från obj
 		$field = (string) $yrObject->meta->lastupdate;
 		$explodedField = explode('T', $field);
