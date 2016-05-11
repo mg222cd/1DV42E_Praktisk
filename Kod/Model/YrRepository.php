@@ -21,18 +21,38 @@ class YrRepository extends DatabaseConnection{
 	public function __construct(){
 		$this->dbTable = 'yr';
 	}
-	/*
-	public function addCity($cityArray){		
-		$geonames = new \model\Geonames(
-			null, //GeonamesPk 
-			$cityArray["geonames"][0]['geonameId'], 
-			$cityArray["geonames"][0]['name'], 
-			$cityArray["geonames"][0]['adminName1'], 
-			$cityArray["geonames"][0]['adminName2'], 
-			$cityArray["geonames"][0]['countryName'],
-			$cityArray["geonames"][0]['fcodeName'],
-			$cityArray["geonames"][0]['lat'],
-			$cityArray["geonames"][0]['lng']);
+	
+	public function addYrForecast($yrObject, $geonamesPk){
+		//gör om obj till array så det blir mer lättarbetat
+		$yrArray = 	(array) $yrObject; //<-- kanske ej behövs
+		//tiden just nu
+		$timeOfStorage = date("Y-m-d H:i:s");
+
+		/*
+		echo '<pre>';
+		print_r($yrObject);
+		echo '</pre>';
+		exit;
+		die();
+		*/
+
+		$lastUpdate = (string) $yrObject->meta->lastupdate; 
+		var_dump($lastUpdate);die();
+		$nextUpdate; 
+		$timeperiod;
+
+		$yr = new \model\Yr(
+			null, // <- yrPk 
+			$geonamesPk, //klar
+			$timeOfStorage, 
+			$lastUpdate, 
+			$nextUpdate, 
+			$timeperiod, 
+			$symbolId, 
+			$temperature, 
+			$windDirectionDeg, 
+			$windSpeed);
+
 		try{
 			$db = $this->connection();
 			
@@ -63,7 +83,6 @@ class YrRepository extends DatabaseConnection{
 			throw new \Exception('Ett fel uppstod då orten skulle läggas till i databasen.');
 		}
 	}
-	*/
 
 	/*
 	public function getGeonames($cityname){

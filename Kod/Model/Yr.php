@@ -33,7 +33,7 @@ class Yr{
 	}
 
 	public function getGeonamesPk(){
-		return $this->geonamesPk
+		return $this->geonamesPk;
 	}
 
 	public function getTimeOfStorage(){
