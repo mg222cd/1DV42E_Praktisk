@@ -148,7 +148,6 @@ class YrRepository extends DatabaseConnection{
 		$geonamesPk = $geonamesObject->getGeonamesPk();
 		try{
 			$db = $this->connection();
-			
 			$sql = "DELETE FROM $this->dbTable WHERE geonamesPk=?";
 			$params = array ($geonamesPk);
 			$query = $db->prepare($sql);
@@ -158,6 +157,44 @@ class YrRepository extends DatabaseConnection{
 		catch(\PDOException $e){
 			throw new \Exception('Fel uppstod då prognoser skulle tas bort ur databasen.');
 		}	
+	}
+
+	public function getForecast($geonamesObject){
+		$geonamesPk = $geonamesObject->getGeonamesPk();
+		try{
+			$db = $this->connection();
+			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 
+							$this->dbTable.nextUpdate, $this->dbTable.timeFrom, $this->dbTable.timeTo, $this->dbTable.timeperiod, 
+							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed
+					FROM $this->dbTable
+					WHERE geonamesPk = :geonamesPk
+					";
+			$params = array(':geonamesPk' => $geonamesPk);
+			$query = $db->prepare($sql);
+			$query->execute($params);
+			foreach ($query->fetchAll() as $yr) {
+				/*
+				private $windSpeed = 'windSpeed';
+				*/
+				$yrPk = $yr['yrPk'];
+				$geonamesPk = $yr['geonamesPk'];
+				$timeOfStorage = $yr['timeOfStorage'];
+				$lastUpdate = $yr['lastUpdate'];
+				$nextUpdate = $yr['nextUpdate'];
+				$timeFrom = $yr['timeFrom'];
+				$timeTo = $yr['timeTo'];
+				$timeperiod = $yr['timeperiod'];
+				$symbolId = $yr['symbolId'];
+				$temperature = $yr['temperature'];
+				$windDirectionDeg = $yr['windDirectionDeg'];
+				$windSpeed = $yr['windSpeed'];
+				$this->yrList[] = new \Model\Yr($yrPk, $geonamesPk, $timeOfStorage, $lastUpdate, $nextUpdate, $timeFrom, $timeTo, $timeperiod, $symbolId, $temperature, $windDirectionDeg, $windSpeed);
+			}
+			return $this->yrList;
+		}
+		catch(\PDOException $e){
+			throw new \Exception('Fel uppstod i samband med hämtning av YR-prognoser från databasen.');
+		}
 	}
 
 	/*

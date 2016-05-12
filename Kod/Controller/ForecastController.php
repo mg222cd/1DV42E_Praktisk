@@ -51,7 +51,11 @@ class ForecastController{
 			$addYrToDB = $this->yrRepo->addYrForecast($this->forecastYr, $this->choosenCity->getGeonamesPk());
 		}
 		//Hämta aktuell prognos ur DB, som yrObjekt
-
+		$this->yr = $this->yrRepo->getForecast($this->choosenCity);
+		echo '<pre>';
+		print_r($this->yr);
+		echo '</pre>';
+		exit;
 
 		//SMHI
 		//$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
