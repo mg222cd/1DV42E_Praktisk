@@ -107,13 +107,57 @@ class YrRepository extends DatabaseConnection{
 			$query = $db->prepare($sql);
 			$query->execute($params);
 			if ($query->rowCount() > 0) {
-				var_dump("här");die();
 				return TRUE;
 			}
 			return FALSE;
 		} catch (Exception $e) {
 			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
 		}
+	}
+
+	public function isThereValidForecastInDatabase($geonamesObject){
+		$geonamesPk = $geonamesObject->getGeonamesPk();
+
+		try {
+			$db = $this->connection();
+			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 
+							$this->dbTable.nextUpdate, $this->dbTable.timeFrom, $this->dbTable.timeTo, $this->dbTable.timeperiod, 
+							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed
+					FROM $this->dbTable
+					WHERE geonamesPk = :geonamesPk
+					";
+
+			$params = array(':geonamesPk' => $geonamesPk);
+			$query = $db->prepare($sql);
+			$query->execute($params);
+			$now = new \DateTime();
+			foreach ($query->fetchAll() as $yr) {
+				$expirationDate = $yr['nextUpdate'];
+				$validForecast = $expirationDate > $now->format('Y-m-d H:i:s');
+				if ($validForecast == TRUE) {
+					return TRUE;
+				}
+			}
+			return FALSE;
+		} catch (Exception $e) {
+			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
+		}
+	}
+
+	public function deleteForecasts($geonamesObject){
+		$geonamesPk = $geonamesObject->getGeonamesPk();
+		try{
+			$db = $this->connection();
+			
+			$sql = "DELETE FROM $this->dbTable WHERE geonamesPk=?";
+			$params = array ($geonamesPk);
+			$query = $db->prepare($sql);
+			$query->execute($params);
+			//return $query->rowCount() > 0;
+		}
+		catch(\PDOException $e){
+			throw new \Exception('Fel uppstod då prognoser skulle tas bort ur databasen.');
+		}	
 	}
 
 	/*

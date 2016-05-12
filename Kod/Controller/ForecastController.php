@@ -18,6 +18,9 @@ class ForecastController{
 	private $forecastYr;
 	private $forecastSmhi;
 	private $yrRepo;
+	private $yr;
+	private $smhi;
+
 
 	public function __construct(){
 		$this->forecastView = new \View\ForecastView();
@@ -43,9 +46,12 @@ class ForecastController{
 		$validYrForecast = $this->yrRepo->isThereValidForecastInDatabase($this->choosenCity);
 		if ($validYrForecast == false) {
 			//Prognosen är gammal, radera den, hämta ny från YR webservice, spara ny prognos.
+			$delete = $this->yrRepo->deleteForecasts($this->choosenCity);
 			$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
 			$addYrToDB = $this->yrRepo->addYrForecast($this->forecastYr, $this->choosenCity->getGeonamesPk());
 		}
+		//Hämta aktuell prognos ur DB, som yrObjekt
+
 
 		//SMHI
 		//$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
