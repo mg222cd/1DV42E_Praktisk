@@ -31,6 +31,13 @@ class ForecastController{
 	}
 	
 	public function forecastScenarios(){
+		//Hängslen och livrem att URL är ok och att GeonamesID verkligen finns i DB
+		var_dump($this->forecastView->urlIsOk());
+		if ($this->forecastView->urlIsOk() == FALSE ) {
+			//felmeddelande att URL:en är fel
+		}
+		//koll om GeonamesID verkligen finns i DB, om den inte finns, felmeddelande om detta.
+
 		//Grundläggande parametrar
 		$this->choosenCity = $this->geonamesRepo->getGeonamesObjectByGeonameId($this->forecastView->getGeonameId());
 		$this->yrWebserviceStatus = $this->yrModel->testYrWebservice($this->choosenCity);
@@ -44,7 +51,7 @@ class ForecastController{
 		}
 		//Prognos finns, kolla om den är aktuell att använda
 		$validYrForecast = $this->yrRepo->isThereValidForecastInDatabase($this->choosenCity);
-		if ($validYrForecast == false) {
+		if ($validYrForecast == FALSE) {
 			//Prognosen är gammal, radera den, hämta ny från YR webservice, spara ny prognos.
 			$delete = $this->yrRepo->deleteForecasts($this->choosenCity);
 			$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
@@ -52,10 +59,6 @@ class ForecastController{
 		}
 		//Hämta aktuell prognos ur DB, som yrObjekt
 		$this->yr = $this->yrRepo->getForecast($this->choosenCity);
-		echo '<pre>';
-		print_r($this->yr);
-		echo '</pre>';
-		exit;
 
 		//SMHI
 		//$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);

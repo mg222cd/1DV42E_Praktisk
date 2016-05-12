@@ -15,6 +15,32 @@ class ForecastView{
 		$this->goolemapsKey = $this->settings->getKey();
 	}
 
+	public function urlIsOk(){
+		$url = $_GET['forecast'];
+		//Om den är tom
+		if ($url == '') {
+			return false;
+		}
+
+		//kolla om tilde finns:
+		$containsTilde = strpos($url, '~');
+		// var_dump($containsTilde); die(); <--int (0)
+		if ($containsTilde === false) {
+			return false;
+		}
+		//kolla att något står efter tilde
+		$explodedUrl = explode('~', $url);
+		if ($containsTilde == 0) {
+			$afterTilde = $explodedUrl[0];
+		}
+		$afterTilde = $explodedUrl[1];
+		//Om inget finns efter tilde
+		if ($afterTilde == '') {
+			return false;
+		}
+		return true;
+	}
+
 	public function getGeonameId(){
 		$citynameAndGeonameId = $_GET['forecast'];
 		$explodedCitynameAndGeonameId = explode('~', $citynameAndGeonameId);
