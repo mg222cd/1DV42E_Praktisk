@@ -156,5 +156,26 @@ class GeonamesRepository extends DatabaseConnection{
 		}
 	}
 
+	public function checkExists($geonameId){
+		try {
+			$db = $this->connection();
+			$sql = "SELECT $this->dbTable.geonamesPk, $this->dbTable.geonameId, $this->dbTable.name, $this->dbTable.adminName1, 
+							$this->dbTable.adminName2, $this->dbTable.countryName, $this->dbTable.fcodeName, $this->dbTable.lat, $this->dbTable.lng
+					FROM $this->dbTable
+					WHERE geonameId = :geonameId
+					";
+
+			$params = array(':geonameId' => $geonameId);
+			$query = $db->prepare($sql);
+			$query->execute($params);
+			if ($query->rowCount() > 0) {
+				return TRUE;
+			}
+			return FALSE;
+		} catch (Exception $e) {
+			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
+		}
+	}
+
 
 }

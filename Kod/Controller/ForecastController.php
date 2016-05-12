@@ -37,7 +37,10 @@ class ForecastController{
 			header('Location: ./');
 		}
 		//koll om GeonamesID verkligen finns i DB, om den inte finns, felmeddelande om detta. Även Strip_tags
-
+		$stringToSanitize = $this->forecastView->getGeonameId();
+		$sanitizedString = $this->yrModel->sanitizeText($stringToSanitize);
+		$idIsInDatabase = $this->geonamesRepo->checkExists($sanitizedString);
+		var_dump($idIsInDatabase);
 		//Grundläggande parametrar
 		$this->choosenCity = $this->geonamesRepo->getGeonamesObjectByGeonameId($this->forecastView->getGeonameId());
 		$this->yrWebserviceStatus = $this->yrModel->testYrWebservice($this->choosenCity);
