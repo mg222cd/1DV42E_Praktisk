@@ -20,7 +20,7 @@ class Smhi{
 	private $precipitationIntensity; //varchar
 	private $categoryOfPrecipitation; //int
 
-	public function __construct($smhiPk;, $geonamesPk, $timeOfStorage, $referenceTime, $validTime, $temperature, $windDirection,
+	public function __construct($smhiPk, $geonamesPk, $timeOfStorage, $referenceTime, $validTime, $temperature, $windDirection,
 		$windVelocity, $windGust, $pressure, $relativeHumidity, $visibility, $totalCloudCover, $probabilityThunderstorm, 
 		$precipitationIntensity, $categoryOfPrecipitation){
 

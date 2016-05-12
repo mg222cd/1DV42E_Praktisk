@@ -31,8 +31,14 @@ class SmhiRepository extends DatabaseConnection{
 		$this->helper = new \Model\RepositoryHelpclass();
 	}
 	
-	/*
-	public function addYrForecast($yrObject, $geonamesPk){
+	public function addForecast($smhiObject, $geonamesPk){
+
+		echo '<pre>';
+		print_r($smhiObject);
+		echo '</pre>';
+		exit;
+		die();
+
 		//prognosens datumparametrar
 		$timeOfStorage = $this->helper->getCurrentTime();;
 		$lastupdate = $this->helper->getLastUpdate($yrObject);
@@ -95,7 +101,6 @@ class SmhiRepository extends DatabaseConnection{
 		}
 		}
 	}
-	*/
 
 	/*
 	public function checkExists($geonamesObject){

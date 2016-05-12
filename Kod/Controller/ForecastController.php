@@ -6,6 +6,7 @@ require_once('./Model/GeonamesRepository.php');
 require_once('./Model/YrModel.php');
 require_once('./Model/SmhiModel.php');
 require_once('./Model/YrRepository.php');
+require_once('./Model/SmhiRepository.php');
 
 class ForecastController{
 	private $forecastView;
@@ -18,6 +19,7 @@ class ForecastController{
 	private $forecastYr;
 	private $forecastSmhi;
 	private $yrRepo;
+	private $smhiRepo;
 	private $yr;
 	private $smhi;
 
@@ -28,6 +30,7 @@ class ForecastController{
 		$this->yrModel = new \Model\YrModel();
 		$this->smhiModel = new \Model\SmhiModel();
 		$this->yrRepo = new \Model\YrRepository();
+		$this->smhiRepo = new \Model\SmhiRepository();
 	}
 	
 	public function forecastScenarios(){
@@ -66,12 +69,10 @@ class ForecastController{
 		//Hämta aktuell prognos ur DB, som yrObjekt
 		$this->yr = $this->yrRepo->getForecast($this->choosenCity);
 
-		//SMHI
+		//SMHI webservice
 		$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
-		echo '<pre>';
-		print_r($this->forecastSmhi);
-		echo '</pre>';
-		exit;
+		//add
+		$addSmhiToDB = $this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
 
 		//Kolla om prognos från Yr redan finns i DB
 		/*
