@@ -32,22 +32,25 @@ class ForecastController{
 		$this->choosenCity = $this->geonamesRepo->getGeonamesObjectByGeonameId($this->forecastView->getGeonameId());
 		$this->yrWebserviceStatus = $this->yrModel->testYrWebservice($this->choosenCity);
 		$this->smhiWebserviceStatus = $this->smhiModel->testSmhiWebservice($this->choosenCity);
-		//Hämta prognoser.
-		// 1a. Kolla om prognos från Yr redan finns i DB
-		$validYrForecast = $this->yrRepo->isThereValidForecastInDatabase($this->choosenCity);
-		if ($validYrForecast == false) {
-			//2a. Prognos finns inte, hämta från YR's webservice och spara i DB
+		//YR
+		//Kolla om prognos från Yr redan finns i DB
+		if ($validYrForecast = $this->yrRepo->checkExists($this->choosenCity) == FALSE) {
+			//Prognos finns inte, hämta från YR's webservice och spara i DB
 			$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
 			$addYrToDB = $this->yrRepo->addYrForecast($this->forecastYr, $this->choosenCity->getGeonamesPk());
 		}
-		//3a. Hämta prognos ut databas Yr
+		//Prognos finns, kolla om den är aktuell att använda
+		$validYrForecast = $this->yrRepo->isThereValidForecastInDatabase($this->choosenCity);
+		if ($validYrForecast == false) {
+			//Prognosen är gammal, radera den, hämta ny från YR webservice, spara ny prognos.
+			$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
+			$addYrToDB = $this->yrRepo->addYrForecast($this->forecastYr, $this->choosenCity->getGeonamesPk());
+		}
 
-		// 1b. Kolla om prognos från Smhi redan finns i DB
-			//2a. Prognos finns inte, hämta från SMHI's webservice och spara i DB
-			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
-		//3a. Hämta prognos ut databas Smhi
+		//SMHI
+		//$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
 
-		// 4. Skicka båda prognoserna till funktion i Vyn, som snyggar till dem.
+		// 4. Skicka båda prognoserna till funktion i Vyn, som snyggar till dem. Om någon av prognoserna är tomma - tom lista.
 		return 
 			$this->forecastView->getForecastHeader($this->choosenCity) .
 			$this->forecastView->getWebserviceStatus($this->yrWebserviceStatus, $this->smhiWebserviceStatus) .

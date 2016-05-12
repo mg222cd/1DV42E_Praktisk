@@ -91,8 +91,28 @@ class YrRepository extends DatabaseConnection{
 		}
 	}
 
-	public function isThereValidForecastInDatabase($yrObject){
-		return TRUE;
+	public function checkExists($geonamesObject){
+		$geonamesPk = $geonamesObject->getGeonamesPk();
+
+		try {
+			$db = $this->connection();
+			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 
+							$this->dbTable.nextUpdate, $this->dbTable.timeFrom, $this->dbTable.timeTo, $this->dbTable.timeperiod, 
+							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed
+					FROM $this->dbTable
+					WHERE geonamesPk = :geonamesPk
+					";
+
+			$params = array(':geonamesPk' => $geonamesPk);
+			$query = $db->prepare($sql);
+			$query->execute($params);
+			if ($query->rowCount() > 0) {
+				return TRUE
+			}
+			return FALSE;
+		} catch (Exception $e) {
+			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
+		}
 	}
 
 	/*
