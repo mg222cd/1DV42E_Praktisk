@@ -8,6 +8,10 @@ class RepositoryHelpclass {
 		$now = new \DateTime();
 		return $now->format('Y-m-d H:i:s');
 	}
+
+	public function smhiDateTimeFormat($dateTimeString){
+		var_dump("i repo helper och sen smhiDateTimeFormat", $dateTimeString);die();
+	}
 	
 	public function getLastUpdate($yrObject){
 		//hämta rätt fält från obj

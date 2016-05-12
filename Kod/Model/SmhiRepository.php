@@ -32,17 +32,19 @@ class SmhiRepository extends DatabaseConnection{
 	}
 	
 	public function addForecast($smhiObject, $geonamesPk){
-
+		$smhiDecoded = json_decode($smhiObject, true);
+		/*
 		echo '<pre>';
-		print_r($smhiObject);
+		print_r($smhiDecoded);
 		echo '</pre>';
 		exit;
 		die();
+		*/
 
 		//prognosens datumparametrar
 		$timeOfStorage = $this->helper->getCurrentTime();;
-		$lastupdate = $this->helper->getLastUpdate($yrObject);
-		$nextUpdate = $this->helper->getNextUpdate($yrObject); 
+		$referenceTime = $this->helper->smhiDateTimeFormat($smhiDecoded['referenceTime']);
+
 		//krånglar igenom alla nästlade objekt och arrayer så att det slutl blir ett Yr-objekt
 		$forecast = (array) $yrObject->forecast->tabular;
 		$forecasts = (array) $forecast['time'];
