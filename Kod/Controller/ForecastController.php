@@ -32,15 +32,18 @@ class ForecastController{
 	
 	public function forecastScenarios(){
 		//Hängslen och livrem att URL är ok och att GeonamesID verkligen finns i DB
-		if ($this->forecastView->urlIsOk() == FALSE ) {
+		if ($this->forecastView->urlIsOk() == false ) {
 			//url är manipulerad och får ej att använda i denna controller
 			header('Location: ./');
 		}
-		//koll om GeonamesID verkligen finns i DB, om den inte finns, felmeddelande om detta. Även Strip_tags
+		//koll om GeonameId verkligen finns i DB
 		$stringToSanitize = $this->forecastView->getGeonameId();
 		$sanitizedString = $this->yrModel->sanitizeText($stringToSanitize);
 		$idIsInDatabase = $this->geonamesRepo->checkExists($sanitizedString);
-		var_dump($idIsInDatabase);
+		if ($idIsInDatabase == false) {
+			//GeonameId i URL:en är manipulerad och går ej att använda
+			header('Location: ./');
+		}
 		//Grundläggande parametrar
 		$this->choosenCity = $this->geonamesRepo->getGeonamesObjectByGeonameId($this->forecastView->getGeonameId());
 		$this->yrWebserviceStatus = $this->yrModel->testYrWebservice($this->choosenCity);
