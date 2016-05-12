@@ -107,7 +107,8 @@ class YrRepository extends DatabaseConnection{
 			$query = $db->prepare($sql);
 			$query->execute($params);
 			if ($query->rowCount() > 0) {
-				return TRUE
+				var_dump("här");die();
+				return TRUE;
 			}
 			return FALSE;
 		} catch (Exception $e) {
