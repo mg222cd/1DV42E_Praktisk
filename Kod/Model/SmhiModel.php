@@ -33,8 +33,9 @@ class SmhiModel{
 		$lng = $cityObject->getLng();
 		$urlRequestSmhi = 'http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/'.$lat.'/lon/'.$lng.'/data.json';
 		$data = $this->smhiRequest($urlRequestSmhi);
-		$dataDecoded = json_decode($data, true);
-		return $dataDecoded;
+		//$dataDecoded = json_decode($data, true);
+		//return $dataDecoded;
+		return $data;
 	}
 
 	//Filtrates oyt html and tags
