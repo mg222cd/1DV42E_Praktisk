@@ -186,40 +186,63 @@ class SmhiRepository extends DatabaseConnection{
 		}	
 	}
 
-	/*
 	public function getForecast($geonamesObject){
 		$geonamesPk = $geonamesObject->getGeonamesPk();
 		try{
 			$db = $this->connection();
-			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 
-							$this->dbTable.nextUpdate, $this->dbTable.timeFrom, $this->dbTable.timeTo, $this->dbTable.timeperiod, 
-							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed
+			$sql = "SELECT $this->dbTable.smhiPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.referenceTime, 
+							$this->dbTable.validTime, $this->dbTable.temperature, $this->dbTable.windDirection, $this->dbTable.windVelocity, 
+							$this->dbTable.windGust, $this->dbTable.pressure, $this->dbTable.relativeHumidity, $this->dbTable.visibility,
+							$this->dbTable.totalCloudCover, $this->dbTable.probabilityThunderstorm, $this->dbTable.precipitationIntensity, 
+							$this->dbTable.categoryOfPrecipitation
 					FROM $this->dbTable
 					WHERE geonamesPk = :geonamesPk
 					";
 			$params = array(':geonamesPk' => $geonamesPk);
 			$query = $db->prepare($sql);
 			$query->execute($params);
-			foreach ($query->fetchAll() as $yr) {
-				$yrPk = $yr['yrPk'];
-				$geonamesPk = $yr['geonamesPk'];
-				$timeOfStorage = $yr['timeOfStorage'];
-				$lastUpdate = $yr['lastUpdate'];
-				$nextUpdate = $yr['nextUpdate'];
-				$timeFrom = $yr['timeFrom'];
-				$timeTo = $yr['timeTo'];
-				$timeperiod = $yr['timeperiod'];
-				$symbolId = $yr['symbolId'];
-				$temperature = $yr['temperature'];
-				$windDirectionDeg = $yr['windDirectionDeg'];
-				$windSpeed = $yr['windSpeed'];
-				$this->yrList[] = new \Model\Yr($yrPk, $geonamesPk, $timeOfStorage, $lastUpdate, $nextUpdate, $timeFrom, $timeTo, $timeperiod, $symbolId, $temperature, $windDirectionDeg, $windSpeed);
+			foreach ($query->fetchAll() as $smhi) {
+				/*
+				$this->smhiList[] = new \Model\Smhi(
+	
+						$referenceTime,
+						$validTime,
+						$temperature = $forecast['t'],
+						$windDirection = $forecast['wd'],
+						$windVelocity = $forecast['ws'],
+						$windGust = $forecast['gust'],
+						$pressure = $forecast['msl'],
+						$relativeHumidity = $forecast['r'],
+						$visibility = $forecast['vis'],
+						$totalCloudCover = $forecast['tcc'],
+						$probabilityThunderstorm = $forecast['tstm'],
+						$precipitationIntensity = $forecast['pis'],
+						$categoryOfPrecipitation = $forecast['pcat']
+						);*/
+				$smhiPk = $smhi['smhiPk'];
+				$geonamesPk = $smhi['geonamesPk'];
+				$timeOfStorage = $smhi['timeOfStorage'];
+				$referenceTime = $smhi['referenceTime'];
+				$validTime = $smhi['validTime'];
+				$temperature = $smhi['temperature'];
+				$windDirection = $smhi['windDirection'];
+				$windVelocity = $smhi['windVelocity'];
+				$windGust = $smhi['windGust'];
+				$pressure = $smhi['pressure'];
+				$relativeHumidity = $smhi['relativeHumidity'];
+				$visibility = $smhi['visibility'];
+				$totalCloudCover = $smhi['totalCloudCover'];
+				$probabilityThunderstorm = $smhi['probabilityThunderstorm'];
+				$precipitationIntensity = $smhi['precipitationIntensity'];
+				$categoryOfPrecipitation = $smhi['categoryOfPrecipitation'];
+				$this->smhiList[] = new \Model\Smhi($smhiPk, $geonamesPk, $timeOfStorage, $referenceTime, $validTime, $temperature, 
+					$windDirection,$windVelocity, $windGust, $pressure, $relativeHumidity, $visibility, $totalCloudCover, 
+					$probabilityThunderstorm, $precipitationIntensity, $categoryOfPrecipitation);
 			}
-			return $this->yrList;
+			return $this->smhiList;
 		}
 		catch(\PDOException $e){
 			throw new \Exception('Fel uppstod i samband med hämtning av YR-prognoser från databasen.');
 		}
 	}
-	*/
 }
