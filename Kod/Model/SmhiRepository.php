@@ -67,63 +67,44 @@ class SmhiRepository extends DatabaseConnection{
 				}
 		}
 
-		echo '<pre>';
-		print_r($this->smhiList);
-		echo '</pre>';
-		exit;
-		die();
-
-
-		//krånglar igenom alla nästlade objekt och arrayer så att det slutl blir ett Yr-objekt
-		$forecast = (array) $yrObject->forecast->tabular;
-		$forecasts = (array) $forecast['time'];
-		foreach ($forecasts as $forecast) {
-			$eachForecast = (array) $forecast;
-			$this->yrList[] = new \Model\Yr(
-				null, //<-- YrPk inte satt ännu
-				$geonamesPk,
-				$timeOfStorage,
-				$lastupdate,
-				$nextUpdate,
-				$timeFrom = $this->helper->getTimeFrom($eachForecast), 
-				$timeTo = $this->helper->getTimeTo($eachForecast), 
-				$timeperiod = (int) $eachForecast["@attributes"]["period"],
-				$symbolId = (string) $eachForecast["symbol"]["var"],
-				$temperature = (int) $eachForecast["temperature"]["value"],
-				$windDirectionDeg = (float) $eachForecast["windDirection"]["deg"],
-				$windSpeed = (string) $eachForecast["windSpeed"]["mps"]
-				);
-		}
-
-		foreach ($this->yrList as $value) {
+		foreach ($this->smhiList as $value) {
 			try{
 				$db = $this->connection();
 				
 				$sql = "INSERT INTO $this->dbTable ("
 					.$this->geonamesPk.","
 					.$this->timeOfStorage.","
-					.$this->lastUpdate.","
-					.$this->nextUpdate.","
-					.$this->timeFrom.","
-					.$this->timeTo.","
-					.$this->timeperiod.","
-					.$this->symbolId.","
+					.$this->referenceTime.","
+					.$this->validTime.","
 					.$this->temperature.","
-					.$this->windDirectionDeg.","
-					.$this->windSpeed.")
-	               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+					.$this->windDirection.","
+					.$this->windVelocity.","
+					.$this->windGust.","
+					.$this->pressure.","
+					.$this->relativeHumidity.","
+					.$this->visibility.","
+					.$this->totalCloudCover.","
+					.$this->probabilityThunderstorm.","
+					.$this->precipitationIntensity.","
+					.$this->categoryOfPrecipitation.")
+	               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 				$params = array (
 					$value->getGeonamesPk(),
 					$value->getTimeOfStorage(),
-					$value->getLastUpdate(),
-					$value->getNextUpdate(),
-					$value->getTimeFrom(),
-					$value->getTimeTo(),
-					$value->getTimeperiod(),
-					$value->getSymbolId(),
+					$value->getReferenceTime(),
+					$value->getValidTime(),
 					$value->getTemperature(),
-					$value->getWindDirectionDeg(),
-					$value->getWindSpeed());
+					$value->getWindDirection(),
+					$value->getWindVelocity(),
+					$value->getWindGust(),
+					$value->getPressure(),
+					$value->getRelativeHumidity(),
+					$value->getVisibility(),
+
+					$value->getTotalCloudCover(),
+					$value->getProbabilityThunderstorm(),
+					$value->getPrecipitationIntensity(),
+					$value->getCategoryOfPrecipitation());
 				$query = $db->prepare($sql);
 				$query->execute($params);
 		}
@@ -133,15 +114,16 @@ class SmhiRepository extends DatabaseConnection{
 		}
 	}
 
-	/*
 	public function checkExists($geonamesObject){
 		$geonamesPk = $geonamesObject->getGeonamesPk();
 
 		try {
 			$db = $this->connection();
-			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 
-							$this->dbTable.nextUpdate, $this->dbTable.timeFrom, $this->dbTable.timeTo, $this->dbTable.timeperiod, 
-							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed
+			$sql = "SELECT $this->dbTable.smhiPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.referenceTime, 
+							$this->dbTable.validTime, $this->dbTable.temperature, $this->dbTable.windDirection, $this->dbTable.windVelocity, 
+							$this->dbTable.windGust, $this->dbTable.pressure, $this->dbTable.relativeHumidity, $this->dbTable.visibility,
+							$this->dbTable.totalCloudCover, $this->dbTable.probabilityThunderstorm, $this->dbTable.precipitationIntensity, 
+							$this->dbTable.categoryOfPrecipitation
 					FROM $this->dbTable
 					WHERE geonamesPk = :geonamesPk
 					";
@@ -157,7 +139,6 @@ class SmhiRepository extends DatabaseConnection{
 			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
 		}
 	}
-	*/
 
 	/*
 	public function isThereValidForecastInDatabase($geonamesObject){
