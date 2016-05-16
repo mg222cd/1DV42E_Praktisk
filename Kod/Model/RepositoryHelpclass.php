@@ -19,9 +19,9 @@ class RepositoryHelpclass {
 	}
 
 	public function getSmhiExpirationDate($referenceTime){
-		$expirationTime = strtotime($referenceTime, '+10800');
-		$correct = gmdate("Y-m-d H:i:s", $expirationTime);
-		var_dump($referenceTime, $correct);die();
+		$date = new \DateTime($referenceTime);
+		$date->add(new \DateInterval('PT3H'));
+		return $date->format('Y-m-d H:i:s');
 	}
 	
 	public function getLastUpdate($yrObject){

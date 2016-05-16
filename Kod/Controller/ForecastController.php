@@ -79,7 +79,7 @@ class ForecastController{
 		}
 		//Prognos finns, kolla om den är aktuell att använda.
 		$validSmhiForecast = $this->smhiRepo->isThereValidForecastInDatabase($this->choosenCity);
-
+		var_dump($validSmhiForecast);
 		/*
 		//Prognos finns, kolla om den är aktuell att använda
 		$validYrForecast = $this->yrRepo->isThereValidForecastInDatabase($this->choosenCity);
