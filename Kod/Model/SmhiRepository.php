@@ -33,20 +33,46 @@ class SmhiRepository extends DatabaseConnection{
 	
 	public function addForecast($smhiObject, $geonamesPk){
 		$smhiDecoded = json_decode($smhiObject, true);
+
+		//prognosens datumparametrar
+		$currentTime = $this->helper->getCurrentTime();;
+		$referenceTime = $this->helper->smhiDateTimeFormat($smhiDecoded['referenceTime']);
 		
-		/*
+		//lagrar varje prognos i som ett smhi-objekt.
+		$forecasts = (array) $smhiDecoded['timeseries'];
+
+		foreach ($forecasts as $forecast) {
+				//fixar fältet med tiden som prognosen gäller.
+				$validTime = $this->helper->smhiDateTimeFormat($forecast['validTime']);
+				//bara prognoser nyare än just nu.
+				if ($validTime > $currentTime) {
+					$this->smhiList[] = new \Model\Smhi(
+						null, // $smhiPk;
+						$geonamesPk, 
+						$timeOfStorage = $currentTime,
+						$referenceTime,
+						$validTime,
+						$temperature = $forecast['t'],
+						$windDirection = $forecast['wd'],
+						$windVelocity = $forecast['ws'],
+						$windGust = $forecast['gust'],
+						$pressure = $forecast['msl'],
+						$relativeHumidity = $forecast['r'],
+						$visibility = $forecast['vis'],
+						$totalCloudCover = $forecast['tcc'],
+						$probabilityThunderstorm = $forecast['tstm'],
+						$precipitationIntensity = $forecast['pis'],
+						$categoryOfPrecipitation = $forecast['pcat']
+						);
+				}
+		}
+
 		echo '<pre>';
-		print_r($smhiDecoded);
+		print_r($this->smhiList);
 		echo '</pre>';
 		exit;
 		die();
-		*/
-		
 
-		//prognosens datumparametrar
-		$timeOfStorage = $this->helper->getCurrentTime();;
-		$referenceTime = $this->helper->smhiDateTimeFormat($smhiDecoded['referenceTime']);
-		var_dump($referenceTime);die();
 
 		//krånglar igenom alla nästlade objekt och arrayer så att det slutl blir ett Yr-objekt
 		$forecast = (array) $yrObject->forecast->tabular;
