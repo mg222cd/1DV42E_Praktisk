@@ -140,15 +140,16 @@ class SmhiRepository extends DatabaseConnection{
 		}
 	}
 
-	/*
 	public function isThereValidForecastInDatabase($geonamesObject){
 		$geonamesPk = $geonamesObject->getGeonamesPk();
 
 		try {
 			$db = $this->connection();
-			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 
-							$this->dbTable.nextUpdate, $this->dbTable.timeFrom, $this->dbTable.timeTo, $this->dbTable.timeperiod, 
-							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed
+			$sql = "SELECT $this->dbTable.smhiPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.referenceTime, 
+							$this->dbTable.validTime, $this->dbTable.temperature, $this->dbTable.windDirection, $this->dbTable.windVelocity, 
+							$this->dbTable.windGust, $this->dbTable.pressure, $this->dbTable.relativeHumidity, $this->dbTable.visibility,
+							$this->dbTable.totalCloudCover, $this->dbTable.probabilityThunderstorm, $this->dbTable.precipitationIntensity, 
+							$this->dbTable.categoryOfPrecipitation
 					FROM $this->dbTable
 					WHERE geonamesPk = :geonamesPk
 					";
@@ -157,8 +158,8 @@ class SmhiRepository extends DatabaseConnection{
 			$query = $db->prepare($sql);
 			$query->execute($params);
 			$now = new \DateTime();
-			foreach ($query->fetchAll() as $yr) {
-				$expirationDate = $yr['nextUpdate'];
+			foreach ($query->fetchAll() as $smhi) {
+				$expirationDate = $this->helper->getSmhiExpirationDate($smhi['referenceTime']);
 				$validForecast = $expirationDate > $now->format('Y-m-d H:i:s');
 				if ($validForecast == TRUE) {
 					return TRUE;
@@ -169,7 +170,6 @@ class SmhiRepository extends DatabaseConnection{
 			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
 		}
 	}
-	*/
 
 	/*
 	public function deleteForecasts($geonamesObject){

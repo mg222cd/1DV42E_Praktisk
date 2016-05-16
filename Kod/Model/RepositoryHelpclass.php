@@ -17,6 +17,12 @@ class RepositoryHelpclass {
 		$date->setTime($time[0], $time[1], $time[2]);
 		return $date->format('Y-m-d H:i:s');
 	}
+
+	public function getSmhiExpirationDate($referenceTime){
+		$expirationTime = strtotime($referenceTime, '+10800');
+		$correct = gmdate("Y-m-d H:i:s", $expirationTime);
+		var_dump($referenceTime, $correct);die();
+	}
 	
 	public function getLastUpdate($yrObject){
 		//hämta rätt fält från obj

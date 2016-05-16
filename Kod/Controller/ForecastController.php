@@ -73,12 +73,12 @@ class ForecastController{
 		//SMHI
 		//Kolla om prognos från Smhi redan finns i DB
 		if ($validSmhiForecast = $this->smhiRepo->checkExists($this->choosenCity) == FALSE) {
-			var_dump("FALSE");
 			//Prognos finns inte, hämta från SMHI's webservice och spara i DB
 			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
 			$addSmhiToDB = $this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
 		}
-		var_dump("TRUE");
+		//Prognos finns, kolla om den är aktuell att använda.
+		$validSmhiForecast = $this->smhiRepo->isThereValidForecastInDatabase($this->choosenCity);
 
 		/*
 		//Prognos finns, kolla om den är aktuell att använda
