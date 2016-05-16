@@ -79,19 +79,14 @@ class ForecastController{
 		}
 		//Prognos finns, kolla om den är aktuell att använda.
 		$validSmhiForecast = $this->smhiRepo->isThereValidForecastInDatabase($this->choosenCity);
-		var_dump($validSmhiForecast);
-		/*
-		//Prognos finns, kolla om den är aktuell att använda
-		$validYrForecast = $this->yrRepo->isThereValidForecastInDatabase($this->choosenCity);
-		if ($validYrForecast == FALSE) {
+		if ($validSmhiForecast == FALSE) {
 			//Prognosen är gammal, radera den, hämta ny från YR webservice, spara ny prognos.
-			$delete = $this->yrRepo->deleteForecasts($this->choosenCity);
-			$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
-			$addYrToDB = $this->yrRepo->addYrForecast($this->forecastYr, $this->choosenCity->getGeonamesPk());
+			$delete = $this->smhiRepo->deleteForecasts($this->choosenCity);
+			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
+			$addSmhiToDB = $this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
 		}
-		//Hämta aktuell prognos ur DB, som yrObjekt
-		$this->yr = $this->yrRepo->getForecast($this->choosenCity);
-		*/
+		//Hämta aktuell prognos ur DB, som smhiObjekt
+		//$this->yr = $this->yrRepo->getForecast($this->choosenCity);
 
 
 		//Kolla om prognos från Yr redan finns i DB

@@ -172,7 +172,6 @@ class SmhiRepository extends DatabaseConnection{
 		}
 	}
 
-	/*
 	public function deleteForecasts($geonamesObject){
 		$geonamesPk = $geonamesObject->getGeonamesPk();
 		try{
@@ -181,13 +180,11 @@ class SmhiRepository extends DatabaseConnection{
 			$params = array ($geonamesPk);
 			$query = $db->prepare($sql);
 			$query->execute($params);
-			//return $query->rowCount() > 0;
 		}
 		catch(\PDOException $e){
 			throw new \Exception('Fel uppstod då prognoser skulle tas bort ur databasen.');
 		}	
 	}
-	*/
 
 	/*
 	public function getForecast($geonamesObject){
