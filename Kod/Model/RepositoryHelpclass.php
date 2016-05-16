@@ -10,7 +10,12 @@ class RepositoryHelpclass {
 	}
 
 	public function smhiDateTimeFormat($dateTimeString){
-		var_dump("i repo helper och sen smhiDateTimeFormat", $dateTimeString);die();
+		$dateTimeString = rtrim($dateTimeString, "Z");
+		$exploded = explode('T', $dateTimeString);
+		$date = new \DateTime($exploded[0]);
+		$time = explode(':', $exploded[1]);
+		$date->setTime($time[0], $time[1], $time[2]);
+		return $date->format('Y-m-d H:i:s');
 	}
 	
 	public function getLastUpdate($yrObject){
