@@ -89,10 +89,11 @@ class ForecastController{
 
 		//Skicka båda prognoserna till funktion i Vyn, som snyggar till dem. Om någon av prognoserna är tomma - tom lista.
 
+
 		return 
 			$this->forecastView->getForecastHeader($this->choosenCity) .
 			$this->forecastView->getWebserviceStatus($this->yrWebserviceStatus, $this->smhiWebserviceStatus) .
-			$this->forecastView->getForecast() . 
+			$this->forecastView->getForecast($this->yr, $this->smhi) . 
 			$this->forecastView->getMap();
 	}
 }

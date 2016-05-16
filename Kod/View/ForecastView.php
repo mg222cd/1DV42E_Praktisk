@@ -72,15 +72,30 @@ class ForecastView{
 		return $this->statusMessageWebservices;
 	}
 
-	public function getForecast(){
-		$html ='
+	public function getForecast($yrList, $smhiList){
+		$forecast = '';
+		foreach ($yrList as $yr) {
+			$forecast .= '
+			<tr>
+				<td>'.$yr->getTimeFrom().' - '.$yr->getTimeTo().'</td>
+				<td>'.$yr->getTemperature().'°C'.'</td>
+			</tr>';
+		}
+		$forecastTable ='
 			<div class="col-md-8">
 				<p>
 					Här kommer prognosdata att visas!
 				</p>
+				<table class="table table-bordered table table-striped">
+				<tr>
+					<td>Datum</td>
+					<td>YR</td>
+					<td>SMHI</td>
+					'.$forecast.'
+				</table>
 			</div>
 		';
-		return $html;
+		return $forecastTable;
 	}
 
 	public function getMap(){
