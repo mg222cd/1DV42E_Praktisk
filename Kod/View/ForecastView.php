@@ -73,14 +73,13 @@ class ForecastView{
 	}
 
 	public function getForecast($yrList, $smhiList){
-		$forecast = '';
-		foreach ($yrList as $yr) {
-			$forecast .= '
-			<tr>
-				<td>'.$yr->getTimeFrom().' - '.$yr->getTimeTo().'</td>
-				<td>'.$yr->getTemperature().'°C'.'</td>
-			</tr>';
-		}
+		$dateColumn = '';
+		$yrColumn = '';
+		$smhiColumn = '';
+		//gör en asociativ array av allt, och loopa därefter igenom den
+		//kom ihåg att ta med felhantering.
+
+
 		$forecastTable ='
 			<div class="col-md-8">
 				<p>
@@ -91,7 +90,6 @@ class ForecastView{
 					<td>Datum</td>
 					<td>YR</td>
 					<td>SMHI</td>
-					'.$forecast.'
 				</table>
 			</div>
 		';
