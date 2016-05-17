@@ -28,11 +28,26 @@ class ForecastHelper{
 				);
 			foreach ($this->smhi as $smhiRow) {
 				$time = $smhiRow->getValidTime();
+					/*
+					public function getProbabilityThunderstorm(){
+					public function getPrecipitationIntensity(){
+					public function getCategoryOfPrecipitation(){
+					*/
 
 				if ($time == $timeFrom || ($time > $timeFrom && $time < $timeTo) && ( ! isset($values['smhi']) || ! in_array($time, $values['smhi'])) ){
 					$smhi = array(
-						'time' => $time,
-						'temp' => $smhiRow->getTemperature()
+						'smhiTime' => $time,
+						'smhiTemp' => $smhiRow->getTemperature(),
+						'smhiWindDir' => $smhiRow->getWindDirection(),
+						'smhiWindSpeed' => $smhiRow->getWindVelocity(),
+						'smhiWindGust' => $smhiRow->getWindGust(),
+						'smhiPressure' => $smhiRow->getPressure(),
+						'smhiHumidity' => $smhiRow->getRelativeHumidity(),
+						'smhiVisibility' => $smhiRow->getVisibility(),
+						'smhiCloudCover' => $smhiRow->getTotalCloudCover(),
+						'smhiProbThunder' => $smhiRow->getProbabilityThunderstorm(),
+						'smhiPrecIntens' => $smhiRow->getPrecipitationIntensity(),
+						'smhiPrecCat' => $smhiRow->getCategoryOfPrecipitation()
 						);
 					$values[] = $smhi;
 				}
