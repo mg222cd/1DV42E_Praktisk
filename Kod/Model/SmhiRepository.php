@@ -32,7 +32,9 @@ class SmhiRepository extends DatabaseConnection{
 	}
 	
 	public function addForecast($smhiObject, $geonamesPk){
+		echo "add";
 		$smhiDecoded = json_decode($smhiObject, true);
+
 
 		//prognosens datumparametrar
 		$currentTime = $this->helper->getCurrentTime();;
@@ -100,7 +102,6 @@ class SmhiRepository extends DatabaseConnection{
 					$value->getPressure(),
 					$value->getRelativeHumidity(),
 					$value->getVisibility(),
-
 					$value->getTotalCloudCover(),
 					$value->getProbabilityThunderstorm(),
 					$value->getPrecipitationIntensity(),
@@ -112,6 +113,7 @@ class SmhiRepository extends DatabaseConnection{
 			throw new \Exception($e->getMessage());
 		}
 		}
+		return true;
 	}
 
 	public function checkExists($geonamesObject){
@@ -173,6 +175,7 @@ class SmhiRepository extends DatabaseConnection{
 	}
 
 	public function deleteForecasts($geonamesObject){
+		echo "delete";
 		$geonamesPk = $geonamesObject->getGeonamesPk();
 		try{
 			$db = $this->connection();
@@ -183,7 +186,8 @@ class SmhiRepository extends DatabaseConnection{
 		}
 		catch(\PDOException $e){
 			throw new \Exception('Fel uppstod då prognoser skulle tas bort ur databasen.');
-		}	
+		}
+		return true;	
 	}
 
 	public function getForecast($geonamesObject){

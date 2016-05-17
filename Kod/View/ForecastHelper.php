@@ -14,7 +14,6 @@ class ForecastHelper{
 	public function getSortedList(){
 		//$list = array('dates' => '');
 		$list = array();
-
 		foreach ($this->yr as $yrRow) {
 			$timeFrom = $yrRow->getTimeFrom();
 			$timeTo = $yrRow->getTimeTo();
@@ -28,7 +27,15 @@ class ForecastHelper{
 				'yrWindSpeed' => $yrRow->getWindSpeed()
 				);
 			foreach ($this->smhi as $smhiRow) {
-				array_push($values, 'apple');
+				$time = $smhiRow->getValidTime();
+
+				if ($time == $timeFrom || ($time > $timeFrom && $time < $timeTo) && ( ! isset($values['smhi']) || ! in_array($time, $values['smhi'])) ){
+					$smhi = array(
+						'time' => $time,
+						'temp' => $smhiRow->getTemperature()
+						);
+					$values[] = $smhi;
+				}
 			}
 			$list[] = $values;
 		}
