@@ -161,6 +161,10 @@ class YrRepository extends DatabaseConnection{
 
 	public function getForecast($geonamesObject){
 		$geonamesPk = $geonamesObject->getGeonamesPk();
+		//rensa array
+		unset($this->yrList);
+		$this->yrList = array();
+
 		try{
 			$db = $this->connection();
 			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 

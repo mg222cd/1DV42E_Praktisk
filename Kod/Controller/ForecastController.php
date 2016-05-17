@@ -21,7 +21,7 @@ class ForecastController{
 	private $yrRepo;
 	private $smhiRepo;
 	private $yr;
-	private $smhi;
+	private $smhi = null;
 
 
 	public function __construct(){
@@ -69,9 +69,33 @@ class ForecastController{
 		//Hämta aktuell prognos ur DB, som yrObjekt
 		$this->yr = $this->yrRepo->getForecast($this->choosenCity);
 
+		/*
+		//SMHI
+		//Om ingen prognos finns i DB, hämta från webbservice
+		if ($this->smhiRepo->checkExists($this->choosenCity) == FALSE) {
+			//Prognos finns inte, hämta från SMHI's webservice och spara i DB
+			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
+			$this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
+			//Hämta aktuell prognos ur DB, som smhiObjekt
+			$this->smhi = $this->smhiRepo->getForecast($this->choosenCity);
+		}
+		//Prognos finns i DB, kolla om den är aktuell att använda.
+		else{
+			$validSmhiForecast = $this->smhiRepo->isThereValidForecastInDatabase($this->choosenCity);
+			////Prognosen är gammal, radera den, hämta ny från YR webservice, spara ny prognos.
+			if ($validSmhiForecast == FALSE) {
+			$delete = $this->smhiRepo->deleteForecasts($this->choosenCity);
+			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
+			$this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
+			}
+			//Hämta aktuell prognos ur DB, som smhiObjekt
+			$this->smhi = $this->smhiRepo->getForecast2($this->choosenCity);
+		}
+		*/
+		
 		//SMHI
 		//Kolla om prognos från Smhi redan finns i DB
-		if ($smhiForecastInDB = $this->smhiRepo->checkExists($this->choosenCity) == FALSE) {
+		if ($this->smhiRepo->checkExists($this->choosenCity) == FALSE) {
 			echo "första";
 			//Prognos finns inte, hämta från SMHI's webservice och spara i DB
 			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
@@ -88,9 +112,7 @@ class ForecastController{
 		}
 		//Hämta aktuell prognos ur DB, som smhiObjekt
 		$this->smhi = $this->smhiRepo->getForecast($this->choosenCity);
-
 		//Skicka båda prognoserna till funktion i Vyn, som snyggar till dem. Om någon av prognoserna är tomma - tom lista.
-
 
 		return 
 			$this->forecastView->getForecastHeader($this->choosenCity) .

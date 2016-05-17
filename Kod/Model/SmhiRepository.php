@@ -7,7 +7,6 @@ require_once('./Model/RepositoryHelpclass.php');
 
 class SmhiRepository extends DatabaseConnection{
 	private $helper;
-	private $smhiObject;
 	private $smhiList = array();
 	private $smhiPk = 'yrPk';
 	private $geonamesPk = 'geonamesPk';
@@ -25,6 +24,7 @@ class SmhiRepository extends DatabaseConnection{
 	private $probabilityThunderstorm = 'probabilityThunderstorm';
 	private $precipitationIntensity = 'precipitationIntensity';
 	private $categoryOfPrecipitation = 'categoryOfPrecipitation';
+
 	
 	public function __construct(){
 		$this->dbTable = 'smhi';
@@ -32,7 +32,6 @@ class SmhiRepository extends DatabaseConnection{
 	}
 	
 	public function addForecast($smhiObject, $geonamesPk){
-		echo "add";
 		$smhiDecoded = json_decode($smhiObject, true);
 
 
@@ -175,7 +174,6 @@ class SmhiRepository extends DatabaseConnection{
 	}
 
 	public function deleteForecasts($geonamesObject){
-		echo "delete";
 		$geonamesPk = $geonamesObject->getGeonamesPk();
 		try{
 			$db = $this->connection();
@@ -192,6 +190,10 @@ class SmhiRepository extends DatabaseConnection{
 
 	public function getForecast($geonamesObject){
 		$geonamesPk = $geonamesObject->getGeonamesPk();
+		//rensa array
+		unset($this->smhiList);
+		$this->smhiList = array();
+
 		try{
 			$db = $this->connection();
 			$sql = "SELECT $this->dbTable.smhiPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.referenceTime, 
@@ -206,23 +208,6 @@ class SmhiRepository extends DatabaseConnection{
 			$query = $db->prepare($sql);
 			$query->execute($params);
 			foreach ($query->fetchAll() as $smhi) {
-				/*
-				$this->smhiList[] = new \Model\Smhi(
-	
-						$referenceTime,
-						$validTime,
-						$temperature = $forecast['t'],
-						$windDirection = $forecast['wd'],
-						$windVelocity = $forecast['ws'],
-						$windGust = $forecast['gust'],
-						$pressure = $forecast['msl'],
-						$relativeHumidity = $forecast['r'],
-						$visibility = $forecast['vis'],
-						$totalCloudCover = $forecast['tcc'],
-						$probabilityThunderstorm = $forecast['tstm'],
-						$precipitationIntensity = $forecast['pis'],
-						$categoryOfPrecipitation = $forecast['pcat']
-						);*/
 				$smhiPk = $smhi['smhiPk'];
 				$geonamesPk = $smhi['geonamesPk'];
 				$timeOfStorage = $smhi['timeOfStorage'];
@@ -249,4 +234,5 @@ class SmhiRepository extends DatabaseConnection{
 			throw new \Exception('Fel uppstod i samband med hämtning av YR-prognoser från databasen.');
 		}
 	}
+
 }
