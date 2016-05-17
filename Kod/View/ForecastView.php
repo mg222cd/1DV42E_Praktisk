@@ -2,6 +2,7 @@
 namespace View;
 
 require_once('./Helpers/Settings.php');
+require_once('./View/ForecastHelper.php');
 
 class ForecastView{
 	private $goolemapsKey;
@@ -9,6 +10,7 @@ class ForecastView{
 	private $statusMessageWebservices;
 	private $forecastHeader;
 	private $map;
+	private $helper;
 
 	public function __construct(){
 		$this->settings = new \Settings\Settings();
@@ -73,11 +75,14 @@ class ForecastView{
 	}
 
 	public function getForecast($yrList, $smhiList){
+		//Hjälpfunktion
+		$this->helper = new \View\ForecastHelper($yrList, $smhiList);
+		$list = $this->helper->getSortedList();
+		/*
 		$dateColumn = '';
 		$yrColumn = '';
 		$smhiColumn = '';
-		//gör en asociativ array av allt, och loopa därefter igenom den
-		//kom ihåg att ta med felhantering.
+		*/
 
 
 		$forecastTable ='
