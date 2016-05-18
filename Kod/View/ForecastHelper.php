@@ -12,7 +12,6 @@ class ForecastHelper{
 
 
 	public function getSortedList(){
-		//$list = array('dates' => '');
 		$list = array();
 		foreach ($this->yr as $yrRow) {
 			$timeFrom = $yrRow->getTimeFrom();
@@ -28,11 +27,6 @@ class ForecastHelper{
 				);
 			foreach ($this->smhi as $smhiRow) {
 				$time = $smhiRow->getValidTime();
-					/*
-					public function getProbabilityThunderstorm(){
-					public function getPrecipitationIntensity(){
-					public function getCategoryOfPrecipitation(){
-					*/
 
 				if ($time == $timeFrom || ($time > $timeFrom && $time < $timeTo) && ( ! isset($values['smhi']) || ! in_array($time, $values['smhi'])) ){
 					$smhi = array(
@@ -54,10 +48,7 @@ class ForecastHelper{
 			}
 			$list[] = $values;
 		}
-		echo '<pre>';
-		print_r($list);
-		echo '</pre>';
-		exit;
+		return $list;
 	}
 
 

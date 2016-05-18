@@ -78,11 +78,32 @@ class ForecastView{
 		//Hjälpfunktion
 		$this->helper = new \View\ForecastHelper($yrList, $smhiList);
 		$list = $this->helper->getSortedList();
-		/*
 		$dateColumn = '';
 		$yrColumn = '';
 		$smhiColumn = '';
+
+		/*
+		echo '<pre>';
+		print_r($list);
+		echo '</pre>';
+		exit;
+		die();
 		*/
+
+		foreach ($list as $timeInterval) {
+			$tableRow = '
+			<tr>
+				<td>
+				'.$timeInterval['dateFrom'].'
+				</td>
+				<td>
+				'.$timeInterval['dateTo'].'
+				</td>
+				<td>
+				'.$timeInterval['yrTemp'].'
+				</td>
+			</tr>';
+		}
 
 
 		$forecastTable ='
@@ -95,7 +116,9 @@ class ForecastView{
 					<td>Datum</td>
 					<td>YR</td>
 					<td>SMHI</td>
-				</table>
+				</tr>'
+				.$tableRow.
+				'</table>
 			</div>
 		';
 		return $forecastTable;

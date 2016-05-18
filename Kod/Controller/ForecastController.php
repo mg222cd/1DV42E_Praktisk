@@ -72,7 +72,6 @@ class ForecastController{
 		//SMHI
 		//Kolla om prognos från Smhi redan finns i DB
 		if ($this->smhiRepo->checkExists($this->choosenCity) == FALSE) {
-			echo "första";
 			//Prognos finns inte, hämta från SMHI's webservice och spara i DB
 			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
 			$this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
@@ -80,7 +79,6 @@ class ForecastController{
 		//Prognos finns, kolla om den är aktuell att använda.
 		$validSmhiForecast = $this->smhiRepo->isThereValidForecastInDatabase($this->choosenCity);
 		if ($validSmhiForecast == FALSE) {
-			echo "andra";
 			//Prognosen är gammal, radera den, hämta ny från YR webservice, spara ny prognos.
 			$delete = $this->smhiRepo->deleteForecasts($this->choosenCity);
 			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
