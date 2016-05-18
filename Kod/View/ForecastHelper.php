@@ -4,6 +4,7 @@ namespace View;
 class ForecastHelper{
 	private $yr;
 	private $smhi;
+	private $lastLoopedDate;
 
 	public function __construct($yrObj, $smhiObj){
 		$this->yr = $yrObj;
@@ -49,6 +50,25 @@ class ForecastHelper{
 			$list[] = $values;
 		}
 		return $list;
+	}
+
+	public function getWeekday($dateAndTime){
+		$this->lastLoopedDate = $dateAndTime;
+		//dagens datum i formatet YYYY-MM-DD
+		$today = new \DateTime();
+		//inskickat datum i formatet YYYY-MM-DD
+		$explodedDateTime = explode(' ', $dateAndTime);
+		$date = new \DateTime($explodedDateTime[0]);
+		$time = explode(':', $explodedDateTime[1]);
+		$date->setTime($time[0], $time[1], $time[2]);
+		//var_dump($explodedDateTime[0], $today);die();
+		//Jämförelse
+		if ($explodedDateTime[0] == $today->format('Y-m-d')) {
+			return '<b>Idag</b> kl ' .$explodedDateTime[1];
+		}
+		else {
+			return $dateAndTime;
+		}
 	}
 
 

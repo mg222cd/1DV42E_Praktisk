@@ -78,9 +78,7 @@ class ForecastView{
 		//Hjälpfunktion
 		$this->helper = new \View\ForecastHelper($yrList, $smhiList);
 		$list = $this->helper->getSortedList();
-		$dateColumn = '';
-		$yrColumn = '';
-		$smhiColumn = '';
+		$tableRow = '';
 
 		/*
 		echo '<pre>';
@@ -91,10 +89,12 @@ class ForecastView{
 		*/
 
 		foreach ($list as $timeInterval) {
-			$tableRow = '
+			$datecolumn = $this->helper->getWeekday($timeInterval['dateFrom']);
+
+			$tableRow .= '
 			<tr>
 				<td>
-				'.$timeInterval['dateFrom'].'
+				'.$datecolumn. '
 				</td>
 				<td>
 				'.$timeInterval['dateTo'].'
