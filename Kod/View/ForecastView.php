@@ -98,9 +98,12 @@ class ForecastView{
 				</td>
 				<td>
 				<img src="http://symbol.yr.no/grafikk/sym/b38/'.$symbolId.'.png" alt="vädersymbol från yr.no" title="vädersymbol från yr.no">
+				<div class="infoInTable">
+				'.$timeInterval['yrTemp'].' ° C
+				</div>
 				</td>
 				<td>
-				'.$timeInterval['yrTemp'].'
+				Här kommer SMHI senare
 				</td>
 			</tr>';
 		}
@@ -115,10 +118,14 @@ class ForecastView{
 				<tr>
 					<td></td>
 					<td>
+					<a href="http://www.yr.no">
 					<img class="yr" src="http://www.yr.no/grafikk/yr-logo.png" alt="logo yr" title="logo yr">
+					</a>
 					</td>
 					<td>
+					<a href="http://www.smhi.se">
 					<img class="smhi" src="http://www.smhi.se/polopoly_fs/1.1108.1398236874!/image/SMHIlogo.png_gen/derivatives/Original/SMHIlogo.png" alt="logo smhi" title="logo smhi">
+					</a>
 					</td>
 				</tr>'
 				.$tableRow.

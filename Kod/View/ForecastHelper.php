@@ -64,10 +64,10 @@ class ForecastHelper{
 		$tomorrow->add(new \DateInterval('P1D'));
 		//Jämförelse
 		if ($dateString == $today->format('Y-m-d')) {
-			return '<b>Idag</b> kl ' .$explodedDateTime[1];
+			return '<div><b>Idag</b></div> <div>' .$explodedDateTime[1].'</div>';
 		}
 		if ($dateString == $tomorrow->format('Y-m-d')) {
-			return '<b>Imorgon</b> kl ' .$explodedDateTime[1];
+			return '<div><b>Imorgon</b></div> <div>' .$explodedDateTime[1].'</div>';
 		}
 		else {
 			$weekdayEn= date('l', strtotime( $dateString));
@@ -75,7 +75,7 @@ class ForecastHelper{
 			$weekdaysSwe = array ('Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag');
 
 			$weekdaySwe = str_replace($weekdaysEn, $weekdaysSwe, $weekdayEn);
-			return '<b>'.$weekdaySwe.'</b>' . $explodedDateTime[1];
+			return '<div><b>'.$weekdaySwe.'</b></div> <div>' .$explodedDateTime[1].'</div>';
 		}
 	}
 
