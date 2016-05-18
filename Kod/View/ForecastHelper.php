@@ -58,16 +58,24 @@ class ForecastHelper{
 		$today = new \DateTime();
 		//inskickat datum i formatet YYYY-MM-DD
 		$explodedDateTime = explode(' ', $dateAndTime);
-		$date = new \DateTime($explodedDateTime[0]);
-		$time = explode(':', $explodedDateTime[1]);
-		$date->setTime($time[0], $time[1], $time[2]);
-		//var_dump($explodedDateTime[0], $today);die();
+		$dateString = $explodedDateTime[0];
+		//imorgon i formatet YYYY-MM-DD
+		$tomorrow = new \DateTime();
+		$tomorrow->add(new \DateInterval('P1D'));
 		//Jämförelse
-		if ($explodedDateTime[0] == $today->format('Y-m-d')) {
+		if ($dateString == $today->format('Y-m-d')) {
 			return '<b>Idag</b> kl ' .$explodedDateTime[1];
 		}
+		if ($dateString == $tomorrow->format('Y-m-d')) {
+			return '<b>Imorgon</b> kl ' .$explodedDateTime[1];
+		}
 		else {
-			return $dateAndTime;
+			$weekdayEn= date('l', strtotime( $dateString));
+			$weekdaysEn = array ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+			$weekdaysSwe = array ('Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag');
+
+			$weekdaySwe = str_replace($weekdaysEn, $weekdaysSwe, $weekdayEn);
+			return '<b>'.$weekdaySwe.'</b>' . $explodedDateTime[1];
 		}
 	}
 

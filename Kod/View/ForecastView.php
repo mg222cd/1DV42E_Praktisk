@@ -90,14 +90,14 @@ class ForecastView{
 
 		foreach ($list as $timeInterval) {
 			$datecolumn = $this->helper->getWeekday($timeInterval['dateFrom']);
-
+			$symbolId = $timeInterval['yrSymbol'];
 			$tableRow .= '
 			<tr>
 				<td>
 				'.$datecolumn. '
 				</td>
 				<td>
-				'.$timeInterval['dateTo'].'
+				<img src="http://symbol.yr.no/grafikk/sym/b38/'.$symbolId.'.png" alt="vädersymbol från yr.no" title="vädersymbol från yr.no">
 				</td>
 				<td>
 				'.$timeInterval['yrTemp'].'
@@ -113,9 +113,13 @@ class ForecastView{
 				</p>
 				<table class="table table-bordered table table-striped">
 				<tr>
-					<td>Datum</td>
-					<td>YR</td>
-					<td>SMHI</td>
+					<td></td>
+					<td>
+					<img class="yr" src="http://www.yr.no/grafikk/yr-logo.png" alt="logo yr" title="logo yr">
+					</td>
+					<td>
+					<img class="smhi" src="http://www.smhi.se/polopoly_fs/1.1108.1398236874!/image/SMHIlogo.png_gen/derivatives/Original/SMHIlogo.png" alt="logo smhi" title="logo smhi">
+					</td>
 				</tr>'
 				.$tableRow.
 				'</table>
