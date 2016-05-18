@@ -32,8 +32,11 @@ class SmhiRepository extends DatabaseConnection{
 	}
 	
 	public function addForecast($smhiObject, $geonamesPk){
+		//rensa array
+		unset($this->smhiList);
+		$this->smhiList = array();
+		
 		$smhiDecoded = json_decode($smhiObject, true);
-
 
 		//prognosens datumparametrar
 		$currentTime = $this->helper->getCurrentTime();;

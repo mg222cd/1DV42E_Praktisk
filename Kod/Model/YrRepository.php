@@ -28,6 +28,10 @@ class YrRepository extends DatabaseConnection{
 	}
 	
 	public function addYrForecast($yrObject, $geonamesPk){
+		//rensa array
+		unset($this->yrList);
+		$this->yrList = array();
+		
 		//prognosens datumparametrar
 		$timeOfStorage = $this->helper->getCurrentTime();;
 		$lastupdate = $this->helper->getLastUpdate($yrObject);
