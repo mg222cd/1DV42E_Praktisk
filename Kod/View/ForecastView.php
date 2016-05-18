@@ -90,16 +90,29 @@ class ForecastView{
 
 		foreach ($list as $timeInterval) {
 			$datecolumn = $this->helper->getWeekday($timeInterval['dateFrom']);
-			$symbolId = $timeInterval['yrSymbol'];
+			$symbolIdYr = $timeInterval['yrSymbol'];
+			$windDirYr = $this->helper->getWindDir($timeInterval['yrWindDir']);
+			$windNameYr = $this->helper->getWindName($timeInterval['yrWindSpeed']);
 			$tableRow .= '
 			<tr>
 				<td>
 				'.$datecolumn. '
 				</td>
 				<td>
-				<img src="http://symbol.yr.no/grafikk/sym/b38/'.$symbolId.'.png" alt="vädersymbol från yr.no" title="vädersymbol från yr.no">
+				<img src="http://symbol.yr.no/grafikk/sym/b38/'.$symbolIdYr.'.png" alt="vädersymbol från yr.no" title="vädersymbol från yr.no">
 				<div class="infoInTable">
 				'.$timeInterval['yrTemp'].' ° C
+				</div>
+				<div class="infoInTable">
+				<div> 
+				'.$timeInterval['yrWindSpeed'].' m/s
+				<div>
+				<div> 
+				'.$windNameYr.'
+				<div>
+				<div> 
+				'.$timeInterval['yrWindDir'].$windDirYr.' vindriktning.
+				<div>
 				</div>
 				</td>
 				<td>
@@ -114,7 +127,7 @@ class ForecastView{
 				<p>
 					Här kommer prognosdata att visas!
 				</p>
-				<table class="table table-bordered table table-striped">
+				<table class="table">
 				<tr>
 					<td></td>
 					<td>

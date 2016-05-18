@@ -23,7 +23,7 @@ class ForecastHelper{
 				'timeperiod' => $yrRow->getTimePeriod(),
 				'yrSymbol' => $yrRow->getSymbolId(),
 				'yrTemp' => $yrRow->getTemperature(),
-				'yrwindDir' => $yrRow->getWindDirectionDeg(),
+				'yrWindDir' => $yrRow->getWindDirectionDeg(),
 				'yrWindSpeed' => $yrRow->getWindSpeed()
 				);
 			foreach ($this->smhi as $smhiRow) {
@@ -76,6 +76,60 @@ class ForecastHelper{
 
 			$weekdaySwe = str_replace($weekdaysEn, $weekdaysSwe, $weekdayEn);
 			return '<div><b>'.$weekdaySwe.'</b></div> <div>' .$explodedDateTime[1].'</div>';
+		}
+	}
+
+	public function getWindName($windSpeed){
+		if ($windSpeed == 0 || $windSpeed <= 0.2) {
+			return 'Lugnt';
+		}
+		if ($windSpeed >= 0.3 && $windSpeed <= 3.3) {
+			return 'Svag vind';
+		}
+		if ($windSpeed >= 3.4 && $windSpeed <= 7.9) {
+			return 'Måttlig vind';
+		}
+		if ($windSpeed >= 8.0 && $windSpeed <= 13.8) {
+			return 'Frisk vind';
+		}
+		if ($windSpeed >= 13.9 && $windSpeed <= 24.4) {
+			return 'Hård vind';
+		}
+		if ($windSpeed >= 24.5 && $windSpeed <= 32.6) {
+			return 'Storm';
+		}
+		if ($windSpeed >= 32.7) {
+			return 'Orkan';
+		}
+		else{
+			return'';
+		}
+	}
+
+	public function getWindDir($windDir){
+		if ($windDir >= 337.5 || $windDir <= 22.5) {
+			return 'N';
+		}
+		if ($windDir >= 22.6 && $windDir <= 67.5) {
+			return 'NÖ';
+		}
+		if ($windDir >= 67.6 && $windDir <= 112.5) {
+			return 'Ö';
+		}
+		if ($windDir >= 112.6 && $windDir <= 157.5) {
+			return 'SÖ';
+		}
+		if ($windDir >= 157.6 && $windDir <= 202.5) {
+			return 'S';
+		}
+		if ($windDir >= 202.6 && $windDir <= 247.5) {
+			return 'SV';
+		}
+		if ($windDir >= 247.6 && $windDir <= 292.5) {
+			return 'V';
+		}
+		if ($windDir >= 292.6 && $windDir <= 337.5) {
+			return 'NV';
 		}
 	}
 

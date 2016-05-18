@@ -32,7 +32,7 @@ class YrModel{
 		$adminName1 = $geonamesObject->getAdminName1();
 		$adminName2 = $geonamesObject->getAdminName2();
 		$name = $geonamesObject->getName();
-		if ($country == 'norway') {
+		if ($country == 'Norway') {
 			$this->url = 'http://www.yr.no/sted/Norge/'.$adminName1.'/'.$adminName2.'/'.$name.'/forecast.xml';
 		}
 		else{
