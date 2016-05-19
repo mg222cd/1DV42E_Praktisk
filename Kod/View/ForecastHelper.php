@@ -24,7 +24,9 @@ class ForecastHelper{
 				'yrSymbol' => $yrRow->getSymbolId(),
 				'yrTemp' => $yrRow->getTemperature(),
 				'yrWindDir' => $yrRow->getWindDirectionDeg(),
-				'yrWindSpeed' => $yrRow->getWindSpeed()
+				'yrWindSpeed' => $yrRow->getWindSpeed(),
+				'yrPrec' => $yrRow->getPrecipitation(),
+				'yrPressure' => $yrRow->getPressure()
 				);
 			foreach ($this->smhi as $smhiRow) {
 				$time = $smhiRow->getValidTime();

@@ -105,14 +105,24 @@ class ForecastView{
 				<div class="infoInTable">
 				<div> 
 				'.$timeInterval['yrWindSpeed'].' m/s
-				<div>
+				</div>
 				<div> 
 				'.$windNameYr.'
-				<div>
+				</div>
 				<div> 
 				från '.$windDirYr.'
-				<div>
 				</div>
+				</div>
+				<div class="infoInTable">
+				<div>
+				Nederbörd: '.$timeInterval['yrPrec'].' mm
+				</div>
+				</div>
+				<div class="infoInTable">
+				<div>
+				Lufttryck: '.$timeInterval['yrPressure'].' hPa
+				</div>
+				</div>  
 				</td>
 				<td>
 				Här kommer SMHI senare

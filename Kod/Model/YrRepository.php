@@ -20,6 +20,8 @@ class YrRepository extends DatabaseConnection{
 	private $temperature = 'temperature';
 	private $windDirectionDeg = 'windDirectionDeg';
 	private $windSpeed = 'windSpeed';
+	private $precipitation = 'precipitation';
+	private $pressure = 'pressure';
 	private $helper;
 	
 	public function __construct(){
@@ -53,7 +55,9 @@ class YrRepository extends DatabaseConnection{
 				$symbolId = (string) $eachForecast["symbol"]["var"],
 				$temperature = (int) $eachForecast["temperature"]["value"],
 				$windDirectionDeg = (float) $eachForecast["windDirection"]["deg"],
-				$windSpeed = (string) $eachForecast["windSpeed"]["mps"]
+				$windSpeed = (string) $eachForecast["windSpeed"]["mps"],
+				$precipitation = (float) $eachForecast["precipitation"]["value"],
+				$pressure = (string) $eachForecast["pressure"]["value"]
 				);
 		}
 
@@ -72,8 +76,10 @@ class YrRepository extends DatabaseConnection{
 					.$this->symbolId.","
 					.$this->temperature.","
 					.$this->windDirectionDeg.","
-					.$this->windSpeed.")
-	               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+					.$this->windSpeed.","
+					.$this->precipitation.","
+					.$this->pressure.")
+	               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 				$params = array (
 					$value->getGeonamesPk(),
 					$value->getTimeOfStorage(),
@@ -85,7 +91,9 @@ class YrRepository extends DatabaseConnection{
 					$value->getSymbolId(),
 					$value->getTemperature(),
 					$value->getWindDirectionDeg(),
-					$value->getWindSpeed());
+					$value->getWindSpeed(),
+					$value->getPrecipitation(),
+					$value->getPressure());
 				$query = $db->prepare($sql);
 				$query->execute($params);
 		}
@@ -102,7 +110,8 @@ class YrRepository extends DatabaseConnection{
 			$db = $this->connection();
 			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 
 							$this->dbTable.nextUpdate, $this->dbTable.timeFrom, $this->dbTable.timeTo, $this->dbTable.timeperiod, 
-							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed
+							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed,
+							$this->dbTable.precipitation, $this->dbTable.pressure
 					FROM $this->dbTable
 					WHERE geonamesPk = :geonamesPk
 					";
@@ -126,7 +135,8 @@ class YrRepository extends DatabaseConnection{
 			$db = $this->connection();
 			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 
 							$this->dbTable.nextUpdate, $this->dbTable.timeFrom, $this->dbTable.timeTo, $this->dbTable.timeperiod, 
-							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed
+							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed,
+							$this->dbTable.precipitation, $this->dbTable.pressure
 					FROM $this->dbTable
 					WHERE geonamesPk = :geonamesPk
 					";
@@ -173,7 +183,8 @@ class YrRepository extends DatabaseConnection{
 			$db = $this->connection();
 			$sql = "SELECT $this->dbTable.yrPk, $this->dbTable.geonamesPk, $this->dbTable.timeOfStorage, $this->dbTable.lastUpdate, 
 							$this->dbTable.nextUpdate, $this->dbTable.timeFrom, $this->dbTable.timeTo, $this->dbTable.timeperiod, 
-							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed
+							$this->dbTable.symbolId, $this->dbTable.temperature, $this->dbTable.windDirectionDeg, $this->dbTable.windSpeed,
+							$this->dbTable.precipitation, $this->dbTable.pressure
 					FROM $this->dbTable
 					WHERE geonamesPk = :geonamesPk
 					";
@@ -193,7 +204,9 @@ class YrRepository extends DatabaseConnection{
 				$temperature = $yr['temperature'];
 				$windDirectionDeg = $yr['windDirectionDeg'];
 				$windSpeed = $yr['windSpeed'];
-				$this->yrList[] = new \Model\Yr($yrPk, $geonamesPk, $timeOfStorage, $lastUpdate, $nextUpdate, $timeFrom, $timeTo, $timeperiod, $symbolId, $temperature, $windDirectionDeg, $windSpeed);
+				$precipitation = $yr['precipitation'];
+				$pressure = $yr['pressure'];
+				$this->yrList[] = new \Model\Yr($yrPk, $geonamesPk, $timeOfStorage, $lastUpdate, $nextUpdate, $timeFrom, $timeTo, $timeperiod, $symbolId, $temperature, $windDirectionDeg, $windSpeed, $precipitation, $pressure);
 			}
 			return $this->yrList;
 		}

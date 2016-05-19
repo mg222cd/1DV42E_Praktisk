@@ -14,10 +14,11 @@ class Yr{
 	private $temperature; //tinyint
 	private $windDirectionDeg; //double
 	private $windSpeed; //varchar255
+	private $precipitation; //int
+	private $pressure; 
 
 	public function __construct($yrPk, $geonamesPk, $timeOfStorage, $lastUpdate, $nextUpdate, $timeFrom, $timeTo,
-		$timeperiod, $symbolId, $temperature, $windDirectionDeg, $windSpeed){
-
+		$timeperiod, $symbolId, $temperature, $windDirectionDeg, $windSpeed, $precipitation, $pressure){
 		$this->yrPk = $yrPk;
 		$this->geonamesPk = $geonamesPk;
 		$this->timeOfStorage = $timeOfStorage;
@@ -30,6 +31,8 @@ class Yr{
 		$this->temperature = $temperature;
 		$this->windDirectionDeg = $windDirectionDeg;
 		$this->windSpeed = $windSpeed;
+		$this->precipitation = $precipitation;
+		$this->pressure = $pressure;
 	}
 
 	public function getYrPk(){
@@ -78,5 +81,13 @@ class Yr{
 
 	public function getWindSpeed(){
 		return $this->windSpeed;
+	}
+
+	public function getPrecipitation(){
+		return $this->precipitation;
+	}
+
+	public function getPressure(){
+		return $this->pressure;
 	}
 }
