@@ -25,7 +25,6 @@ class RepositoryHelpclass {
 	}
 	
 	public function getLastUpdate($yrObject){
-		var_dump($yrObject);
 		//hämta rätt fält från obj
 		$field = (string) $yrObject->meta->lastupdate;
 		$explodedField = explode('T', $field);
