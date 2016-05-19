@@ -108,7 +108,6 @@ class GeonamesRepository extends DatabaseConnection{
 			$query->execute($params);
 
 			$geonames = $query->fetchAll();
-			//var_dump($geonames[0]['geonamesPk']);die();
 			$geonamesPk = $geonames[0]['geonamesPk'];
 			$geonameId = $geonames[0]['geonameId'];
 			$name = $geonames[0]['name'];

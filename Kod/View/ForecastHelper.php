@@ -108,28 +108,28 @@ class ForecastHelper{
 
 	public function getWindDir($windDir){
 		if ($windDir >= 337.5 || $windDir <= 22.5) {
-			return 'N';
+			return 'norr';
 		}
 		if ($windDir >= 22.6 && $windDir <= 67.5) {
-			return 'NÖ';
+			return 'nordost';
 		}
 		if ($windDir >= 67.6 && $windDir <= 112.5) {
-			return 'Ö';
+			return 'öster';
 		}
 		if ($windDir >= 112.6 && $windDir <= 157.5) {
-			return 'SÖ';
+			return 'sydost';
 		}
 		if ($windDir >= 157.6 && $windDir <= 202.5) {
-			return 'S';
+			return 'söder';
 		}
 		if ($windDir >= 202.6 && $windDir <= 247.5) {
-			return 'SV';
+			return 'sydväst';
 		}
 		if ($windDir >= 247.6 && $windDir <= 292.5) {
-			return 'V';
+			return 'väster';
 		}
 		if ($windDir >= 292.6 && $windDir <= 337.5) {
-			return 'NV';
+			return 'nordväst';
 		}
 	}
 

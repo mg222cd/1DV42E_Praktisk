@@ -49,7 +49,7 @@ class YrModel{
 		return $dataDecoded;
 	}
 
-	//Filtrates oyt html and tags
+	//Filtrates out html and tags
 	public function sanitizeText($forecast){
 		$sanitizedText = strip_tags($forecast);
 		$trimmedText = trim($sanitizedText);

@@ -26,7 +26,6 @@ class ForecastView{
 
 		//kolla om tilde finns:
 		$containsTilde = strpos($url, '~');
-		// var_dump($containsTilde); die(); <--int (0)
 		if ($containsTilde === false) {
 			return false;
 		}
@@ -111,7 +110,7 @@ class ForecastView{
 				'.$windNameYr.'
 				<div>
 				<div> 
-				'.$timeInterval['yrWindDir'].$windDirYr.' vindriktning.
+				från '.$windDirYr.'
 				<div>
 				</div>
 				</td>
@@ -124,9 +123,6 @@ class ForecastView{
 
 		$forecastTable ='
 			<div class="col-md-8">
-				<p>
-					Här kommer prognosdata att visas!
-				</p>
 				<table class="table">
 				<tr>
 					<td></td>

@@ -164,7 +164,6 @@ class SmhiRepository extends DatabaseConnection{
 			$now = new \DateTime();
 			foreach ($query->fetchAll() as $smhi) {
 				$expirationDate = $this->helper->getSmhiExpirationDate($smhi['referenceTime']);
-				//var_dump($expirationDate, $now->format('Y-m-d H:i:s'), $expirationDate > $now->format('Y-m-d H:i:s'));die();
 				$validForecast = $expirationDate > $now->format('Y-m-d H:i:s');
 				if ($validForecast == TRUE) {
 					return TRUE;
