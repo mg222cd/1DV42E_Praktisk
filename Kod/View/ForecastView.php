@@ -79,15 +79,7 @@ class ForecastView{
 		$list = $this->helper->getSortedList();
 		$tableRow = '';
 
-		/*
-		echo '<pre>';
-		print_r($list);
-		echo '</pre>';
-		exit;
-		die();
-		*/
-
-
+		//varje rad i tabellen
 		foreach ($list as $timeInterval) {
 			$datecolumn = $this->helper->getWeekday($timeInterval['dateFrom']);
 			$symbolIdYr = $timeInterval['yrSymbol'];
@@ -95,44 +87,35 @@ class ForecastView{
 			$windNameYr = $this->helper->getWindName($timeInterval['yrWindSpeed']);
 			$smhi = '';
 			
-			//var_dump($timeInterval['smhi']);die();
-			/*
-			foreach ($timeInterval['smhi'] as $smhiRow) {
-				
-			}
-			*/
-			
+			//Smhi-kolumnen
 			for ($i = 0; $i <= 0; $i++) {
 				if (isset($timeInterval[$i])) {
 					$smhi .= '
 					<div class="infoInTableSmhi">
 					<div>'
-					.$timeInterval[$i]['smhiTemp']. ' ° C
+					.round($timeInterval[$i]['smhiTemp']). ' ° C
 					</div>
 					</div>
-
-					<div class="infoInTableSmhi">
-					<div>'
-					.$timeInterval[$i]['smhiWindSpeed'].' m/s
-					</div>
+					<div class="infoInTable">
 					<div>
-					Vindbyar '.$timeInterval[$i]['smhiWindGust'].' m/s
+					Vind:
+					</div>
+					<div>'
+					.$timeInterval[$i]['smhiWindSpeed'].' m/s ('.$timeInterval[$i]['smhiWindGust'].' m/s)
 					</div>
 					<div>
 					'.$this->helper->getWindName($timeInterval[$i]['smhiWindSpeed']).' från '.$this->helper->getWindDir($timeInterval[$i]['smhiWindDir']).'
 					</div>
 					</div>
-
-					<div class="infoInTableSmhi">
+					<div class="infoInTable">
 					<div>
 					Nederbörd:
 					</div>
 					<div>
-					'.$timeInterval[$i]['smhiPrecIntens'].' mm '.$this->helper->getPrecipitationCategory($timeInterval[$i]['smhiPrecCat']).'
+					'.$timeInterval[$i]['smhiPrecIntens'].' mm ('.$this->helper->getPrecipitationCategory($timeInterval[$i]['smhiPrecCat']).')
 					</div>
 					</div>
-
-					<div class="infoInTableSmhi">
+					<div class="infoInTable">
 					<div>
 					Lufttryck:
 					</div>
@@ -140,8 +123,7 @@ class ForecastView{
 					'.$timeInterval[$i]['smhiPressure'].' hPa
 					</div>
 					</div>
-
-					<div class="infoInTableSmhi">
+					<div class="infoInTable">
 					<div>
 					Relativ luftfuktighet:
 					</div>
@@ -149,8 +131,7 @@ class ForecastView{
 					'.$timeInterval[$i]['smhiHumidity'].'%
 					</div>
 					</div>
-
-					<div class="infoInTableSmhi">
+					<div class="infoInTable">
 					<div>
 					Sikt:
 					</div>
@@ -158,8 +139,7 @@ class ForecastView{
 					'.$timeInterval[$i]['smhiVisibility'].' km
 					</div>
 					</div>
-
-					<div class="infoInTableSmhi">
+					<div class="infoInTable">
 					<div>
 					Total molnmängd:
 					</div>
@@ -167,8 +147,7 @@ class ForecastView{
 					'.$timeInterval[$i]['smhiCloudCover'].'/8
 					</div>
 					</div>
-
-					<div class="infoInTableSmhi">
+					<div class="infoInTable">
 					<div>
 					Sannolikhet för åska:
 					</div>
@@ -178,6 +157,9 @@ class ForecastView{
 					</div>
 					';
 				}
+				else{
+					$smhi .= 'Data saknas från SMHI';
+				}
 			}
 
 	
@@ -185,31 +167,39 @@ class ForecastView{
 			<tr>
 				<td>
 				'.$datecolumn. '
+				<img src="http://symbol.yr.no/grafikk/sym/b38/'.$symbolIdYr.'.png" alt="vädersymbol från yr.no" title="vädersymbol från yr.no">
 				</td>
 				<td>
-				<img src="http://symbol.yr.no/grafikk/sym/b38/'.$symbolIdYr.'.png" alt="vädersymbol från yr.no" title="vädersymbol från yr.no">
 				<div class="infoInTable">
 				'.$timeInterval['yrTemp'].' ° C
 				</div>
 				<div class="infoInTable">
+				<div>
+				Vind:
+				</div>
 				<div> 
 				'.$timeInterval['yrWindSpeed'].' m/s
 				</div>
 				<div> 
-				'.$windNameYr.'
-				</div>
-				<div> 
-				från '.$windDirYr.'
+				'.$windNameYr.' från '.$windDirYr.'
 				</div>
 				</div>
+				
 				<div class="infoInTable">
 				<div>
-				Nederbörd: '.$timeInterval['yrPrec'].' mm
+				Nederbörd:
+				</div>
+				<div>
+				'.$timeInterval['yrPrec'].' mm
 				</div>
 				</div>
+
 				<div class="infoInTable">
 				<div>
-				Lufttryck: '.$timeInterval['yrPressure'].' hPa
+				Lufttryck:
+				</div>
+				<div>
+				'.$timeInterval['yrPressure'].' hPa
 				</div>
 				</div>  
 				</td>
@@ -221,7 +211,8 @@ class ForecastView{
 
 
 		$forecastTable ='
-			<div class="col-md-8">
+		<div class ="row">
+			<div class="col-md-6">
 				<table class="table">
 				<tr>
 					<td></td>
@@ -245,8 +236,9 @@ class ForecastView{
 
 	public function getMap(){
 		$map='
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<div id="map-canvas"></div>
+			</div>
 			</div>
 			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key='.$this->goolemapsKey.'"></script>
             <script src="Map.js"></script>
