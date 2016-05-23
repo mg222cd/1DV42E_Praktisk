@@ -38,6 +38,16 @@ class SearchController{
 	}
 
 	private function geonamesScenarios(){
+		//Om användaren tryckt på något i listan url ?search=stad~geonameId
+		if ($this->forecastView->cityFromListIsChoosen() === TRUE) { //Kolla vad som finns i Get på samma vis som i ForecastVyn
+			//Hämta geonames Id och stad
+			//Sanera båda
+			//Kolla om id't finns hos geonames webservice
+			//Om nej- det är manipulerat - redirect till startsida
+			//Om ja- kolla om det finns i db
+			//om ja- redirect till forecast-actionet
+			//om nej- lägg till och sen redirecta till forecast-actionet
+		}
 		//Kontroll om geonames webservice fungerar.
 		if ($this->geonamesModel->testGeonames() == TRUE) {
 			$resultsFromGeonames = $this->geonamesModel->getGeonames($this->city);
@@ -58,8 +68,8 @@ class SearchController{
 			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 
 				&& $this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) <= 10) {
 				//TODO... Visa kort lista med träffar
-				return '2-10 träffar...     ' . $resultsFromGeonames;
-				//return $this->geonamesView->shortList();
+				$geonamesObject = $this->geonamesModel->getGeonamesObject($resultsFromGeonames);
+				return $this->geonamesView->hitList($geonamesObject);
 			}
 			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 11
 				&& $this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) <= 2000) {

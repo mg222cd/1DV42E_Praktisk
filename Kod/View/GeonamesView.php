@@ -28,27 +28,40 @@ class GeonamesView{
 	}
 	
 	public function hitList($geonamesList){
+
 		$resultsrow='';
 		foreach ($geonamesList as $geonames) {
-			$resultsrow .= '<tr>
-								<td>
-								<a class="" href="?forecast='.$geonames->getName().'~'.$geonames->getGeonameId().'"</a>'
-								 . $geonames->getName() . ' - '
-								 . $geonames->getFcodeName() . ', ' 
-								 . $geonames->getAdminName2() .  ', '
-								 . $geonames->getAdminName1() .  ', '
-								 . $geonames->getCountryName() .
-								 '
-								 </td>
-							<tr>';
+			$name = $geonames->getName();
+			$fcodeName = $geonames->getFcodeName();
+			$adminName2 = $geonames->getAdminName2();
+			$adminName1 = $geonames->getAdminName1();
+			$country = $geonames->getCountryName();
+
+			$resultsrow .= 
+			'<tr>
+
+				<td><a class="" href="?search='.$geonames->getName().'~'.$geonames->getGeonameId().'">'.$name.'</a></td>
+				<td>'.$fcodeName.'</td>
+				<td>'.$adminName2.'</td>
+				<td>'.$adminName1.'</td>
+				<td>'.$country.'</td>
+			<tr>';
+
 		}
-		$html= "
-			<div id='geonamesTable' class='table-responsive'>
-			<table class='table table-bordered table table-striped '>
-				".$resultsrow."
+
+		$html= '
+			<div id="geonamesTable" class="table-responsive">
+			<table class="table table-striped hitlist">
+			<tr>
+				<td>Ort</td>
+				<td>Typ</td>
+				<td>Kommun</td>
+				<td>Område</td>
+				<td>Land</td>
+			'.$resultsrow.'
 			</table>
 			</div>
-		";
+		';
 		return $html;
 	}
 }

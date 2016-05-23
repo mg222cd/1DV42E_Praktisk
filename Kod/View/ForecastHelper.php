@@ -161,22 +161,22 @@ class ForecastHelper{
 			return '';
 		}
 		if ($smhiPrecCat == 1) {
-			return 'snö';
+			return '(snö)';
 		}
 		if ($smhiPrecCat == 2) {
-			return 'snöblandat regn';
+			return '(snöblandat regn)';
 		}
 		if ($smhiPrecCat == 3) {
-			return 'regn';
+			return '(regn)';
 		}
 		if ($smhiPrecCat == 4) {
-			return 'duggregn';
+			return '(duggregn)';
 		}
 		if ($smhiPrecCat == 5) {
-			return 'underkylt regn';
+			return '(underkylt regn)';
 		}
 		if ($smhiPrecCat == 6) {
-			return 'underkylt duggregn';
+			return '(underkylt duggregn)';
 		}
 		else{
 			return '';

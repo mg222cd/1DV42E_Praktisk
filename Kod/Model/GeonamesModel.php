@@ -1,14 +1,12 @@
 <?php
 namespace Model;
 
+require_once('./Model/Geonames.php');
+
 class GeonamesModel{
 	private $city;
+	private $geonamesList = array();
 
-	/*
-	public function __construct($city){
-		$this->city = $city;
-	}
-	*/
 
 	public function geonamesRequest($url){
 		$ch = curl_init();
@@ -49,6 +47,34 @@ class GeonamesModel{
 			return $trimmedText;
 		}
 		return $city;
+	}
+
+	public function getGeonamesObject($geonamesArr){
+		unset($this->geonamesList);
+		$this->geonamesList = array();
+		/*
+		echo '<pre>';
+		print_r($geonamesArr);
+		echo '</pre>';
+		exit;
+		die();
+		*/
+
+		foreach ($geonamesArr['geonames'] as $geoname) {
+			$geonames = new \model\Geonames(
+			null, //GeonamesPk 
+			$geoname['geonameId'], 
+			$geoname['name'], 
+			$geoname['adminName1'], 
+			$geoname['adminName2'], 
+			$geoname['countryName'],
+			$geoname['fcodeName'],
+			$geoname['lat'],
+			$geoname['lng']);
+			$this->geonamesList [] = $geonames;
+		}
+
+		return $this->geonamesList;
 	}
 
 }

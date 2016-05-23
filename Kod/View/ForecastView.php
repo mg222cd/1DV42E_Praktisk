@@ -112,7 +112,7 @@ class ForecastView{
 					Nederbörd:
 					</div>
 					<div>
-					'.$timeInterval[$i]['smhiPrecIntens'].' mm ('.$this->helper->getPrecipitationCategory($timeInterval[$i]['smhiPrecCat']).')
+					'.$timeInterval[$i]['smhiPrecIntens'].' mm '.$this->helper->getPrecipitationCategory($timeInterval[$i]['smhiPrecCat']).'
 					</div>
 					</div>
 					<div class="infoInTable">
