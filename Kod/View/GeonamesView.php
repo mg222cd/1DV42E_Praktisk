@@ -64,4 +64,52 @@ class GeonamesView{
 		';
 		return $html;
 	}
+
+	public function cityFromListIsChoosen(){
+		$url = $_GET['search'];
+		//Om den är tom
+		if ($url == '') {
+			return false;
+		}
+		//kolla om tilde finns:
+		$containsTilde = strpos($url, '~');
+		if ($containsTilde === false) {
+			return false;
+		}
+		//kolla att något står efter tilde
+		$explodedUrl = explode('~', $url);
+		if ($containsTilde == 0) {
+			$afterTilde = $explodedUrl[0];
+		}
+		$afterTilde = $explodedUrl[1];
+		//Om inget finns efter tilde
+		if ($afterTilde == '') {
+			return false;
+		}
+		return true;
+	}
+
+	public function getGeonameId(){
+		$url = $_GET['search'];
+		//Om den är tom
+		if ($url == '') {
+			return '';
+		}
+		//kolla om tilde finns:
+		$containsTilde = strpos($url, '~');
+		if ($containsTilde === false) {
+			return '';
+		}
+		//kolla att något står efter tilde
+		$explodedUrl = explode('~', $url);
+		if ($containsTilde == 0) {
+			return $explodedUrl[0];
+		}
+		$afterTilde = $explodedUrl[1];
+		//Om inget finns efter tilde
+		if ($afterTilde == '') {
+			return '';
+		}
+		return $afterTilde;
+	}
 }

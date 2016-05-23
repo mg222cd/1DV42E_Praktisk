@@ -39,6 +39,25 @@ class GeonamesModel{
 		return $dataDecoded;
 	}
 
+	public function getCityByGeonameId($geonameIdSanitized){
+		//$url = 'http://api.geonames.org/get?geonameId='.$geonameIdSanitized.'&username=marikegrinde&style=full';
+		$url = 'http://api.geonames.org/get?geonameId=980dssjhd0as0s0u&username=marikegrinde&style=full';
+		$data = $this->geonamesRequest($url);
+		$dataDecoded = new \SimpleXMLElement($data);
+		var_dump($dataDecoded);
+		/*
+		echo '<pre>';
+		print_r($data);
+		echo '</pre>';
+		exit;
+		*/
+		if ($data == ' ') {
+			var_dump('INNE');die();
+			return false;
+		}
+		var_dump($data);die();
+	}
+
 	//Filtrates oyt html and tags
 	public function sanitizeText($city){
 		$sanitizedText = strip_tags($city);

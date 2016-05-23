@@ -39,10 +39,13 @@ class SearchController{
 
 	private function geonamesScenarios(){
 		//Om användaren tryckt på något i listan url ?search=stad~geonameId
-		if ($this->forecastView->cityFromListIsChoosen() === TRUE) { //Kolla vad som finns i Get på samma vis som i ForecastVyn
+		if ($this->geonamesView->cityFromListIsChoosen() === TRUE) { //Kolla vad som finns i Get på samma vis som i ForecastVyn
 			//Hämta geonames Id och stad
+			$geonameId = $this->geonamesView->getGeonameId();
 			//Sanera båda
+			$geonameIdSanitized = $this->geonamesModel->sanitizeText($geonameId);
 			//Kolla om id't finns hos geonames webservice
+			$validGeonameId = $this->geonamesModel->getCityByGeonameId($geonameIdSanitized);
 			//Om nej- det är manipulerat - redirect till startsida
 			//Om ja- kolla om det finns i db
 			//om ja- redirect till forecast-actionet
