@@ -87,11 +87,50 @@ class ForecastView{
 		die();
 		*/
 
+
 		foreach ($list as $timeInterval) {
 			$datecolumn = $this->helper->getWeekday($timeInterval['dateFrom']);
 			$symbolIdYr = $timeInterval['yrSymbol'];
 			$windDirYr = $this->helper->getWindDir($timeInterval['yrWindDir']);
 			$windNameYr = $this->helper->getWindName($timeInterval['yrWindSpeed']);
+			$smhi = '';
+			
+			//var_dump($timeInterval['smhi']);die();
+			/*
+			foreach ($timeInterval['smhi'] as $smhiRow) {
+				
+			}
+			*/
+			
+			for ($i = 0; $i <= 6; $i++) {
+				if (isset($timeInterval[$i])) {
+					$smhi .= '
+					<div class="infoInTableSmhi">
+					<div>'
+					.$timeInterval[$i]['smhiTemp']. ' ° C
+					</div>
+					</div>
+
+					<div class="infoInTableSmhi">
+					<div>'
+					.$timeInterval[$i]['smhiWindSpeed'].' m/s
+					</div>
+					<div>
+					Vindbyar '.$timeInterval[$i]['smhiWindGust'].' m/s
+					</div>
+					<div>
+					'.$this->helper->getWindName($timeInterval[$i]['smhiWindSpeed']).' från '.$this->helper->getWindDir($timeInterval[$i]['smhiWindDir']).'
+					</div>
+					</div>
+
+					<div class="infoInTableSmhi">
+					[smhiWindDir] => 352 [smhiWindSpeed] => 4.6 [smhiWindGust] => 7.9 [smhiPressure] => 1012.4 [smhiHumidity] => 97 [smhiVisibility] => 3 [smhiCloudCover] => 8 [smhiProbThunder] => 1 [smhiPrecIntens] => 0 [smhiPrecCat] => 3
+					</div>
+					';
+				}
+			}
+
+	
 			$tableRow .= '
 			<tr>
 				<td>
@@ -124,9 +163,9 @@ class ForecastView{
 				</div>
 				</div>  
 				</td>
-				<td>
-				Här kommer SMHI senare
-				</td>
+				<td>'.
+				$smhi
+				.'</td>
 			</tr>';
 		}
 

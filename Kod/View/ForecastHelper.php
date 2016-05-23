@@ -32,6 +32,24 @@ class ForecastHelper{
 				$time = $smhiRow->getValidTime();
 
 				if ($time == $timeFrom || ($time > $timeFrom && $time < $timeTo) && ( ! isset($values['smhi']) || ! in_array($time, $values['smhi'])) ){
+
+					/*
+					$values['smhi'][] = [
+    						'smhiTime' => $time,
+							'smhiTemp' => $smhiRow->getTemperature(),
+							'smhiWindDir' => $smhiRow->getWindDirection(),
+							'smhiWindSpeed' => $smhiRow->getWindVelocity(),
+							'smhiWindGust' => $smhiRow->getWindGust(),
+							'smhiPressure' => $smhiRow->getPressure(),
+							'smhiHumidity' => $smhiRow->getRelativeHumidity(),
+							'smhiVisibility' => $smhiRow->getVisibility(),
+							'smhiCloudCover' => $smhiRow->getTotalCloudCover(),
+							'smhiProbThunder' => $smhiRow->getProbabilityThunderstorm(),
+							'smhiPrecIntens' => $smhiRow->getPrecipitationIntensity(),
+							'smhiPrecCat' => $smhiRow->getCategoryOfPrecipitation()
+					];
+					*/
+					
 					$smhi = array(
 						'smhiTime' => $time,
 						'smhiTemp' => $smhiRow->getTemperature(),
@@ -47,6 +65,8 @@ class ForecastHelper{
 						'smhiPrecCat' => $smhiRow->getCategoryOfPrecipitation()
 						);
 					$values[] = $smhi;
+					
+
 				}
 			}
 			$list[] = $values;
@@ -77,7 +97,7 @@ class ForecastHelper{
 			$weekdaysSwe = array ('Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag');
 
 			$weekdaySwe = str_replace($weekdaysEn, $weekdaysSwe, $weekdayEn);
-			return '<div><b>'.$weekdaySwe.'</b></div> <div>' .$explodedDateTime[1].'</div>';
+			return '<div><b>'.$weekdaySwe.'</b></div><div><b>'.$dateString.'</b></div> <div>' .$explodedDateTime[1].'</div>';
 		}
 	}
 
