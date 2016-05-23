@@ -40,22 +40,25 @@ class GeonamesModel{
 	}
 
 	public function getCityByGeonameId($geonameIdSanitized){
-		//$url = 'http://api.geonames.org/get?geonameId='.$geonameIdSanitized.'&username=marikegrinde&style=full';
-		$url = 'http://api.geonames.org/get?geonameId=980dssjhd0as0s0u&username=marikegrinde&style=full';
+		$url = 'http://api.geonames.org/get?geonameId='.$geonameIdSanitized.'&username=marikegrinde&style=full';
+		//$url = 'http://api.geonames.org/get?geonameId=980dssjhd0as0s0u&username=marikegrinde&style=full';
 		$data = $this->geonamesRequest($url);
-		$dataDecoded = new \SimpleXMLElement($data);
-		var_dump($dataDecoded);
-		/*
-		echo '<pre>';
-		print_r($data);
-		echo '</pre>';
-		exit;
-		*/
-		if ($data == ' ') {
-			var_dump('INNE');die();
+		$status = strpos($data, $geonameIdSanitized);
+		if ($status === false) {
 			return false;
 		}
-		var_dump($data);die();
+		$dataDecoded = new \SimpleXMLElement($data);
+		$geonamesObj = new \model\Geonames(
+			null, //GeonamesPk 
+			$dataDecoded->geonameId, 
+			$dataDecoded->name, 
+			$dataDecoded->adminName1, 
+			$dataDecoded->adminName2, 
+			$dataDecoded->countryName,
+			$dataDecoded->fcodeName,
+			$dataDecoded->lat,
+			$dataDecoded->lng);
+		return $geonamesObj;
 	}
 
 	//Filtrates oyt html and tags
@@ -71,13 +74,6 @@ class GeonamesModel{
 	public function getGeonamesObject($geonamesArr){
 		unset($this->geonamesList);
 		$this->geonamesList = array();
-		/*
-		echo '<pre>';
-		print_r($geonamesArr);
-		echo '</pre>';
-		exit;
-		die();
-		*/
 
 		foreach ($geonamesArr['geonames'] as $geoname) {
 			$geonames = new \model\Geonames(

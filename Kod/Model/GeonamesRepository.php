@@ -63,6 +63,39 @@ class GeonamesRepository extends DatabaseConnection{
 		}
 	}
 
+	public function addCityFromObj($geonamesObj){
+		$geonames = $geonamesObj;
+		try{
+			$db = $this->connection();
+			
+			$sql = "INSERT IGNORE INTO $this->dbTable ("
+				.$this->geonameId.","
+				.$this->name.","
+				.$this->adminName1.","
+				.$this->adminName2.","
+				.$this->countryName.","
+				.$this->fcodeName.","
+				.$this->lat.","
+				.$this->lng.")
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+			$params = array (
+				$geonames->getGeonameId(), 
+				$geonames->getName(),
+				$geonames->getAdminName1(),
+				$geonames->getAdminName2(),
+				$geonames->getCountryName(),
+				$geonames->getFcodeName(),
+				$geonames->getLat(),
+				$geonames->getLng());
+			$query = $db->prepare($sql);
+			$query->execute($params);
+			return TRUE;
+		}
+		catch(\PDOException $e){
+			throw new \Exception('Ett fel uppstod då orten skulle läggas till i databasen.');
+		}
+	}
+
 	public function getGeonames($cityname){
 		try {
 			$db = $this->connection();
@@ -108,6 +141,10 @@ class GeonamesRepository extends DatabaseConnection{
 			$query->execute($params);
 
 			$geonames = $query->fetchAll();
+			$hits = count($geonames);
+			if ($hits == 0) {
+				return false;
+			}
 			$geonamesPk = $geonames[0]['geonamesPk'];
 			$geonameId = $geonames[0]['geonameId'];
 			$name = $geonames[0]['name'];

@@ -39,7 +39,7 @@ class SearchController{
 
 	private function geonamesScenarios(){
 		//Om användaren tryckt på något i listan url ?search=stad~geonameId
-		if ($this->geonamesView->cityFromListIsChoosen() === TRUE) { //Kolla vad som finns i Get på samma vis som i ForecastVyn
+		if ($this->geonamesView->cityFromListIsChoosen() === true) { //Kolla vad som finns i Get på samma vis som i ForecastVyn
 			//Hämta geonames Id och stad
 			$geonameId = $this->geonamesView->getGeonameId();
 			//Sanera båda
@@ -47,9 +47,16 @@ class SearchController{
 			//Kolla om id't finns hos geonames webservice
 			$validGeonameId = $this->geonamesModel->getCityByGeonameId($geonameIdSanitized);
 			//Om nej- det är manipulerat - redirect till startsida
+			if ($validGeonameId === false) {
+				header('Location: ./');
+			}
 			//Om ja- kolla om det finns i db
+			$geonameIsInDB = $this->geonamesRepo->getGeonamesObjectByGeonameId($geonameId);
+			if ($geonameIsInDB === false) {
+				$add = $this->geonamesRepo->addCityFromObj($validGeonameId);
+			}
 			//om ja- redirect till forecast-actionet
-			//om nej- lägg till och sen redirecta till forecast-actionet
+			header('Location: ?forecast='.$validGeonameId->getName().'~'.$validGeonameId->getGeonameId());
 		}
 		//Kontroll om geonames webservice fungerar.
 		if ($this->geonamesModel->testGeonames() == TRUE) {

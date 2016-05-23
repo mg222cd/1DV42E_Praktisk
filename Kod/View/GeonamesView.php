@@ -28,7 +28,6 @@ class GeonamesView{
 	}
 	
 	public function hitList($geonamesList){
-
 		$resultsrow='';
 		foreach ($geonamesList as $geonames) {
 			$name = $geonames->getName();
