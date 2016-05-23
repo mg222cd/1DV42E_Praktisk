@@ -102,7 +102,7 @@ class ForecastView{
 			}
 			*/
 			
-			for ($i = 0; $i <= 6; $i++) {
+			for ($i = 0; $i <= 0; $i++) {
 				if (isset($timeInterval[$i])) {
 					$smhi .= '
 					<div class="infoInTableSmhi">
@@ -133,8 +133,48 @@ class ForecastView{
 					</div>
 
 					<div class="infoInTableSmhi">
-					[smhiPressure] => 1012.4 [smhiHumidity] => 97 [smhiVisibility] => 3 [smhiCloudCover] => 8 
-					[smhiProbThunder] => 1 [smhiPrecIntens] => 0 [smhiPrecCat] => 3
+					<div>
+					Lufttryck:
+					</div>
+					<div>
+					'.$timeInterval[$i]['smhiPressure'].' hPa
+					</div>
+					</div>
+
+					<div class="infoInTableSmhi">
+					<div>
+					Relativ luftfuktighet:
+					</div>
+					<div>
+					'.$timeInterval[$i]['smhiHumidity'].'%
+					</div>
+					</div>
+
+					<div class="infoInTableSmhi">
+					<div>
+					Sikt:
+					</div>
+					<div>
+					'.$timeInterval[$i]['smhiVisibility'].' km
+					</div>
+					</div>
+
+					<div class="infoInTableSmhi">
+					<div>
+					Total molnmängd:
+					</div>
+					<div>
+					'.$timeInterval[$i]['smhiCloudCover'].'/8
+					</div>
+					</div>
+
+					<div class="infoInTableSmhi">
+					<div>
+					Sannolikhet för åska:
+					</div>
+					<div>
+					'.$timeInterval[$i]['smhiProbThunder'].'/8
+					</div>
 					</div>
 					';
 				}

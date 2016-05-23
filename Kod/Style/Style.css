@@ -75,20 +75,22 @@ h1{
 */
 
 .yr{
-	padding: 5%;
+	padding: 2%;
 	background-color: #40CEF9;
 }
 
 .smhi{
-	padding: 5%;
+	padding: 2%;
 }
 
 .infoInTable{
 	padding: 5%;
+	font-size: 80%;
 }
 
 .infoInTableSmhi{
-	padding: 1%;
+	padding: 3%;
+	font-size: 80%;
 }
 /*
 * GOOGLE MAPS
