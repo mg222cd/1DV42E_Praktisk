@@ -124,7 +124,17 @@ class ForecastView{
 					</div>
 
 					<div class="infoInTableSmhi">
-					[smhiWindDir] => 352 [smhiWindSpeed] => 4.6 [smhiWindGust] => 7.9 [smhiPressure] => 1012.4 [smhiHumidity] => 97 [smhiVisibility] => 3 [smhiCloudCover] => 8 [smhiProbThunder] => 1 [smhiPrecIntens] => 0 [smhiPrecCat] => 3
+					<div>
+					Nederbörd:
+					</div>
+					<div>
+					'.$timeInterval[$i]['smhiPrecIntens'].' mm '.$this->helper->getPrecipitationCategory($timeInterval[$i]['smhiPrecCat']).'
+					</div>
+					</div>
+
+					<div class="infoInTableSmhi">
+					[smhiPressure] => 1012.4 [smhiHumidity] => 97 [smhiVisibility] => 3 [smhiCloudCover] => 8 
+					[smhiProbThunder] => 1 [smhiPrecIntens] => 0 [smhiPrecCat] => 3
 					</div>
 					';
 				}

@@ -20,7 +20,7 @@ class RepositoryHelpclass {
 
 	public function getSmhiExpirationDate($referenceTime){
 		$date = new \DateTime($referenceTime);
-		$date->add(new \DateInterval('PT6H'));
+		$date->add(new \DateInterval('PT3H'));
 		return $date->format('Y-m-d H:i:s');
 	}
 	

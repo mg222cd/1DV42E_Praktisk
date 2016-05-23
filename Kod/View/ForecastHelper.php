@@ -65,8 +65,6 @@ class ForecastHelper{
 						'smhiPrecCat' => $smhiRow->getCategoryOfPrecipitation()
 						);
 					$values[] = $smhi;
-					
-
 				}
 			}
 			$list[] = $values;
@@ -152,6 +150,36 @@ class ForecastHelper{
 		}
 		if ($windDir >= 292.6 && $windDir <= 337.5) {
 			return 'nordväst';
+		}
+	}
+
+	public function getPrecipitationCategory($smhiPrecCat){
+		/*
+		0 no, 1 snow, 2 snow and rain, 3 rain, 4 drizzle, 5, freezing rain, 6 freezing drizzle
+		*/
+		if ($smhiPrecCat == 0) {
+			return '';
+		}
+		if ($smhiPrecCat == 1) {
+			return 'snö';
+		}
+		if ($smhiPrecCat == 2) {
+			return 'snöblandat regn';
+		}
+		if ($smhiPrecCat == 3) {
+			return 'regn';
+		}
+		if ($smhiPrecCat == 4) {
+			return 'duggregn';
+		}
+		if ($smhiPrecCat == 5) {
+			return 'underkylt regn';
+		}
+		if ($smhiPrecCat == 6) {
+			return 'underkylt duggregn';
+		}
+		else{
+			return '';
 		}
 	}
 

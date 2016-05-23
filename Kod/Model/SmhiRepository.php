@@ -65,7 +65,7 @@ class SmhiRepository extends DatabaseConnection{
 						$visibility = $forecast['vis'],
 						$totalCloudCover = $forecast['tcc'],
 						$probabilityThunderstorm = $forecast['tstm'],
-						$precipitationIntensity = $forecast['pis'],
+						$precipitationIntensity = $forecast['pit'],
 						$categoryOfPrecipitation = $forecast['pcat']
 						);
 				//}
