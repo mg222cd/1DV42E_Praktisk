@@ -41,7 +41,12 @@ class SearchController{
 		//Om förfinad sökning gjorts.
 		$this->refinedSearch = $this->searchView->getRefinedSearch();
 		if ($this->refinedSearch === TRUE) {
+			echo "HÄR";
 		 	//hämta fälten och sanera dem.
+		 	$postedCity;
+		 	$postedAdminName2;
+		 	$postedAdminName1;
+		 	$postedCountry;
 		 	//sök hos geonames
 		 } 
 		return $this->searchView->getErrorMessage();
