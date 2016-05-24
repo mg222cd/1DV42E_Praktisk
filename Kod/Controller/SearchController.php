@@ -17,6 +17,7 @@ class SearchController{
 	private $numberOfHits;
 	private $numberOfHitsHeader;
 	private $hitList;
+	private $refinedSearchField;
 
 	public function __construct(){
 		$this->searchView = new \View\SearchView();
@@ -35,6 +36,12 @@ class SearchController{
 			$this->html .= $this->geonamesScenarios();
 			return $this->html;
 		}
+		//Om förfinad sökning gjorts.
+		$this->refinedSearch = $this->searchView->getRefinedSearch();
+		if ($this->refinedSearch === TRUE) {
+		 	//hämta fälten och sanera dem.
+		 	//sök hos geonames
+		 } 
 		return $this->searchView->getErrorMessage();
 	}
 
