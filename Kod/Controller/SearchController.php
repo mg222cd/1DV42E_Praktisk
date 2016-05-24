@@ -62,6 +62,7 @@ class SearchController{
 		if ($this->geonamesModel->testGeonames() == TRUE) {
 			$resultsFromGeonames = $this->geonamesModel->getGeonames($this->city);
 			$this->numberOfHits = $this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames);
+			$this->numberOfHitsHeader = $this->geonamesView->getNumberOfHitsHeader($this->numberOfHits);
 			if ($this->numberOfHits == 0) {
 				return $this->geonamesView->noResultsFoundErrorMessage();
 			}
@@ -76,19 +77,18 @@ class SearchController{
 			}
 			elseif ($this->numberOfHits >= 2 && $this->numberOfHits <= 10) {
 				$geonamesObject = $this->geonamesModel->getGeonamesObject($resultsFromGeonames);
-				$this->numberOfHitsHeader;
 				$this->hitList = $this->geonamesView->hitList($geonamesObject);
 				return $this->numberOfHitsHeader . $this->hitList;
 			}
-			elseif ($this->numberOfHits >= 11 && $this->numberOfHits <= 1000) {
+			elseif ($this->numberOfHits >= 11 && $this->numberOfHits <= 100) {
 				$geonamesObject = $this->geonamesModel->getGeonamesObject($resultsFromGeonames);
-				$refinedSearchField = '';
-				$hitList = '';
-				return $refinedSearchField . $hitList;
+				$refinedSearchField = $this->geonamesView->refinedSearchField();
+				$this->hitList = $this->geonamesView->hitList($geonamesObject);
+				return $this->numberOfHitsHeader . $refinedSearchField . $this->hitList;
 			}
-			elseif ($this->numberOfHits >= 1001) {
+			elseif ($this->numberOfHits >= 101) {
 				//För många träffar, bara förfining.
-				return 'Många träffar... Över 1000...';
+				return 'Många träffar... Över 100...';
 			}
 		}
 		// Geonames är nere... 

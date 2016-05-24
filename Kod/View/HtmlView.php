@@ -28,7 +28,7 @@ class HTMLView{
                     </a>
                     </div>
                     <div class="col-md-4">     
-                    <form class="form-inline" method="get" role="form" action="?'.NavigationView::$actionSearch.'">
+                    <form class="form-inline top" method="get" role="form" action="?'.NavigationView::$actionSearch.'">
                         <div class="form-group">
                           <input type="text" class="form-control" maxlength="255" name="search" id="search" placeholder="Sök väder via ort" autofocus="">
                         </div>
