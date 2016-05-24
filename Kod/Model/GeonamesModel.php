@@ -33,7 +33,7 @@ class GeonamesModel{
 	public function getGeonames($city){
 		//mellanslags-fix
 		$cityWithoutSpaces = preg_replace('/\s+/', '%20', $city);
-		$urlRequestGeonames = 'http://api.geonames.org/searchJSON?name='.$cityWithoutSpaces.'&style=full&maxRows=100&username=marikegrinde';
+		$urlRequestGeonames = 'http://api.geonames.org/searchJSON?name='.$cityWithoutSpaces.'&style=full&maxRows=1000&username=marikegrinde';
 		$data = $this->geonamesRequest($urlRequestGeonames);
 		$dataDecoded = json_decode($data, true);
 		return $dataDecoded;
@@ -88,8 +88,12 @@ class GeonamesModel{
 			$geoname['lng']);
 			$this->geonamesList [] = $geonames;
 		}
-
 		return $this->geonamesList;
+	}
+
+	public function parseCoordinate($coordinate){
+		$newCoordinate = (string) $coordinate;
+		return $newCoordinate;
 	}
 
 }

@@ -12,13 +12,14 @@ class SearchController{
 	private $city;
 	private $html;
 	private $geonamesModel;
-	//private $forecastView;
 	private $geonamesRepo;
 	private $geonamesView;
+	private $numberOfHits;
+	private $numberOfHitsHeader;
+	private $hitList;
 
 	public function __construct(){
 		$this->searchView = new \View\SearchView();
-		//$this->forecastView = new \View\ForecastView();
 		$this->geonamesModel = new \Model\GeonamesModel();
 		$this->geonamesRepo = new \Model\GeonamesRepository();
 		$this->geonamesView = new \View\GeonamesView();
@@ -40,34 +41,32 @@ class SearchController{
 	private function geonamesScenarios(){
 		//Om användaren tryckt på något i listan url ?search=stad~geonameId
 		if ($this->geonamesView->cityFromListIsChoosen() === true) { //Kolla vad som finns i Get på samma vis som i ForecastVyn
-			//Hämta geonames Id och stad
 			$geonameId = $this->geonamesView->getGeonameId();
-			//Sanera båda
 			$geonameIdSanitized = $this->geonamesModel->sanitizeText($geonameId);
-			//Kolla om id't finns hos geonames webservice
 			$validGeonameId = $this->geonamesModel->getCityByGeonameId($geonameIdSanitized);
-			//Om nej- det är manipulerat - redirect till startsida
 			if ($validGeonameId === false) {
 				header('Location: ./');
 			}
-			//Om ja- kolla om det finns i db
 			$geonameIsInDB = $this->geonamesRepo->getGeonamesObjectByGeonameId($geonameId);
 			if ($geonameIsInDB === false) {
 				$add = $this->geonamesRepo->addCityFromObj($validGeonameId);
 			}
-			//om ja- redirect till forecast-actionet
+			$coordinates = array ('lat' => '123', 'lng' => '456');
+			$lat = $this->geonamesModel->parseCoordinate($validGeonameId->getLat());
+			$lng = $this->geonamesModel->parseCoordinate($validGeonameId->getLng());
+			$_SESSION['lat'] = $lat;
+			$_SESSION['lng'] = $lng;
 			header('Location: ?forecast='.$validGeonameId->getName().'~'.$validGeonameId->getGeonameId());
 		}
 		//Kontroll om geonames webservice fungerar.
 		if ($this->geonamesModel->testGeonames() == TRUE) {
 			$resultsFromGeonames = $this->geonamesModel->getGeonames($this->city);
-			// ... Logik för antal träffar
-			if ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) == 0) {
+			$this->numberOfHits = $this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames);
+			if ($this->numberOfHits == 0) {
 				return $this->geonamesView->noResultsFoundErrorMessage();
 			}
-			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) == 1) {
+			elseif ($this->numberOfHits == 1) {
 				$cityExistInDB = $this->geonamesRepo->cityIsAlreadyInDatabase($resultsFromGeonames);
-				//Om stad ej finns i DB redan så läggs den till där nu
 				if ($cityExistInDB == FALSE) {
 					$add = $this->geonamesRepo->addCity($resultsFromGeonames);
 				}
@@ -75,20 +74,21 @@ class SearchController{
 				$_SESSION['lng'] = $resultsFromGeonames["geonames"][0]['lng'];
 				header('Location: ?forecast='.$resultsFromGeonames["geonames"][0]['name'].'~'.$resultsFromGeonames["geonames"][0]['geonameId']);
 			}
-			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2 
-				&& $this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) <= 10) {
-				//TODO... Visa kort lista med träffar
+			elseif ($this->numberOfHits >= 2 && $this->numberOfHits <= 10) {
 				$geonamesObject = $this->geonamesModel->getGeonamesObject($resultsFromGeonames);
-				return $this->geonamesView->hitList($geonamesObject);
+				$this->numberOfHitsHeader;
+				$this->hitList = $this->geonamesView->hitList($geonamesObject);
+				return $this->numberOfHitsHeader . $this->hitList;
 			}
-			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 11
-				&& $this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) <= 2000) {
-				//TODO... Förfinad filtrering och sen paginerade träffar.
-				return '11-2000 träffar...     ' . $resultsFromGeonames;
+			elseif ($this->numberOfHits >= 11 && $this->numberOfHits <= 1000) {
+				$geonamesObject = $this->geonamesModel->getGeonamesObject($resultsFromGeonames);
+				$refinedSearchField = '';
+				$hitList = '';
+				return $refinedSearchField . $hitList;
 			}
-			elseif ($this->geonamesView->numberOfResultsFromGeonames($resultsFromGeonames) >= 2001) {
+			elseif ($this->numberOfHits >= 1001) {
 				//För många träffar, bara förfining.
-				return 'Många träffar... Över 2000...';
+				return 'Många träffar... Över 1000...';
 			}
 		}
 		// Geonames är nere... 
