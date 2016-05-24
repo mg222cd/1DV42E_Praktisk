@@ -41,13 +41,16 @@ class SearchController{
 		//Om förfinad sökning gjorts.
 		$this->refinedSearch = $this->searchView->getRefinedSearch();
 		if ($this->refinedSearch === TRUE) {
-			echo "HÄR";
 		 	//hämta fälten och sanera dem.
-		 	$postedCity;
-		 	$postedAdminName2;
-		 	$postedAdminName1;
-		 	$postedCountry;
-		 	//sök hos geonames
+		 	$postedCity = $this->geonamesModel->sanitizeText($this->searchView->getPostedCity()); 
+		 	$postedAdminName2 = $this->geonamesModel->sanitizeText($this->searchView->getPostedAdminName2()); 
+		 	$postedAdminName1 = $this->geonamesModel->sanitizeText($this->searchView->getPostedAdminName1()); 
+		 	$postedCountry = $this->geonamesModel->sanitizeText($this->searchView->getPostedCountry()); 
+		 	$this->html = $this->searchView->getRefinedHeader($postedCity, $postedAdminName2, $postedAdminName1, $postedCountry);
+		 	$this->resultsFromGeonames = $this->geonamesModel->getGeonamesRefined($postedCity, $postedAdminName2, $postedAdminName1, $postedCountry);
+		 	//var_dump($this->resultsFromGeonames);
+		 	$this->html .= $this->geonamesScenarios();
+		 	return $this->html;
 		 } 
 		return $this->searchView->getErrorMessage();
 	}

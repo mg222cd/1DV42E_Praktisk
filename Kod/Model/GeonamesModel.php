@@ -33,10 +33,21 @@ class GeonamesModel{
 	public function getGeonames($city){
 		//mellanslags-fix
 		$cityWithoutSpaces = preg_replace('/\s+/', '%20', $city);
-		$urlRequestGeonames = 'http://api.geonames.org/searchJSON?name='.$cityWithoutSpaces.'&style=full&maxRows=100&username=marikegrinde';
+		$urlRequestGeonames = 'http://api.geonames.org/searchJSON?name_equals='.$cityWithoutSpaces.'&style=full&maxRows=100&username=marikegrinde';
 		$data = $this->geonamesRequest($urlRequestGeonames);
 		$dataDecoded = json_decode($data, true);
 		return $dataDecoded;
+	}
+
+	public function getGeonamesRefined($postedCity, $postedAdminName2, $postedAdminName1, $postedCountry){
+		//GÖR KLART DEN HÄR FUNKTIONEN SÅ ATT DEN RETURNERAR RÄTT
+		var_dump($postedCity, $postedAdminName2, $postedAdminName1, $postedCountry);die();
+		//http://api.geonames.org/searchJSON?name_equals=Flon&q=J%C3%A4mtland&q=sweden&style=full&maxRows=100&username=marikegrinde
+		$url = 'http://api.geonames.org/searchJSON?';
+		//bygg på url:en med fler parametrar beroende på om dom är NULL eller ej.
+		//därefter, gör request, 
+		//ta hand om resultatet och decoda på samma sätt som metoden innan. Kom också ihåg hantering om inga träffar skulle hittas (bör fungera på samma vis som i den gamla metoden)
+		return null;
 	}
 
 	public function getCityByGeonameId($geonameIdSanitized){

@@ -24,7 +24,13 @@ class SearchView{
 	}
 
 	public function getCityHeader($city){
-		$this->html='<h1>Sökresultat för <span class ="darkblueAsInHeader">'.$city.'</span>:</h1>';
+		$this->html='<h1>Sökresultat för <span class ="darkblueAsInHeader">'.$city.'</span></h1>';
+		return $this->html;
+	}
+
+	public function getRefinedHeader($postedCity, $postedAdminName2, $postedAdminName1, $postedCountry){
+		$this->html='<h1>Sökresultat för <span class ="darkblueAsInHeader">'
+		.$postedCity.' '.$postedAdminName2. ' '.$postedAdminName1. ' '.$postedCountry. '</span></h1>';
 		return $this->html;
 	}
 

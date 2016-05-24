@@ -34,7 +34,7 @@ class GeonamesView{
 		return $this->statusMessage;
 	}
 
-	public function numberOfResultsFromGeonames ($data){
+	public function numberOfResultsFromGeonames($data){
 		$numberOfResults = $data['totalResultsCount'];
 		return $numberOfResults;
 	}
