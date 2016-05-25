@@ -47,7 +47,6 @@ class SearchController{
 		 	$postedCountry = $this->geonamesModel->sanitizeText($this->searchView->getPostedCountry()); 
 		 	$this->html = $this->searchView->getRefinedHeader($postedCity, $postedAdminName, $postedCountry);
 		 	$this->resultsFromGeonames = $this->geonamesModel->getGeonamesRefined($postedCity, $postedAdminName, $postedCountry);
-		 	//var_dump($this->resultsFromGeonames);
 		 	$this->html .= $this->geonamesScenarios();
 		 	return $this->html;
 		 } 
@@ -75,7 +74,6 @@ class SearchController{
 		}
 		//Kontroll om geonames webservice fungerar.
 		if ($this->geonamesModel->testGeonames() == TRUE) {
-			//$resultsFromGeonames = $this->geonamesModel->getGeonames($this->city);
 			$this->numberOfHits = $this->geonamesView->numberOfResultsFromGeonames($this->resultsFromGeonames);
 			$this->numberOfHitsHeader = $this->geonamesView->getNumberOfHitsHeader($this->numberOfHits);
 			if ($this->numberOfHits == 0) {
@@ -102,8 +100,11 @@ class SearchController{
 				return $this->numberOfHitsHeader . $refinedSearchField . $this->hitList;
 			}
 			elseif ($this->numberOfHits >= 101) {
-				//För många träffar, bara förfining.
-				return 'Många träffar... Över 100...';
+				$geonamesObject = $this->geonamesModel->getGeonamesObject($this->resultsFromGeonames);
+				$tooManyResultsMessage = $this->geonamesView->tooManyResults($this->numberOfHits);
+				$refinedSearchField = $this->geonamesView->refinedSearchField();
+				$this->hitList = $this->geonamesView->hitList($geonamesObject);
+				return $tooManyResultsMessage . $refinedSearchField . $this->hitList;
 			}
 		}
 		// Geonames är nere... 

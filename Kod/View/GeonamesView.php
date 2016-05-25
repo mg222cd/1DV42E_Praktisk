@@ -26,12 +26,21 @@ class GeonamesView{
 		return $this->statusMessage;
 	}
 
-	public function getNumberOfHitsHeader($numberOfHits){
+	public function tooManyResults($numberOfHits){
 		$this->statusMessage =
+		'<p>
+			För sökt ort hittades '.$numberOfHits.' träffar. Här nedan visas endast de 100 översta.
+			Du kan förfina din sökning i fältet nedan.
+		</p>';
+		return $this->statusMessage;
+	}
+
+	public function getNumberOfHitsHeader($numberOfHits){
+		$message =
 		'<p>
 			Antal träffar: '.$numberOfHits.'
 		</p>';
-		return $this->statusMessage;
+		return $message;
 	}
 
 	public function numberOfResultsFromGeonames($data){
