@@ -68,8 +68,7 @@ class SearchView{
 		return null;
 	}
 
-	public function getTranslation($text)
-{
+	public function getTranslation($text){
     $values = [
         'Afganistan' => 'Afghanistan', //Kabul                            
         'Albanien' => 	'Albania', //Tirana                               
@@ -293,58 +292,35 @@ class SearchView{
         'Tadzjikistan' => 'Tajikistan', //Dusjanbe
         'Tokelau' => 'Tokelau', //-
         'Östtimor' => 'East Timor', //Dili
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-        '' => '', //
-
-
-TM	TKM	795	TX	Turkmenistan	Ashgabat	488,100.0	4,940,916	AS
-TN	TUN	788	TS	Tunisia	Tunis	163,610.0	10,589,025	AF
-TO	TON	776	TN	Tonga	Nuku'alofa	748.0	122,580	OC
-TR	TUR	792	TU	Turkey	Ankara	780,580.0	77,804,122	AS
-TT	TTO	780	TD	Trinidad and Tobago	Port of Spain	5,128.0	1,228,691	NA
-TV	TUV	798	TV	Tuvalu	Funafuti	26.0	10,472	OC
-TW	TWN	158	TW	Taiwan	Taipei	35,980.0	22,894,384	AS
-TZ	TZA	834	TZ	Tanzania	Dodoma	945,087.0	41,892,895	AF
-UA	UKR	804	UP	Ukraine	Kiev	603,700.0	45,415,596	EU
-UG	UGA	800	UG	Uganda	Kampala	236,040.0	33,398,682	AF
-UM	UMI	581		U.S. Minor Outlying Islands		0.0	0	OC
-US	USA	840	US	United States	Washington	9,629,091.0	310,232,863	NA
-UY	URY	858	UY	Uruguay	Montevideo	176,220.0	3,477,000	SA
-UZ	UZB	860	UZ	Uzbekistan	Tashkent	447,400.0	27,865,738	AS
-VA	VAT	336	VT	Vatican City	Vatican City	0.4	921	EU
-VC	VCT	670	VC	Saint Vincent and the Grenadines	Kingstown	389.0	104,217	NA
-VE	VEN	862	VE	Venezuela	Caracas	912,050.0	27,223,228	SA
-VG	VGB	092	VI	British Virgin Islands	Road Town	153.0	21,730	NA
-VI	VIR	850	VQ	U.S. Virgin Islands	Charlotte Amalie	352.0	108,708	NA
-VN	VNM	704	VM	Vietnam	Hanoi	329,560.0	89,571,130	AS
-VU	VUT	548	NH	Vanuatu	Port Vila	12,200.0	221,552	OC
-WF	WLF	876	WF	Wallis and Futuna	Mata Utu	274.0	16,025	OC
-WS	WSM	882	WS	Samoa	Apia	2,944.0	192,001	OC
-XK	XKX	0	KV	Kosovo	Pristina	10,908.0	1,800,000	EU
-YE	YEM	887	YM	Yemen	Sanaa	527,970.0	23,495,361	AS
-YT	MYT	175	MF	Mayotte	Mamoudzou	374.0	159,042	AF
-ZA	ZAF	710	SF	South Africa	Pretoria	1,219,912.0	49,000,000	AF
-ZM	ZMB	894	ZA	Zambia	Lusaka	752,614.0	13,460,305	AF
-ZW	ZWE	716	ZI	Zimbabwe	Harare	390,580.0	13,061,000	AF
-
-
+        'Turkmenistan' => 'Turkmenistan', //Ashgabat
+        'Tunisien' => 'Tunisia', //Tunis
+        'Tonga' => 'Tonga', //Nuku'alofa
+        'Turkiet' => 'Turkey', //Ankara
+        'Trinidad och Tobago' => 'Trinidad and Tobago', //Port of Spain
+        'Tuvalu' => 'Tuvalu', //Funafuti
+        'Taiwan' => 'Taiwan', //Taipei
+        'Tanzania' => 'Tanzania', //Dodoma
+        'Ukraina' => 'Ukraine', //Kiev
+        'Uganda' => 'Uganda', //Kampala
+        'Förenta staternas mindre öar i Oceanien och Västindien' => 'U.S. Minor Outlying Islands', //-
+        'USA' => 'United States', //Washington
+        'Uruguay' => 'Uruguay', //Montevideo
+        'Uzbekistan' => 'Uzbekistan', //Tashkent
+        'Vatikanstaten' => 'Vatican City', //Vatican City
+        'Saint Vincent och Grenadinerna' => 'Saint Vincent and the Grenadines', //Kingstown
+        'Venezuela' => 'Venezuela', //Caracas
+        'Brittiska Jungfruöarna' => 'British Virgin Islands', //Road Town
+        'Amerikanska Jungfruöarna' => 'U.S. Virgin Islands', //Charlotte Amalie
+        'Vietnam' => 'Vietnam', //Hanoi
+        'Vanuatu' => 'Vanuatu', //Port Vila
+        'Wallis- och Futunaöarna' => 'Wallis and Futuna', //Mata Utu
+        'Samoa' => 'Samoa', //Apia
+        'Kosovo' => 'Kosovo', //Pristina
+        'Jemen' => 'Yemen', //Sanaa
+        'Mayotte' => 'Mayotte', //Mamoudzou
+        'Sydafrika' => 'South Africa', //Pretoria
+        'Zambia' => 'Zambia', //Lusaka
+        'Zimbabwe' => 'Zimbabwe', //Harare
     ];
 
     return str_replace(array_keys($values), $values, $text);
