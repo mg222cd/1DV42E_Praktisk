@@ -71,16 +71,16 @@ class SearchView{
 	public function getTranslation($text)
 {
     $values = [
-        'Sverige' => 'Sweden',
-        'Afganistan' => 'Afghanistan'
-        	Asia
-Albania	Europe
-Algeria	Africa
-American Samoa	Australasia
-Andorra	Europe
-Angola	Africa
-Anguilla	Caribbean
-Antigua and Barbuda	Caribbean
+        'Afganistan' => 'Afghanistan', //Kabul
+        'Albanien' => 	'Albania', //Tirana
+        'Algeriet' => 'Algeria', //Alger
+        'American Samoa' => 'Amerikanska Samoa', //Pago Pago
+        'Andorra' => 'Andorra', //Andorra l Vella
+        'Angola' => 'Angola', //Luanda
+		'Anguilla' => 'Anguilla', //The Valley
+        'Antigua och Barbuda' => 'Antigua and Barbuda', //Saint John's
+
+
 Argentina	South America
 Armenia	Europe
 Aruba	Caribbean
