@@ -188,68 +188,71 @@ class SearchView{
         'Kenya' => 'Kenya', //Nairobi
         'Kirgizistan' => 'Kyrgyzstan', //Bisjkek
         'Kambodja' => 'Cambodia', //Phnom Penh
+        'Kiribati' => 'Kiribati', //Tarawa
+        'Komorerna' => 'Comoros', //Moroni
+        'Saint Kitts och Nevis' => 'Saint Kitts and Nevis', //Basseterre
+        'Nordkorea' => 'North Korea', //Pyongyang
+        'Sydkorea' => 'South Korea', //Seoul
+        'Kuwait' => 'Kuwait', //Kuwait
+        'Kazakstan' => 'Kazakhstan', //Astana
+        'Caymanöarna' => 'Cayman Islands' //George Town
+        'Laos' => 'Laos', //Vientaine
+        'Libanon' => 'Lebanon', //Beirut
+        'Saint Lucia' => 'Saint Lucia', //Castries
+        'Liechtenstein' => 'Liechtenstein', //Vaduz
+        'Sri Lanka' => 'Sri Lanka', //Colombo
+        'Liberia' => 'Liberia', //Monrovia
+        'Lesotho' => 'Lesotho', //Maseru
+        'Litauen' => 'Lithuania', //Vilnius
+        'Luxemburg' => 'Luxembourg', //Luxemburg
+        'Lettland' => 'Latvia', //Riga
+        'Libyen' => 'Libya', //Tripoli
+        'Marocko' => 'Morocco', //Rabat
+        'Monaco' => 'Monaco', //Monaco
+        'Moldavien' => 'Moldova', //Chisinau
+        'Montenegro' => 'Montenegro', //Podgorica
+        'Saint Martin' => 'Saint Martin', //Marigot
+        'Madagaskar' => 'Madagascar', //Antananarivo
+        'Marshallöarna' => 'Marshall Islands', //Majuro
+        'Makedonien' => 'Macedonia', //Skopje
+        'Mali' => 'Mali', //Bamako
+        'Burma' => 'Myanmar [Burma]', //Naypyidaw
+        'Mongoliet' => 'Mongolia', //Ulan Bator
+        'Macao' => 'Macao', //Macao
+        'Marianerna' => 'Northern Mariana Islands', //Saipan
+        'Martinique' => 'Martinique', //Fort-de-France
+        'Mauretanien' => 'Mauritania', //Nouakchott
+        'Montserrat' => 'Montserrat', //Plymouth
+        'Malta' => 'Malta', //Valetta
+        'Mauritius' => 'Mauritius', //Port Louis
+        'Maldiverna' => '', //Male
+        'Malawi' => 'Malawi', //Lilongwe
+        'Mexiko' => 'Mexico', //Mexico City
+        'Malaysia' => 'Malaysia', //Kuala Lumpur
+        'Mocambique' => 'Mozambique', //Maputo
+        'Namibia' => 'Namibia', //Windhoek
+        'Nya Kaledonien' => 'New Caledonia', //Noumea
+        'Niger' => '', //Niamey
+        'Norfolkön' => 'Norfolk Island', //Kingston
+        'Nigeria' => 'Nigeria', //Abuja
+        'Nicaragua' => 'Nicaragua', //Managua
+        'Nederländerna' => 'Netherlands', //Amsterdam
+        'Holland' => 'Netherlands', //Amsterdam
+        'Norge' => 'Norway', //Oslo
+        'Nepal' => 'Nepal', //Katmandu
+        'Nauru' => 'Nauru', //Yaren
+        'Niue' => 'Niue', //Alofi
+        'Nya Zeeland' => 'New Zealand', //Wellington
+        'Oman' => 'Oman', //Muskat
+        'Panama' => 'Panama', //Panama City
+        'Peru' => 'Peru', //Lima
+        'Franska Polynesien' => 'French Polynesia', //Papeete
+        'Papua Nya Guinea' => 'Papua New Guinea', //Port Moresby
+        'Filippinerna' => 'Philippines', //Manila
+        '' => '', //
+        '' => '', //
+        '' => '', //
 
-
-KI	KIR	296	KR	Kiribati	Tarawa	811.0	92,533	OC
-KM	COM	174	CN	Comoros	Moroni	2,170.0	773,407	AF
-KN	KNA	659	SC	Saint Kitts and Nevis	Basseterre	261.0	51,134	NA
-KP	PRK	408	KN	North Korea	Pyongyang	120,540.0	22,912,177	AS
-KR	KOR	410	KS	South Korea	Seoul	98,480.0	48,422,644	AS
-KW	KWT	414	KU	Kuwait	Kuwait City	17,820.0	2,789,132	AS
-KY	CYM	136	CJ	Cayman Islands	George Town	262.0	44,270	NA
-KZ	KAZ	398	KZ	Kazakhstan	Astana	2,717,300.0	15,340,000	AS
-LA	LAO	418	LA	Laos	Vientiane	236,800.0	6,368,162	AS
-LB	LBN	422	LE	Lebanon	Beirut	10,400.0	4,125,247	AS
-LC	LCA	662	ST	Saint Lucia	Castries	616.0	160,922	NA
-LI	LIE	438	LS	Liechtenstein	Vaduz	160.0	35,000	EU
-LK	LKA	144	CE	Sri Lanka	Colombo	65,610.0	21,513,990	AS
-LR	LBR	430	LI	Liberia	Monrovia	111,370.0	3,685,076	AF
-LS	LSO	426	LT	Lesotho	Maseru	30,355.0	1,919,552	AF
-LT	LTU	440	LH	Lithuania	Vilnius	65,200.0	2,944,459	EU
-LU	LUX	442	LU	Luxembourg	Luxembourg	2,586.0	497,538	EU
-LV	LVA	428	LG	Latvia	Riga	64,589.0	2,217,969	EU
-LY	LBY	434	LY	Libya	Tripoli	1,759,540.0	6,461,454	AF
-MA	MAR	504	MO	Morocco	Rabat	446,550.0	31,627,428	AF
-MC	MCO	492	MN	Monaco	Monaco	1.9	32,965	EU
-MD	MDA	498	MD	Moldova	Chisinau	33,843.0	4,324,000	EU
-ME	MNE	499	MJ	Montenegro	Podgorica	14,026.0	666,730	EU
-MF	MAF	663	RN	Saint Martin	Marigot	53.0	35,925	NA
-MG	MDG	450	MA	Madagascar	Antananarivo	587,040.0	21,281,844	AF
-MH	MHL	584	RM	Marshall Islands	Majuro	181.3	65,859	OC
-MK	MKD	807	MK	Macedonia	Skopje	25,333.0	2,062,294	EU
-ML	MLI	466	ML	Mali	Bamako	1,240,000.0	13,796,354	AF
-MM	MMR	104	BM	Myanmar [Burma]	Nay Pyi Taw	678,500.0	53,414,374	AS
-MN	MNG	496	MG	Mongolia	Ulan Bator	1,565,000.0	3,086,918	AS
-MO	MAC	446	MC	Macao	Macao	254.0	449,198	AS
-MP	MNP	580	CQ	Northern Mariana Islands	Saipan	477.0	53,883	OC
-MQ	MTQ	474	MB	Martinique	Fort-de-France	1,100.0	432,900	NA
-MR	MRT	478	MR	Mauritania	Nouakchott	1,030,700.0	3,205,060	AF
-MS	MSR	500	MH	Montserrat	Plymouth	102.0	9,341	NA
-MT	MLT	470	MT	Malta	Valletta	316.0	403,000	EU
-MU	MUS	480	MP	Mauritius	Port Louis	2,040.0	1,294,104	AF
-MV	MDV	462	MV	Maldives	Male	300.0	395,650	AS
-MW	MWI	454	MI	Malawi	Lilongwe	118,480.0	15,447,500	AF
-MX	MEX	484	MX	Mexico	Mexico City	1,972,550.0	112,468,855	NA
-MY	MYS	458	MY	Malaysia	Kuala Lumpur	329,750.0	28,274,729	AS
-MZ	MOZ	508	MZ	Mozambique	Maputo	801,590.0	22,061,451	AF
-NA	NAM	516	WA	Namibia	Windhoek	825,418.0	2,128,471	AF
-NC	NCL	540	NC	New Caledonia	Noumea	19,060.0	216,494	OC
-NE	NER	562	NG	Niger	Niamey	1,267,000.0	15,878,271	AF
-NF	NFK	574	NF	Norfolk Island	Kingston	34.6	1,828	OC
-NG	NGA	566	NI	Nigeria	Abuja	923,768.0	154,000,000	AF
-NI	NIC	558	NU	Nicaragua	Managua	129,494.0	5,995,928	NA
-NL	NLD	528	NL	Netherlands	Amsterdam	41,526.0	16,645,000	EU
-NO	NOR	578	NO	Norway	Oslo	324,220.0	5,009,150	EU
-NP	NPL	524	NP	Nepal	Kathmandu	140,800.0	28,951,852	AS
-NR	NRU	520	NR	Nauru	Yaren	21.0	10,065	OC
-NU	NIU	570	NE	Niue	Alofi	260.0	2,166	OC
-NZ	NZL	554	NZ	New Zealand	Wellington	268,680.0	4,252,277	OC
-OM	OMN	512	MU	Oman	Muscat	212,460.0	2,967,717	AS
-PA	PAN	591	PM	Panama	Panama City	78,200.0	3,410,676	NA
-PE	PER	604	PE	Peru	Lima	1,285,220.0	29,907,003	SA
-PF	PYF	258	FP	French Polynesia	Papeete	4,167.0	270,485	OC
-PG	PNG	598	PP	Papua New Guinea	Port Moresby	462,840.0	6,064,515	OC
-PH	PHL	608	RP	Philippines	Manila	300,000.0	99,900,177	AS
 PK	PAK	586	PK	Pakistan	Islamabad	803,940.0	184,404,791	AS
 PL	POL	616	PL	Poland	Warsaw	312,685.0	38,500,000	EU
 PM	SPM	666	SB	Saint Pierre and Miquelon	Saint-Pierre	242.0	7,012	NA
