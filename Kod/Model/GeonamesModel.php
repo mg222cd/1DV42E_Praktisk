@@ -40,14 +40,27 @@ class GeonamesModel{
 	}
 
 	public function getGeonamesRefined($postedCity, $postedAdminName, $postedCountry){
-		//GÖR KLART DEN HÄR FUNKTIONEN SÅ ATT DEN RETURNERAR RÄTT
-		var_dump($postedCity, $postedAdminName, $postedCountry);die();
+		if ($postedCountry != NULL) {
+			$postedCountry = $this->getTranslation($postedCountry);
+		}
 		//http://api.geonames.org/searchJSON?name_equals=Flon&q=J%C3%A4mtland&q=sweden&style=full&maxRows=100&username=marikegrinde
 		$url = 'http://api.geonames.org/searchJSON?';
-		//bygg på url:en med fler parametrar beroende på om dom är NULL eller ej.
-		//därefter, gör request, 
-		//ta hand om resultatet och decoda på samma sätt som metoden innan. Kom också ihåg hantering om inga träffar skulle hittas (bör fungera på samma vis som i den gamla metoden)
-		return null;
+		if ($postedCity != null) {
+			$cityWithoutSpaces = preg_replace('/\s+/', '%20', $postedCity);
+			$url .= '&name_equals='.$cityWithoutSpaces;
+		}
+		if ($postedAdminName != null) {
+			$adminWithoutSpaces = preg_replace('/\s+/', '%20', $postedAdminName);
+			$url .= '&q='.$adminWithoutSpaces;
+		}
+		if ($postedCountry != null) {
+			$countryWithoutSpaces = preg_replace('/\s+/', '%20', $postedCountry);
+			$url .= '&q='.$countryWithoutSpaces;
+		}
+		$url .= '&style=full&maxRows=100&username=marikegrinde';
+		$data = $this->geonamesRequest($url);
+		$dataDecoded = json_decode($data, true);
+		return $dataDecoded;
 	}
 
 	public function getCityByGeonameId($geonameIdSanitized){
@@ -201,7 +214,7 @@ class GeonamesModel{
         'Sydgeorgien och Sydsandwichöarna' => 'South Georgia and the South Sandwich Islands', //Grytviken
         'Guatemala' => 'Guatemala', //Guatemala City
         'Guam' => 'Guam', //Hagatna
-        'Guinea-Bissau' => 'Guinea-Bissau' //Bissau
+        'Guinea-Bissau' => 'Guinea-Bissau', //Bissau
         'Guyana' => 'Guyana', //Georgetown
         'Hong Kong' => 'Hong Kong', //Hong Kong
         'Heard- och McDonaldöarna' => 'Heard Island and McDonald Islands', //-
@@ -233,7 +246,7 @@ class GeonamesModel{
         'Sydkorea' => 'South Korea', //Seoul
         'Kuwait' => 'Kuwait', //Kuwait
         'Kazakstan' => 'Kazakhstan', //Astana
-        'Caymanöarna' => 'Cayman Islands' //George Town
+        'Caymanöarna' => 'Cayman Islands', //George Town
         'Laos' => 'Laos', //Vientaine
         'Libanon' => 'Lebanon', //Beirut
         'Saint Lucia' => 'Saint Lucia', //Castries
