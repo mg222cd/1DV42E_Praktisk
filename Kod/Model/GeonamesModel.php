@@ -43,7 +43,6 @@ class GeonamesModel{
 		if ($postedCountry != NULL) {
 			$postedCountry = $this->getTranslation($postedCountry);
 		}
-		//http://api.geonames.org/searchJSON?name_equals=Flon&q=J%C3%A4mtland&q=sweden&style=full&maxRows=100&username=marikegrinde
 		$url = 'http://api.geonames.org/searchJSON?';
 		if ($postedCity != null) {
 			$cityWithoutSpaces = preg_replace('/\s+/', '%20', $postedCity);
@@ -65,7 +64,6 @@ class GeonamesModel{
 
 	public function getCityByGeonameId($geonameIdSanitized){
 		$url = 'http://api.geonames.org/get?geonameId='.$geonameIdSanitized.'&username=marikegrinde&style=full';
-		//$url = 'http://api.geonames.org/get?geonameId=980dssjhd0as0s0u&username=marikegrinde&style=full';
 		$data = $this->geonamesRequest($url);
 		$status = strpos($data, $geonameIdSanitized);
 		if ($status === false) {
