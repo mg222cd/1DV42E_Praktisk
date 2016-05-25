@@ -85,10 +85,7 @@ class GeonamesView{
                     <input type="text" class="form-control" maxlength="255" name="city" id="city" placeholder="Ort" autofocus="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" maxlength="255" name="adminName2" id="adminName2" placeholder="Kommun" autofocus="">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" maxlength="255" name="adminName1" id="adminName1" placeholder="Län/Region/område" autofocus="">
+                    <input type="text" class="form-control" maxlength="255" name="adminName" id="adminName" placeholder="Område" autofocus="">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" maxlength="255" name="country" id="country" placeholder="Land" autofocus="">

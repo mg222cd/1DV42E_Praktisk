@@ -39,9 +39,9 @@ class GeonamesModel{
 		return $dataDecoded;
 	}
 
-	public function getGeonamesRefined($postedCity, $postedAdminName2, $postedAdminName1, $postedCountry){
+	public function getGeonamesRefined($postedCity, $postedAdminName, $postedCountry){
 		//GÖR KLART DEN HÄR FUNKTIONEN SÅ ATT DEN RETURNERAR RÄTT
-		var_dump($postedCity, $postedAdminName2, $postedAdminName1, $postedCountry);die();
+		var_dump($postedCity, $postedAdminName, $postedCountry);die();
 		//http://api.geonames.org/searchJSON?name_equals=Flon&q=J%C3%A4mtland&q=sweden&style=full&maxRows=100&username=marikegrinde
 		$url = 'http://api.geonames.org/searchJSON?';
 		//bygg på url:en med fler parametrar beroende på om dom är NULL eller ej.
