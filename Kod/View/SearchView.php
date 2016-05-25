@@ -161,36 +161,35 @@ class SearchView{
         'Ekvatorialguinea' => 'Equatorial Guinea', //Malabo
         'Grekland' => 'Greece', //Aten
         'Sydgeorgien och Sydsandwichöarna' => 'South Georgia and the South Sandwich Islands', //Grytviken
+        'Guatemala' => 'Guatemala', //Guatemala City
+        'Guam' => 'Guam', //Hagatna
+        'Guinea-Bissau' => 'Guinea-Bissau' //Bissau
+        'Guyana' => 'Guyana', //Georgetown
+        'Hong Kong' => 'Hong Kong', //Hong Kong
+        'Heard- och McDonaldöarna' => 'Heard Island and McDonald Islands', //-
+        'Honduras' => 'Honduras', //Tegucigalpa
+        'Kroatien' => 'Croatia', //Zagreb
+        'Haiti' => 'Haiti', //Port-au-Prince
+        'Ungern' => 'Hungary', //Budapest
+        'Indonesien' => 'Indonesia', //Jakarta
+        'Irland' => 'Ireland', //Dublin
+        'Israel' => 'Israel', //Jerusalem
+        'Isle of Man' => 'Isle of Man', //Douglas
+        'Indien' => 'India', //New Dehli
+        'Brittiska territoriet i Indiska oceanen' => 'British Indian Ocean Territory', //Diego Garcia
+        'Irak' => 'Iraq', //Baghdad
+        'Iran' => 'Iran', //Teheran
+        'Island' => 'Iceland', //Reyjkjavik
+        'Italien' => 'Italy', //Rom
+        'Jersey' => 'Jersey', //Saint Helier
+        'Jamaica' => 'Jamaica', //Kingston
+        'Jordanien' => 'Jordan', //Amman
+        'Japan' => 'Japan', //Tokyo
+        'Kenya' => 'Kenya', //Nairobi
+        'Kirgizistan' => 'Kyrgyzstan', //Bisjkek
+        'Kambodja' => 'Cambodia', //Phnom Penh
 
 
-
-GT	GTM	320	GT	Guatemala	Guatemala City	108,890.0	13,550,440	NA
-GU	GUM	316	GQ	Guam	Hagatna	549.0	159,358	OC
-GW	GNB	624	PU	Guinea-Bissau	Bissau	36,120.0	1,565,126	AF
-GY	GUY	328	GY	Guyana	Georgetown	214,970.0	748,486	SA
-HK	HKG	344	HK	Hong Kong	Hong Kong	1,092.0	6,898,686	AS
-HM	HMD	334	HM	Heard Island and McDonald Islands		412.0	0	AN
-HN	HND	340	HO	Honduras	Tegucigalpa	112,090.0	7,989,415	NA
-HR	HRV	191	HR	Croatia	Zagreb	56,542.0	4,491,000	EU
-HT	HTI	332	HA	Haiti	Port-au-Prince	27,750.0	9,648,924	NA
-HU	HUN	348	HU	Hungary	Budapest	93,030.0	9,982,000	EU
-ID	IDN	360	ID	Indonesia	Jakarta	1,919,440.0	242,968,342	AS
-IE	IRL	372	EI	Ireland	Dublin	70,280.0	4,622,917	EU
-IL	ISR	376	IS	Israel	Jerusalem	20,770.0	7,353,985	AS
-IM	IMN	833	IM	Isle of Man	Douglas	572.0	75,049	EU
-IN	IND	356	IN	India	New Delhi	3,287,590.0	1,173,108,018	AS
-IO	IOT	086	IO	British Indian Ocean Territory	Diego Garcia	60.0	4,000	AS
-IQ	IRQ	368	IZ	Iraq	Baghdad	437,072.0	29,671,605	AS
-IR	IRN	364	IR	Iran	Tehran	1,648,000.0	76,923,300	AS
-IS	ISL	352	IC	Iceland	Reykjavik	103,000.0	308,910	EU
-IT	ITA	380	IT	Italy	Rome	301,230.0	60,340,328	EU
-JE	JEY	832	JE	Jersey	Saint Helier	116.0	90,812	EU
-JM	JAM	388	JM	Jamaica	Kingston	10,991.0	2,847,232	NA
-JO	JOR	400	JO	Jordan	Amman	92,300.0	6,407,085	AS
-JP	JPN	392	JA	Japan	Tokyo	377,835.0	127,288,000	AS
-KE	KEN	404	KE	Kenya	Nairobi	582,650.0	40,046,566	AF
-KG	KGZ	417	KG	Kyrgyzstan	Bishkek	198,500.0	5,776,500	AS
-KH	KHM	116	CB	Cambodia	Phnom Penh	181,040.0	14,453,680	AS
 KI	KIR	296	KR	Kiribati	Tarawa	811.0	92,533	OC
 KM	COM	174	CN	Comoros	Moroni	2,170.0	773,407	AF
 KN	KNA	659	SC	Saint Kitts and Nevis	Basseterre	261.0	51,134	NA
