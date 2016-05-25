@@ -71,247 +71,260 @@ class SearchView{
 	public function getTranslation($text)
 {
     $values = [
-        'Afganistan' => 'Afghanistan', //Kabul
-        'Albanien' => 	'Albania', //Tirana
+        'Afganistan' => 'Afghanistan', //Kabul                            
+        'Albanien' => 	'Albania', //Tirana                               
         'Algeriet' => 'Algeria', //Alger
-        'American Samoa' => 'Amerikanska Samoa', //Pago Pago
-        'Andorra' => 'Andorra', //Andorra l Vella
-        'Angola' => 'Angola', //Luanda
-		'Anguilla' => 'Anguilla', //The Valley
-        'Antigua och Barbuda' => 'Antigua and Barbuda', //Saint John's
+        'American Samoa' => 'Amerikanska Samoa', //Pago Pago              
+        'Andorra' => 'Andorra', //Andorra l Vella 				          
+        'Angola' => 'Angola', //Luanda                                    
+		'Anguilla' => 'Anguilla', //The Valley                            
+		'Antarktis' => 'Antarctica', //-                                  
+        'Antigua och Barbuda' => 'Antigua and Barbuda', //Saint John's    
+        'Argentina' => 'Argentina', //Buenos Aires                        
+        'Armenien' => 'Armenia', // Jerevan                               
+        'Aruba' => 'Aruba', //Oranjestad                                  
+        'Australien' => 'Australia', //Canberra                           
+        'Åland' => 'Åland', //Mariehamn                                   
+        'Österrike' => 'Austria', //Wien                                  
+        'Azerbajdzjan' => 'Azerbaijan', //Baku                            
+        'Bahamas' => 'Bahamas', //Nassau                                  
+        'Bahrain' => 'Bahrain', //Manama                                  
+        'Bangladesh' => 'Bangladesh', //Dkaka                             
+        'Barbados' => 'Barbados', //Bridgetown                            
+        'Vitryssland' =>'Belarus', //Minsk                                
+        'Belgien' => 'Belgium', //Bryssel                                 
+        'Belize' => 'Belize', //Belmopan                                  
+        'Benin' => 'Benin', //Porto-Novo                                  
+        'Bermuda' => 'Bermuda', //Hamilton                                
+        'Bhutan' => 'Bhutan', //Thimphu                                   
+        'Bolivia' => 'Bolivia', //Sucre                                   
+        'Bonaire' => 'Bonaire', //-                                       
+        'Bosnien och Hercegovina' => '', //Sarajevo                       
+        'Botswana' => 'Botswana', //Gaborone?                             
+        'Förenade Arabemiraten' => 'United Arab Emirates', //Abu Dhabi    
+        'Burkina Faso' => 'Burkina Faso', //Ouagadougou
+        'Bulgarien' => 'Bulgaria', //Sofia
+        'Burundi' => 'Burundi', //Bujumbura
+        'Saint-Barthélemy' => 'Saint-Barthélemy', //Gustavia
+        'Brunei' => 'Brunei', //Bandar Seri Bagawan
+        'Brasilien' => 'Brazil', //Brasilia
+        'Bouvetön' => 'Bouvet Island', //-
+        'Kanada' => 'Canada', //Ottawa
+        'Kokosöarna' => 'Cocos [Keeling] Islands', //West Island
+        'Kongo-Kinshasa' => 'Democratic Republic of the Congo', //Kinshasa
+        'Centralafrikanska republiken' => 'Central African Republic', //Bangui
+        'Kongo-Brazzaville' => 'Republic of this Congo', //Brazzaville
+        'Schweiz' => 'Switzerland', //Bern
+        'Elfenbenskusten' => 'Ivory Coast', //Yamoussoukro
+        'Cooköarna' => 'Cook Islands', //Avarua
+        'Chile' => 'Chile', //Santiago
+        'Kamerun' => 'Cameroon', //Yaounde
+        'Kina' => 'China', //Beijing
+        'Colombia' => 'Colombia', //Bogota
+        'Costa Rica' => 'Costa Rica', //San Jose
+        'Kuba' => 'Cuba', //Havanna
+        'Kap Verde' => 'Cape Verde', //Praia
+        'Curacao' => 'Curacao', //Willemstad
+        'Julön' => 'Christmas Island', //Flying Fish Cove
+        'Cypern' => 'Cyprus', //Nicosia
+        'Tjeckien' => 'Czech Republic', //Prag
+        'Tyskland' => 'Germany', //Berlin
+        'Djibouti' => 'Djibouti', //Djibouti
+        'Danmark' => 'Denmark', //Köpenhamn
+        'Dominica' => 'Dominica', //
+        'Dominikanska republiken' => 'Dominican Republic', //Roseau
+        'Equador' => 'Ecuador', //Quito
+        'Estland' => 'Estonia', //Tallinn
+        'Egypten' => 'Egypt', //Kairo
+        'Västsahara' => 'Western Sahara', //?
+        'Eritrea' => 'Eritrea', //Asmara
+        'Spanien' => 'Spain', //Madrid
+        'Etiopien' => 'Ethiopia', //Addis Abeba?
+        'Finland' => 'Finland', //Helsingfors
+        'Fiji' => 'Fiji', //Suva
+        'Falklandsöarna' => 'Falkland Islands', //Stanley
+        'Mikronesien' => 'Micronesia', //Palikir
+        'Färöarna' => 'Faroe Islands', //Torshavn
+        'Frankrike' => 'France', //Paris
+        'Gabon' => 'Gabon', //Libreville
+        'Storbritanien' => 'United Kingdom', //London
+        'Grenada' => 'Grenada', //St. George's
+        'Georgien' => 'Georgia', //Tbilisi
+        'Franska Guyana' => 'French Guiana', //Cayenne
+        'Guernsey' => 'Guernsey', //St Peter Port
+        'Ghana' => 'Ghana', //Accra
+        'Gibraltar' => 'Gibraltar', //Gibraltar
+        'Grönland' => 'Greenland', //Nuuk
+        'Gambia' => 'Gambia', //Banjul
+        'Guinea' => 'Guinea', //Conakry
+        'Guadeloupe' => 'Guadeloupe', //Basse-Terre
+        'Ekvatorialguinea' => 'Equatorial Guinea', //Malabo
+        'Grekland' => 'Greece', //Aten
+        'Sydgeorgien och Sydsandwichöarna' => 'South Georgia and the South Sandwich Islands', //Grytviken
 
 
-Argentina	South America
-Armenia	Europe
-Aruba	Caribbean
-Australia	Australasia
-Austria	Europe
-Azerbaijan	Europe
-Bahamas	Caribbean
-Bahrain	Middle East
-Bangladesh	Asia
-Barbados	Caribbean
-Belarus	Europe
-Belgium	Europe
-Belize	North America
-Benin	Africa
-Bermuda	Caribbean
-Bhutan	Asia
-Bolivia	South America
-Bonaire	Caribbean
-Bosnia-Herzegovina	Europe
-Botswana	Africa
-Bouvet Island	Africa
-Brazil	South America
-Brunei	Asia
-Bulgaria	Europe
-Burkina Faso	Africa
-Burundi	Africa
-Cambodia	Asia
-Cameroon	Africa
-Canada	North America
-Cape Verde	Africa
-Cayman Islands	Caribbean
-Central African Republic	Africa
-Chad	Africa
-Chile	South America
-China	Asia
-Christmas Island	Australasia
-Cocos (Keeling) Islands	Australasia
-Colombia	South America
-Comoros	Africa
-Congo, Democratic Republic of the (Zaire)	Africa
-Congo, Republic of	Africa
-Cook Islands	Australasia
-Costa Rica	North America
-Croatia	Europe
-Cuba	Caribbean
-Curacao	Caribbean
-Cyprus	Europe
-Czech Republic	Europe
-Denmark	Europe
-Djibouti	Africa
-Dominica	Caribbean
-Dominican Republic	Caribbean
-Ecuador	South America
-Egypt	Africa
-El Salvador	North America
-Equatorial Guinea	Africa
-Eritrea	Africa
-Estonia	Europe
-Ethiopia	Africa
-Falkland Islands	South America
-Faroe Islands	Europe
-Fiji	Australasia
-Finland	Europe
-France	Europe
-French Guiana	South America
-Gabon	Africa
-Gambia	Africa
-Georgia	Europe
-Germany	Europe
-Ghana	Africa
-Gibraltar	Europe
-Greece	Europe
-Greenland	Europe
-Grenada	Caribbean
-Guadeloupe (French)	Caribbean
-Guam (USA)	Australasia
-Guatemala	North America
-Guinea	Africa
-Guinea Bissau	Africa
-Guyana	South America
-Haiti	Caribbean
-Holy See	Europe
-Honduras	North America
-Hong Kong	Asia
-Hungary	Europe
-Iceland	Europe
-India	Asia
-Indonesia	Asia
-Iran	Middle East
-Iraq	Middle East
-Ireland	Europe
-Israel	Middle East
-Italy	Europe
-Ivory Coast (Cote D`Ivoire)	Africa
-Jamaica	Caribbean
-Japan	Asia
-Jordan	Middle East
-Kazakhstan	Asia
-Kenya	Africa
-Kiribati	Australasia
-Kosovo	Europe
-Kuwait	Middle East
-Kyrgyzstan	Asia
-Laos	Asia
-Latvia	Europe
-Lebanon	Middle East
-Lesotho	Africa
-Liberia	Africa
-Libya	Africa
-Liechtenstein	Europe
-Lithuania	Europe
-Luxembourg	Europe
-Macau	Asia
-Macedonia	Europe
-Madagascar	Africa
-Malawi	Africa
-Malaysia	Asia
-Maldives	Asia
-Mali	Africa
-Malta	Europe
-Marshall Islands	Australasia
-Martinique (French)	Caribbean
-Mauritania	Africa
-Mauritius	Africa
-Mayotte	Africa
-Mexico	North America
-Micronesia	Australasia
-Moldova	Europe
-Monaco	Europe
-Mongolia	Asia
-Montenegro	Europe
-Montserrat	Caribbean
-Morocco	Africa
-Mozambique	Africa
-Myanmar	Asia
-Namibia	Africa
-Nauru	Australasia
-Nepal	Asia
-Netherlands	Europe
-Netherlands Antilles	Caribbean
-New Caledonia (French)	Australasia
-New Zealand	Australasia
-Nicaragua	North America
-Niger	Africa
-Nigeria	Africa
-Niue	Australasia
-Norfolk Island	Australasia
-North Korea	Asia
-Northern Mariana Islands	Asia
-Norway	Europe
-Oman	Middle East
-Pakistan	Asia
-Palau	Australasia
-Panama	North America
-Papua New Guinea	Australasia
-Paraguay	South America
-Peru	South America
-Philippines	Asia
-Pitcairn Island	Australasia
-Poland	Europe
-Polynesia (French)	Australasia
-Portugal	Europe
-Puerto Rico	Caribbean
-Qatar	Middle East
-Reunion	Africa
-Romania	Europe
-Russia	Europe
-Rwanda	Africa
-Saint Helena	Africa
-Saint Kitts and Nevis	Caribbean
-Saint Lucia	Caribbean
-Saint Pierre and Miquelon	North America
-Saint Vincent and Grenadines	Caribbean
-Samoa	Australasia
-San Marino	Europe
-Sao Tome and Principe	Africa
-Saudi Arabia	Middle East
-Senegal	Africa
-Serbia	Europe
-Seychelles	Africa
-Sierra Leone	Africa
-Singapore	Asia
-Sint Maarten	Caribbean
-Slovakia	Europe
-Slovenia	Europe
-Solomon Islands	Australasia
-Somalia	Africa
-South Africa	Africa
-South Georgia and South Sandwich Islands	South America
-South Korea	Asia
-South Sudan	Africa
-South Sudan	Africa
-Spain	Europe
-Sri Lanka	Asia
-Sudan	Africa
-Suriname	South America
-Svalbard and Jan Mayen Islands	Europe
-Swaziland	Africa
-Sweden	Europe
-Switzerland	Europe
-Syria	Middle East
-Taiwan	Asia
-Tajikistan	Asia
-Tanzania	Africa
-Thailand	Asia
-Timor-Leste (East Timor)	Australasia
-Togo	Africa
-Tokelau	Australasia
-Tonga	Australasia
-Trinidad and Tobago	Caribbean
-Tunisia	Africa
-Turkey	Middle East
-Turkmenistan	Asia
-Turks and Caicos Islands	Caribbean
-Tuvalu	Australasia
-Uganda	Africa
-Ukraine	Europe
-United Arab Emirates	Middle East
-United Kingdom	Europe
-United States	North America
-Uruguay	South America
-Uzbekistan	Asia
-Vanuatu	Australasia
-Venezuela	South America
-Vietnam	Asia
-Virgin Islands	Caribbean
-Wallis and Futuna Islands	Australasia
-Yemen	Middle East
-Zambia	Africa
-Zimbabwe	Africa
-xk	Europe
+
+GT	GTM	320	GT	Guatemala	Guatemala City	108,890.0	13,550,440	NA
+GU	GUM	316	GQ	Guam	Hagatna	549.0	159,358	OC
+GW	GNB	624	PU	Guinea-Bissau	Bissau	36,120.0	1,565,126	AF
+GY	GUY	328	GY	Guyana	Georgetown	214,970.0	748,486	SA
+HK	HKG	344	HK	Hong Kong	Hong Kong	1,092.0	6,898,686	AS
+HM	HMD	334	HM	Heard Island and McDonald Islands		412.0	0	AN
+HN	HND	340	HO	Honduras	Tegucigalpa	112,090.0	7,989,415	NA
+HR	HRV	191	HR	Croatia	Zagreb	56,542.0	4,491,000	EU
+HT	HTI	332	HA	Haiti	Port-au-Prince	27,750.0	9,648,924	NA
+HU	HUN	348	HU	Hungary	Budapest	93,030.0	9,982,000	EU
+ID	IDN	360	ID	Indonesia	Jakarta	1,919,440.0	242,968,342	AS
+IE	IRL	372	EI	Ireland	Dublin	70,280.0	4,622,917	EU
+IL	ISR	376	IS	Israel	Jerusalem	20,770.0	7,353,985	AS
+IM	IMN	833	IM	Isle of Man	Douglas	572.0	75,049	EU
+IN	IND	356	IN	India	New Delhi	3,287,590.0	1,173,108,018	AS
+IO	IOT	086	IO	British Indian Ocean Territory	Diego Garcia	60.0	4,000	AS
+IQ	IRQ	368	IZ	Iraq	Baghdad	437,072.0	29,671,605	AS
+IR	IRN	364	IR	Iran	Tehran	1,648,000.0	76,923,300	AS
+IS	ISL	352	IC	Iceland	Reykjavik	103,000.0	308,910	EU
+IT	ITA	380	IT	Italy	Rome	301,230.0	60,340,328	EU
+JE	JEY	832	JE	Jersey	Saint Helier	116.0	90,812	EU
+JM	JAM	388	JM	Jamaica	Kingston	10,991.0	2,847,232	NA
+JO	JOR	400	JO	Jordan	Amman	92,300.0	6,407,085	AS
+JP	JPN	392	JA	Japan	Tokyo	377,835.0	127,288,000	AS
+KE	KEN	404	KE	Kenya	Nairobi	582,650.0	40,046,566	AF
+KG	KGZ	417	KG	Kyrgyzstan	Bishkek	198,500.0	5,776,500	AS
+KH	KHM	116	CB	Cambodia	Phnom Penh	181,040.0	14,453,680	AS
+KI	KIR	296	KR	Kiribati	Tarawa	811.0	92,533	OC
+KM	COM	174	CN	Comoros	Moroni	2,170.0	773,407	AF
+KN	KNA	659	SC	Saint Kitts and Nevis	Basseterre	261.0	51,134	NA
+KP	PRK	408	KN	North Korea	Pyongyang	120,540.0	22,912,177	AS
+KR	KOR	410	KS	South Korea	Seoul	98,480.0	48,422,644	AS
+KW	KWT	414	KU	Kuwait	Kuwait City	17,820.0	2,789,132	AS
+KY	CYM	136	CJ	Cayman Islands	George Town	262.0	44,270	NA
+KZ	KAZ	398	KZ	Kazakhstan	Astana	2,717,300.0	15,340,000	AS
+LA	LAO	418	LA	Laos	Vientiane	236,800.0	6,368,162	AS
+LB	LBN	422	LE	Lebanon	Beirut	10,400.0	4,125,247	AS
+LC	LCA	662	ST	Saint Lucia	Castries	616.0	160,922	NA
+LI	LIE	438	LS	Liechtenstein	Vaduz	160.0	35,000	EU
+LK	LKA	144	CE	Sri Lanka	Colombo	65,610.0	21,513,990	AS
+LR	LBR	430	LI	Liberia	Monrovia	111,370.0	3,685,076	AF
+LS	LSO	426	LT	Lesotho	Maseru	30,355.0	1,919,552	AF
+LT	LTU	440	LH	Lithuania	Vilnius	65,200.0	2,944,459	EU
+LU	LUX	442	LU	Luxembourg	Luxembourg	2,586.0	497,538	EU
+LV	LVA	428	LG	Latvia	Riga	64,589.0	2,217,969	EU
+LY	LBY	434	LY	Libya	Tripoli	1,759,540.0	6,461,454	AF
+MA	MAR	504	MO	Morocco	Rabat	446,550.0	31,627,428	AF
+MC	MCO	492	MN	Monaco	Monaco	1.9	32,965	EU
+MD	MDA	498	MD	Moldova	Chisinau	33,843.0	4,324,000	EU
+ME	MNE	499	MJ	Montenegro	Podgorica	14,026.0	666,730	EU
+MF	MAF	663	RN	Saint Martin	Marigot	53.0	35,925	NA
+MG	MDG	450	MA	Madagascar	Antananarivo	587,040.0	21,281,844	AF
+MH	MHL	584	RM	Marshall Islands	Majuro	181.3	65,859	OC
+MK	MKD	807	MK	Macedonia	Skopje	25,333.0	2,062,294	EU
+ML	MLI	466	ML	Mali	Bamako	1,240,000.0	13,796,354	AF
+MM	MMR	104	BM	Myanmar [Burma]	Nay Pyi Taw	678,500.0	53,414,374	AS
+MN	MNG	496	MG	Mongolia	Ulan Bator	1,565,000.0	3,086,918	AS
+MO	MAC	446	MC	Macao	Macao	254.0	449,198	AS
+MP	MNP	580	CQ	Northern Mariana Islands	Saipan	477.0	53,883	OC
+MQ	MTQ	474	MB	Martinique	Fort-de-France	1,100.0	432,900	NA
+MR	MRT	478	MR	Mauritania	Nouakchott	1,030,700.0	3,205,060	AF
+MS	MSR	500	MH	Montserrat	Plymouth	102.0	9,341	NA
+MT	MLT	470	MT	Malta	Valletta	316.0	403,000	EU
+MU	MUS	480	MP	Mauritius	Port Louis	2,040.0	1,294,104	AF
+MV	MDV	462	MV	Maldives	Male	300.0	395,650	AS
+MW	MWI	454	MI	Malawi	Lilongwe	118,480.0	15,447,500	AF
+MX	MEX	484	MX	Mexico	Mexico City	1,972,550.0	112,468,855	NA
+MY	MYS	458	MY	Malaysia	Kuala Lumpur	329,750.0	28,274,729	AS
+MZ	MOZ	508	MZ	Mozambique	Maputo	801,590.0	22,061,451	AF
+NA	NAM	516	WA	Namibia	Windhoek	825,418.0	2,128,471	AF
+NC	NCL	540	NC	New Caledonia	Noumea	19,060.0	216,494	OC
+NE	NER	562	NG	Niger	Niamey	1,267,000.0	15,878,271	AF
+NF	NFK	574	NF	Norfolk Island	Kingston	34.6	1,828	OC
+NG	NGA	566	NI	Nigeria	Abuja	923,768.0	154,000,000	AF
+NI	NIC	558	NU	Nicaragua	Managua	129,494.0	5,995,928	NA
+NL	NLD	528	NL	Netherlands	Amsterdam	41,526.0	16,645,000	EU
+NO	NOR	578	NO	Norway	Oslo	324,220.0	5,009,150	EU
+NP	NPL	524	NP	Nepal	Kathmandu	140,800.0	28,951,852	AS
+NR	NRU	520	NR	Nauru	Yaren	21.0	10,065	OC
+NU	NIU	570	NE	Niue	Alofi	260.0	2,166	OC
+NZ	NZL	554	NZ	New Zealand	Wellington	268,680.0	4,252,277	OC
+OM	OMN	512	MU	Oman	Muscat	212,460.0	2,967,717	AS
+PA	PAN	591	PM	Panama	Panama City	78,200.0	3,410,676	NA
+PE	PER	604	PE	Peru	Lima	1,285,220.0	29,907,003	SA
+PF	PYF	258	FP	French Polynesia	Papeete	4,167.0	270,485	OC
+PG	PNG	598	PP	Papua New Guinea	Port Moresby	462,840.0	6,064,515	OC
+PH	PHL	608	RP	Philippines	Manila	300,000.0	99,900,177	AS
+PK	PAK	586	PK	Pakistan	Islamabad	803,940.0	184,404,791	AS
+PL	POL	616	PL	Poland	Warsaw	312,685.0	38,500,000	EU
+PM	SPM	666	SB	Saint Pierre and Miquelon	Saint-Pierre	242.0	7,012	NA
+PN	PCN	612	PC	Pitcairn Islands	Adamstown	47.0	46	OC
+PR	PRI	630	RQ	Puerto Rico	San Juan	9,104.0	3,916,632	NA
+PS	PSE	275	WE	Palestine	East Jerusalem	5,970.0	3,800,000	AS
+PT	PRT	620	PO	Portugal	Lisbon	92,391.0	10,676,000	EU
+PW	PLW	585	PS	Palau	Melekeok	458.0	19,907	OC
+PY	PRY	600	PA	Paraguay	Asuncion	406,750.0	6,375,830	SA
+QA	QAT	634	QA	Qatar	Doha	11,437.0	840,926	AS
+RE	REU	638	RE	Réunion	Saint-Denis	2,517.0	776,948	AF
+RO	ROU	642	RO	Romania	Bucharest	237,500.0	21,959,278	EU
+RS	SRB	688	RI	Serbia	Belgrade	88,361.0	7,344,847	EU
+RU	RUS	643	RS	Russia	Moscow	17,100,000.0	140,702,000	EU
+RW	RWA	646	RW	Rwanda	Kigali	26,338.0	11,055,976	AF
+SA	SAU	682	SA	Saudi Arabia	Riyadh	1,960,582.0	25,731,776	AS
+SB	SLB	090	BP	Solomon Islands	Honiara	28,450.0	559,198	OC
+SC	SYC	690	SE	Seychelles	Victoria	455.0	88,340	AF
+SD	SDN	729	SU	Sudan	Khartoum	1,861,484.0	35,000,000	AF
+SE	SWE	752	SW	Sweden	Stockholm	449,964.0	9,828,655	EU
+SG	SGP	702	SN	Singapore	Singapore	692.7	4,701,069	AS
+SH	SHN	654	SH	Saint Helena	Jamestown	410.0	7,460	AF
+SI	SVN	705	SI	Slovenia	Ljubljana	20,273.0	2,007,000	EU
+SJ	SJM	744	SV	Svalbard and Jan Mayen	Longyearbyen	62,049.0	2,550	EU
+SK	SVK	703	LO	Slovakia	Bratislava	48,845.0	5,455,000	EU
+SL	SLE	694	SL	Sierra Leone	Freetown	71,740.0	5,245,695	AF
+SM	SMR	674	SM	San Marino	San Marino	61.2	31,477	EU
+SN	SEN	686	SG	Senegal	Dakar	196,190.0	12,323,252	AF
+SO	SOM	706	SO	Somalia	Mogadishu	637,657.0	10,112,453	AF
+SR	SUR	740	NS	Suriname	Paramaribo	163,270.0	492,829	SA
+SS	SSD	728	OD	South Sudan	Juba	644,329.0	8,260,490	AF
+ST	STP	678	TP	São Tomé and Príncipe	Sao Tome	1,001.0	175,808	AF
+SV	SLV	222	ES	El Salvador	San Salvador	21,040.0	6,052,064	NA
+SX	SXM	534	NN	Sint Maarten	Philipsburg	21.0	37,429	NA
+SY	SYR	760	SY	Syria	Damascus	185,180.0	22,198,110	AS
+SZ	SWZ	748	WZ	Swaziland	Mbabane	17,363.0	1,354,051	AF
+TC	TCA	796	TK	Turks and Caicos Islands	Cockburn Town	430.0	20,556	NA
+TD	TCD	148	CD	Chad	N'Djamena	1,284,000.0	10,543,464	AF
+TF	ATF	260	FS	French Southern Territories	Port-aux-Francais	7,829.0	140	AN
+TG	TGO	768	TO	Togo	Lome	56,785.0	6,587,239	AF
+TH	THA	764	TH	Thailand	Bangkok	514,000.0	67,089,500	AS
+TJ	TJK	762	TI	Tajikistan	Dushanbe	143,100.0	7,487,489	AS
+TK	TKL	772	TL	Tokelau		10.0	1,466	OC
+TL	TLS	626	TT	East Timor	Dili	15,007.0	1,154,625	OC
+TM	TKM	795	TX	Turkmenistan	Ashgabat	488,100.0	4,940,916	AS
+TN	TUN	788	TS	Tunisia	Tunis	163,610.0	10,589,025	AF
+TO	TON	776	TN	Tonga	Nuku'alofa	748.0	122,580	OC
+TR	TUR	792	TU	Turkey	Ankara	780,580.0	77,804,122	AS
+TT	TTO	780	TD	Trinidad and Tobago	Port of Spain	5,128.0	1,228,691	NA
+TV	TUV	798	TV	Tuvalu	Funafuti	26.0	10,472	OC
+TW	TWN	158	TW	Taiwan	Taipei	35,980.0	22,894,384	AS
+TZ	TZA	834	TZ	Tanzania	Dodoma	945,087.0	41,892,895	AF
+UA	UKR	804	UP	Ukraine	Kiev	603,700.0	45,415,596	EU
+UG	UGA	800	UG	Uganda	Kampala	236,040.0	33,398,682	AF
+UM	UMI	581		U.S. Minor Outlying Islands		0.0	0	OC
+US	USA	840	US	United States	Washington	9,629,091.0	310,232,863	NA
+UY	URY	858	UY	Uruguay	Montevideo	176,220.0	3,477,000	SA
+UZ	UZB	860	UZ	Uzbekistan	Tashkent	447,400.0	27,865,738	AS
+VA	VAT	336	VT	Vatican City	Vatican City	0.4	921	EU
+VC	VCT	670	VC	Saint Vincent and the Grenadines	Kingstown	389.0	104,217	NA
+VE	VEN	862	VE	Venezuela	Caracas	912,050.0	27,223,228	SA
+VG	VGB	092	VI	British Virgin Islands	Road Town	153.0	21,730	NA
+VI	VIR	850	VQ	U.S. Virgin Islands	Charlotte Amalie	352.0	108,708	NA
+VN	VNM	704	VM	Vietnam	Hanoi	329,560.0	89,571,130	AS
+VU	VUT	548	NH	Vanuatu	Port Vila	12,200.0	221,552	OC
+WF	WLF	876	WF	Wallis and Futuna	Mata Utu	274.0	16,025	OC
+WS	WSM	882	WS	Samoa	Apia	2,944.0	192,001	OC
+XK	XKX	0	KV	Kosovo	Pristina	10,908.0	1,800,000	EU
+YE	YEM	887	YM	Yemen	Sanaa	527,970.0	23,495,361	AS
+YT	MYT	175	MF	Mayotte	Mamoudzou	374.0	159,042	AF
+ZA	ZAF	710	SF	South Africa	Pretoria	1,219,912.0	49,000,000	AF
+ZM	ZMB	894	ZA	Zambia	Lusaka	752,614.0	13,460,305	AF
+ZW	ZWE	716	ZI	Zimbabwe	Harare	390,580.0	13,061,000	AF
+
 
     ];
 
