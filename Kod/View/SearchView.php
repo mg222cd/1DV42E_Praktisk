@@ -249,54 +249,71 @@ class SearchView{
         'Franska Polynesien' => 'French Polynesia', //Papeete
         'Papua Nya Guinea' => 'Papua New Guinea', //Port Moresby
         'Filippinerna' => 'Philippines', //Manila
+        'Pakistan' => 'Pakistan', //Islamabad
+        'Polen' => 'Poland', //Warszawa
+        'Saint-Pierre och Miquelon' => 'Saint Pierre and Miquelon', //Saint-Pierre
+        'Pitcairnöarna' => 'Pitcairn Islands', //Adamstown
+        'Puerto Rico' => 'Puerto Rico', //San Juan
+        'Palestina' => 'Palestine', //Östjerusalem
+        'Portugal' => 'Portugal', //Lissabon
+        'Palau' => 'Palau', //Melekeok
+        'Paraguay' => 'Paraguay', //Asunción
+        'Qatar' => 'Qatar', //Doha
+        'Réunion' => 'Réunion', //Saint-Denis
+        'Rumänien' => 'Romania', //Bukarest
+        'Serbien' => 'Serbia', //Belgrad
+        'Ryssland' => 'Russia', //Moskva
+        'Rwanda' => 'Rwanda', //Kigali
+        'Saudiarabien' => 'Saudi Arabia', //Riyadh
+        'Salomonöarna' => 'Solomon Islands', //Honiara
+        'Seychellerna' => 'Seychelles', //Victoria
+        'Sudan' => 'Sudan', //Khartoum
+        'Sverige' => 'Sweden', //Stockholm
+        'Singapore' => 'Singapore', //Singapore
+        'Sankta Helena' => 'Saint Helena', //Jamestown
+        'Slovenien' => 'Slovenia', //Ljubljana
+        'Svalbard' => 'Svalbard and Jan Mayen', //Longyearbyen
+        'Slovakien' => 'Slovakia', //Bratislava
+        'Sierra Leone' => 'Sierra Leone', //Freetown
+        'San Marino' => 'San Marino', //San Marino
+        'Senegal' => 'Senegal', //Dakar
+        'Somalia' => 'Somalia', //Mogadishu
+        'Surinam' => 'Suriname', //Paramaribo
+        'Sydsudan' => 'South Sudan', //Juba
+        'Sao Tome och Principe' => 'São Tomé and Príncipe', //Sao Tome
+        'El Salvador' => 'El Salvador', //San Salvador
+        'Sint Maarten' => 'Sint Maarten', //Philipsburg
+        'Syrien' => 'Syria', //Damaskus
+        'Swaziland' => 'Swaziland', //Mbabane
+        'Turks- och Caicosöarna' => 'Turks and Caicos Islands', //Cockburn Town
+        'Tchad' => 'Chad', //N'Djamena
+        'Franska sydterritorierna' => 'French Southern Territories', //Port-aux-Francais
+        'Togo' => 'Togo', //Lome
+        'Thailand' => 'Thailand', //Bangkok
+        'Tadzjikistan' => 'Tajikistan', //Dusjanbe
+        'Tokelau' => 'Tokelau', //-
+        'Östtimor' => 'East Timor', //Dili
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
+        '' => '', //
         '' => '', //
         '' => '', //
         '' => '', //
 
-PK	PAK	586	PK	Pakistan	Islamabad	803,940.0	184,404,791	AS
-PL	POL	616	PL	Poland	Warsaw	312,685.0	38,500,000	EU
-PM	SPM	666	SB	Saint Pierre and Miquelon	Saint-Pierre	242.0	7,012	NA
-PN	PCN	612	PC	Pitcairn Islands	Adamstown	47.0	46	OC
-PR	PRI	630	RQ	Puerto Rico	San Juan	9,104.0	3,916,632	NA
-PS	PSE	275	WE	Palestine	East Jerusalem	5,970.0	3,800,000	AS
-PT	PRT	620	PO	Portugal	Lisbon	92,391.0	10,676,000	EU
-PW	PLW	585	PS	Palau	Melekeok	458.0	19,907	OC
-PY	PRY	600	PA	Paraguay	Asuncion	406,750.0	6,375,830	SA
-QA	QAT	634	QA	Qatar	Doha	11,437.0	840,926	AS
-RE	REU	638	RE	Réunion	Saint-Denis	2,517.0	776,948	AF
-RO	ROU	642	RO	Romania	Bucharest	237,500.0	21,959,278	EU
-RS	SRB	688	RI	Serbia	Belgrade	88,361.0	7,344,847	EU
-RU	RUS	643	RS	Russia	Moscow	17,100,000.0	140,702,000	EU
-RW	RWA	646	RW	Rwanda	Kigali	26,338.0	11,055,976	AF
-SA	SAU	682	SA	Saudi Arabia	Riyadh	1,960,582.0	25,731,776	AS
-SB	SLB	090	BP	Solomon Islands	Honiara	28,450.0	559,198	OC
-SC	SYC	690	SE	Seychelles	Victoria	455.0	88,340	AF
-SD	SDN	729	SU	Sudan	Khartoum	1,861,484.0	35,000,000	AF
-SE	SWE	752	SW	Sweden	Stockholm	449,964.0	9,828,655	EU
-SG	SGP	702	SN	Singapore	Singapore	692.7	4,701,069	AS
-SH	SHN	654	SH	Saint Helena	Jamestown	410.0	7,460	AF
-SI	SVN	705	SI	Slovenia	Ljubljana	20,273.0	2,007,000	EU
-SJ	SJM	744	SV	Svalbard and Jan Mayen	Longyearbyen	62,049.0	2,550	EU
-SK	SVK	703	LO	Slovakia	Bratislava	48,845.0	5,455,000	EU
-SL	SLE	694	SL	Sierra Leone	Freetown	71,740.0	5,245,695	AF
-SM	SMR	674	SM	San Marino	San Marino	61.2	31,477	EU
-SN	SEN	686	SG	Senegal	Dakar	196,190.0	12,323,252	AF
-SO	SOM	706	SO	Somalia	Mogadishu	637,657.0	10,112,453	AF
-SR	SUR	740	NS	Suriname	Paramaribo	163,270.0	492,829	SA
-SS	SSD	728	OD	South Sudan	Juba	644,329.0	8,260,490	AF
-ST	STP	678	TP	São Tomé and Príncipe	Sao Tome	1,001.0	175,808	AF
-SV	SLV	222	ES	El Salvador	San Salvador	21,040.0	6,052,064	NA
-SX	SXM	534	NN	Sint Maarten	Philipsburg	21.0	37,429	NA
-SY	SYR	760	SY	Syria	Damascus	185,180.0	22,198,110	AS
-SZ	SWZ	748	WZ	Swaziland	Mbabane	17,363.0	1,354,051	AF
-TC	TCA	796	TK	Turks and Caicos Islands	Cockburn Town	430.0	20,556	NA
-TD	TCD	148	CD	Chad	N'Djamena	1,284,000.0	10,543,464	AF
-TF	ATF	260	FS	French Southern Territories	Port-aux-Francais	7,829.0	140	AN
-TG	TGO	768	TO	Togo	Lome	56,785.0	6,587,239	AF
-TH	THA	764	TH	Thailand	Bangkok	514,000.0	67,089,500	AS
-TJ	TJK	762	TI	Tajikistan	Dushanbe	143,100.0	7,487,489	AS
-TK	TKL	772	TL	Tokelau		10.0	1,466	OC
-TL	TLS	626	TT	East Timor	Dili	15,007.0	1,154,625	OC
+
 TM	TKM	795	TX	Turkmenistan	Ashgabat	488,100.0	4,940,916	AS
 TN	TUN	788	TS	Tunisia	Tunis	163,610.0	10,589,025	AF
 TO	TON	776	TN	Tonga	Nuku'alofa	748.0	122,580	OC
