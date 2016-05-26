@@ -23,7 +23,6 @@ class ForecastController{
 	private $yr;
 	private $smhi = null;
 
-
 	public function __construct(){
 		$this->forecastView = new \View\ForecastView();
 		$this->geonamesRepo = new \Model\GeonamesRepository();

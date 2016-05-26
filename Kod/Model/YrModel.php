@@ -44,20 +44,17 @@ class YrModel{
 		}
 		return $this->url;
 	}
-
 	
 	public function getYrForecast($cityObject){
 		$urlRequestYr = $this->getUrl($cityObject);
 		$data = $this->yrRequest($urlRequestYr);
 		if ($data != false) {
-			//om det gav träff hos yr
 			$dataDecoded = new \SimpleXMLElement($data);
 			return $dataDecoded;
 		}
 		return false;	
 	}
 
-	//Filtrates out html and tags
 	public function sanitizeText($forecast){
 		$sanitizedText = strip_tags($forecast);
 		$trimmedText = trim($sanitizedText);

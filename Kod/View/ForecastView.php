@@ -23,7 +23,6 @@ class ForecastView{
 		if ($url == '') {
 			return false;
 		}
-
 		//kolla om tilde finns:
 		$containsTilde = strpos($url, '~');
 		if ($containsTilde === false) {
@@ -47,7 +46,6 @@ class ForecastView{
 		$explodedCitynameAndGeonameId = explode('~', $citynameAndGeonameId);
 		$geonameId = $explodedCitynameAndGeonameId[1];
 		return $geonameId;
-
 	}
 
 	public function getForecastHeader($cityObject){
@@ -86,19 +84,17 @@ class ForecastView{
 			$smhiForecast = $this->getSmhiForecastOnly($smhiList);
 			return $smhiForecast;
 		}
-		//Hjälpfunktion
+		//Hjälpfunktion för sortering av lista och parametrar
 		$this->helper = new \View\ForecastHelper($yrList, $smhiList);
 		$list = $this->helper->getSortedList();
 		$tableRow = '';
-
 		//varje rad i tabellen
 		foreach ($list as $timeInterval) {
 			$datecolumn = $this->helper->getWeekday($timeInterval['dateFrom']);
 			$symbolIdYr = $timeInterval['yrSymbol'];
 			$windDirYr = $this->helper->getWindDir($timeInterval['yrWindDir']);
 			$windNameYr = $this->helper->getWindName($timeInterval['yrWindSpeed']);
-			$smhi = '';
-			
+			$smhi = '';	
 			//Smhi-kolumnen
 			for ($i = 0; $i <= 0; $i++) {
 				if (isset($timeInterval[$i])) {
@@ -174,7 +170,6 @@ class ForecastView{
 				}
 			}
 
-	
 			$tableRow .= '
 			<tr>
 				<td>
@@ -221,7 +216,6 @@ class ForecastView{
 			</tr>';
 		}
 
-
 		$forecastTable ='
 		<div class ="row">
 			<div class="col-md-6">
@@ -247,17 +241,10 @@ class ForecastView{
 	}
 
 	public function getSmhiForecastOnly($smhiList){
-		//Hjälpfunktion
+		//Hjälpfunktion för sortering av lista och parametrar
 		$this->helper = new \View\ForecastHelper($yr = null, $smhiList);
 		$list = $this->helper->getSmhiOnly();
-		/*
-		echo '<pre>';
-		print_r($list);
-		echo '</pre>';
-		exit;
-		*/
 		$tableRow = '';
-
 		//varje rad i tabellen
 		foreach ($list as $timeInterval) {
 			$datecolumn = $this->helper->getWeekday($timeInterval['smhiTime']);
@@ -329,7 +316,6 @@ class ForecastView{
 					</div>
 					</div>
 					';
-
 			$tableRow .= '
 			<tr>
 				<td>
@@ -343,8 +329,6 @@ class ForecastView{
 				.'</td>
 			</tr>';
 		}
-
-
 		$forecastTable ='
 		<div class ="row">
 			<div class="col-md-6">

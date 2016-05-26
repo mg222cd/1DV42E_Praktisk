@@ -35,19 +35,15 @@ class SmhiRepository extends DatabaseConnection{
 		//rensa array
 		unset($this->smhiList);
 		$this->smhiList = array();
-
 		//prognosens datumparametrar
 		$currentTime = $this->helper->getCurrentTime();;
 		$referenceTime = $this->helper->smhiDateTimeFormat($smhiDecoded['referenceTime']);
-		
 		//lagrar varje prognos i som ett smhi-objekt.
 		$forecasts = (array) $smhiDecoded['timeseries'];
-
 		foreach ($forecasts as $forecast) {
 				//fixar fältet med tiden som prognosen gäller.
 				$validTime = $this->helper->smhiDateTimeFormat($forecast['validTime']);
 				//bara prognoser nyare än just nu.
-				//if ($validTime > $currentTime) {
 					$this->smhiList[] = new \Model\Smhi(
 						null, // $smhiPk;
 						$geonamesPk, 
@@ -66,9 +62,7 @@ class SmhiRepository extends DatabaseConnection{
 						$precipitationIntensity = $forecast['pit'],
 						$categoryOfPrecipitation = $forecast['pcat']
 						);
-				//}
 		}
-
 		foreach ($this->smhiList as $value) {
 			try{
 				$db = $this->connection();

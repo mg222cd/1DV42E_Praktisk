@@ -44,7 +44,6 @@ class SmhiModel{
 		return $smhiDecoded;
 	}
 
-	//Filtrates oyt html and tags
 	public function sanitizeText($forecast){
 		$sanitizedText = strip_tags($forecast);
 		$trimmedText = trim($sanitizedText);
