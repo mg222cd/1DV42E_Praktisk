@@ -55,7 +55,6 @@ class ForecastController{
 		//Kolla om prognos från Yr redan finns i DB
 		if ($validYrForecast = $this->yrRepo->checkExists($this->choosenCity) == FALSE) {
 			//Prognos finns inte, hämta från YR's webservice och spara i DB
-			//--------------------------------------------------------//
 			$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
 			if ($this->forecastYr != false) {
 				$addYrToDB = $this->yrRepo->addYrForecast($this->forecastYr, $this->choosenCity->getGeonamesPk());
@@ -66,7 +65,6 @@ class ForecastController{
 		if ($validYrForecast == FALSE) {
 			//Prognosen är gammal, radera den, hämta ny från YR webservice, spara ny prognos.
 			$delete = $this->yrRepo->deleteForecasts($this->choosenCity);
-			//--------------------------------------------------------//
 			$this->forecastYr = $this->yrModel->getYrForecast($this->choosenCity);
 			if ($this->forecastYr != false) {
 				$addYrToDB = $this->yrRepo->addYrForecast($this->forecastYr, $this->choosenCity->getGeonamesPk());
@@ -79,7 +77,6 @@ class ForecastController{
 		//Kolla om prognos från Smhi redan finns i DB
 		if ($this->smhiRepo->checkExists($this->choosenCity) == FALSE) {
 			//Prognos finns inte, hämta från SMHI's webservice och spara i DB
-			//--------------------------------------------------------//
 			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
 			if ($this->forecastSmhi != false) {
 				$this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
@@ -89,7 +86,6 @@ class ForecastController{
 		$validSmhiForecast = $this->smhiRepo->isThereValidForecastInDatabase($this->choosenCity);
 		if ($validSmhiForecast == FALSE) {
 			//Prognosen är gammal, radera den, hämta ny från YR webservice, spara ny prognos.
-			//--------------------------------------------------------//
 			$delete = $this->smhiRepo->deleteForecasts($this->choosenCity);
 			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
 			if ($this->forecastSmhi != false) {

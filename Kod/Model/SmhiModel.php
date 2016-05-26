@@ -7,7 +7,6 @@ class SmhiModel{
 
 
 	public function smhiRequest($url){
-		//var_dump($url);
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept' => 'application/json; charset=utf-8'));
 		curl_setopt($ch, CURLOPT_URL, $url);

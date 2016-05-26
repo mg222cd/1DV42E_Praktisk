@@ -49,7 +49,6 @@ class YrModel{
 	public function getYrForecast($cityObject){
 		$urlRequestYr = $this->getUrl($cityObject);
 		$data = $this->yrRequest($urlRequestYr);
-		var_dump($data);
 		if ($data != false) {
 			//om det gav träff hos yr
 			$dataDecoded = new \SimpleXMLElement($data);

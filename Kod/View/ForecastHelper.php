@@ -13,6 +13,13 @@ class ForecastHelper{
 
 
 	public function getSortedList(){
+		//om prognos saknas från yr hämtas bara smhi
+		/*
+		if (count($this->yr) < 1) {
+			$smhiList = $this->getSmhiOnly();
+			return $smhiList;
+		}
+		*/
 		$list = array();
 		foreach ($this->yr as $yrRow) {
 			$timeFrom = $yrRow->getTimeFrom();
@@ -68,6 +75,32 @@ class ForecastHelper{
 				}
 			}
 			$list[] = $values;
+		}
+		return $list;
+	}
+
+	public function getSmhiOnly(){
+		$list = array();
+		foreach ($this->smhi as $smhiRow) {
+				$time = $smhiRow->getValidTime();
+				$now = new \DateTime();
+				if ($time > $now->format('Y-m-d H:i:s')) {
+					$smhi = array(
+					'smhiTime' => $time,
+					'smhiTemp' => $smhiRow->getTemperature(),
+					'smhiWindDir' => $smhiRow->getWindDirection(),
+					'smhiWindSpeed' => $smhiRow->getWindVelocity(),
+					'smhiWindGust' => $smhiRow->getWindGust(),
+					'smhiPressure' => $smhiRow->getPressure(),
+					'smhiHumidity' => $smhiRow->getRelativeHumidity(),
+					'smhiVisibility' => $smhiRow->getVisibility(),
+					'smhiCloudCover' => $smhiRow->getTotalCloudCover(),
+					'smhiProbThunder' => $smhiRow->getProbabilityThunderstorm(),
+					'smhiPrecIntens' => $smhiRow->getPrecipitationIntensity(),
+					'smhiPrecCat' => $smhiRow->getCategoryOfPrecipitation()
+					);
+					$list[] = $smhi;
+				}
 		}
 		return $list;
 	}
