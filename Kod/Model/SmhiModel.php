@@ -7,6 +7,7 @@ class SmhiModel{
 
 
 	public function smhiRequest($url){
+		//var_dump($url);
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept' => 'application/json; charset=utf-8'));
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -15,7 +16,11 @@ class SmhiModel{
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_URL, $url);
 		$data = curl_exec($ch);
+		$http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
+		if ($http_status_code != 200) {
+			return false;
+		}
 		return $data;
 	}
 	
@@ -33,7 +38,11 @@ class SmhiModel{
 		$lng = $cityObject->getLng();
 		$urlRequestSmhi = 'http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/'.$lat.'/lon/'.$lng.'/data.json';
 		$data = $this->smhiRequest($urlRequestSmhi);
-		return $data;
+		$smhiDecoded = json_decode($data, true);
+		if ($smhiDecoded == null || $data == false) {
+			return false;
+		}
+		return $smhiDecoded;
 	}
 
 	//Filtrates oyt html and tags

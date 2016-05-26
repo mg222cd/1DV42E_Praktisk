@@ -14,8 +14,11 @@ class YrModel{
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_URL, $url);
 		$data = curl_exec($ch);
-		//$http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
+		if ($http_status_code != 200) {
+			return false;
+		}
 		return $data;
 	}
 	
@@ -46,14 +49,13 @@ class YrModel{
 	public function getYrForecast($cityObject){
 		$urlRequestYr = $this->getUrl($cityObject);
 		$data = $this->yrRequest($urlRequestYr);
-		try {
+		var_dump($data);
+		if ($data != false) {
 			//om det gav träff hos yr
 			$dataDecoded = new \SimpleXMLElement($data);
 			return $dataDecoded;
-		} catch (Exception $e) {
-			return false;
 		}
-		
+		return false;	
 	}
 
 	//Filtrates out html and tags

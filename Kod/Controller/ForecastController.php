@@ -81,7 +81,9 @@ class ForecastController{
 			//Prognos finns inte, hämta från SMHI's webservice och spara i DB
 			//--------------------------------------------------------//
 			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
-			$this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
+			if ($this->forecastSmhi != false) {
+				$this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
+			}
 		}
 		//Prognos finns, kolla om den är aktuell att använda.
 		$validSmhiForecast = $this->smhiRepo->isThereValidForecastInDatabase($this->choosenCity);
@@ -90,7 +92,9 @@ class ForecastController{
 			//--------------------------------------------------------//
 			$delete = $this->smhiRepo->deleteForecasts($this->choosenCity);
 			$this->forecastSmhi = $this->smhiModel->getSmhiForecast($this->choosenCity);
-			$this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk()); 
+			if ($this->forecastSmhi != false) {
+				$this->smhiRepo->addForecast($this->forecastSmhi, $this->choosenCity->getGeonamesPk());
+			}
 		}
 		//Hämta aktuell prognos ur DB, som smhiObjekt
 		$this->smhi = $this->smhiRepo->getForecast($this->choosenCity);
