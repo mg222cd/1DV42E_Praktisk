@@ -13,13 +13,6 @@ class ForecastHelper{
 
 
 	public function getSortedList(){
-		//om prognos saknas från yr hämtas bara smhi
-		/*
-		if (count($this->yr) < 1) {
-			$smhiList = $this->getSmhiOnly();
-			return $smhiList;
-		}
-		*/
 		$list = array();
 		foreach ($this->yr as $yrRow) {
 			$timeFrom = $yrRow->getTimeFrom();
@@ -39,24 +32,6 @@ class ForecastHelper{
 				$time = $smhiRow->getValidTime();
 
 				if ($time == $timeFrom || ($time > $timeFrom && $time < $timeTo) && ( ! isset($values['smhi']) || ! in_array($time, $values['smhi'])) ){
-
-					/*
-					$values['smhi'][] = [
-    						'smhiTime' => $time,
-							'smhiTemp' => $smhiRow->getTemperature(),
-							'smhiWindDir' => $smhiRow->getWindDirection(),
-							'smhiWindSpeed' => $smhiRow->getWindVelocity(),
-							'smhiWindGust' => $smhiRow->getWindGust(),
-							'smhiPressure' => $smhiRow->getPressure(),
-							'smhiHumidity' => $smhiRow->getRelativeHumidity(),
-							'smhiVisibility' => $smhiRow->getVisibility(),
-							'smhiCloudCover' => $smhiRow->getTotalCloudCover(),
-							'smhiProbThunder' => $smhiRow->getProbabilityThunderstorm(),
-							'smhiPrecIntens' => $smhiRow->getPrecipitationIntensity(),
-							'smhiPrecCat' => $smhiRow->getCategoryOfPrecipitation()
-					];
-					*/
-					
 					$smhi = array(
 						'smhiTime' => $time,
 						'smhiTemp' => $smhiRow->getTemperature(),
