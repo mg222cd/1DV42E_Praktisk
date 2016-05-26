@@ -3,7 +3,6 @@ namespace Controller;
 
 require_once('./View/SearchView.php');
 require_once('./Model/GeonamesModel.php');
-//require_once('./View/ForecastView.php');
 require_once('./View/GeonamesView.php');
 require_once('./Model/GeonamesRepository.php');
 
