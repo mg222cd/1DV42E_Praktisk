@@ -78,6 +78,12 @@ h1{
 .hitlist{
 	margin-top: 2%;
 	width: 100%;
+	vertical-align: middle;
+	padding: 0px;
+}
+
+.tablehead{
+	font-weight: bolder;
 }
 
 /*

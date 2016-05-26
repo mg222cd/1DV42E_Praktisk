@@ -2,16 +2,27 @@
 namespace View;
 
 class StartView{
-	private $message = 'Ett testmeddelande i startvyn. Om inget annat action är ifyllt är det detta som visas, och det är tänkt att vara startsidan. 
-						Jag vet ej vad man ska ha här. Kanske fakta om sidan. VIKTIGT att här få med att det bara gäller SVENSKA orter.
-						Övrigt: Kanske prognos för de vanligaste sökningarna. Kanske senaste sökningarna.
-						Kanske prognos för där man är med gpd (överkurs) eller tidigare sökningar lagrade i kakor (gaaaaah på den idén!)';
 
 
 	public function startForm(){
 		$html = '
 		    <div class="col-xs-12 col-sm-10">
-		        <p>'.$this->message.'</p>
+		        <h1>Väderprognoser från
+		        	<a href="http://www.yr.no">
+					yr.no
+					</a>
+					och
+					<a href="http://www.smhi.se">
+					smhi.se
+					</a>
+		        </h1>
+		        <p>
+		        Senaste sökningarna:
+		        </p>
+		        <p>
+		        bla bla bla bla
+		        </p>
+		        
 		    </div>
 		';
 		return $html;

@@ -64,23 +64,25 @@ class GeonamesView{
 				<td>'.$adminName2.'</td>
 				<td>'.$adminName1.'</td>
 				<td>'.$country.'</td>
-			<tr>';
+			</tr>';
 
 		}
 
 		$html= '
-			<div id="geonamesTable" class="table-responsive">
-			<table class="table table-striped hitlist">
+			<table class="table table-striped table-responsive table-hover hitlist">
+			<thead class="tablehead">
 			<tr>
 				<td>Ort</td>
 				<td>Typ</td>
 				<td>Kommun</td>
 				<td>Område</td>
 				<td>Land</td>
-			<tr>
+			</tr>
+			</thead>
+			<tbody>
 			'.$resultsrow.'
+			</tbody>
 			</table>
-			</div>
 		';
 		return $html;
 	}

@@ -36,6 +36,7 @@ class SmhiRepository extends DatabaseConnection{
 		unset($this->smhiList);
 		$this->smhiList = array();
 		
+		var_dump($smhiObject);
 		$smhiDecoded = json_decode($smhiObject, true);
 
 		//prognosens datumparametrar

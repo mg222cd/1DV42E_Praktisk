@@ -14,6 +14,7 @@ class YrModel{
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_URL, $url);
 		$data = curl_exec($ch);
+		//$http_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 		return $data;
 	}
@@ -28,10 +29,10 @@ class YrModel{
 	}
 
 	private function getUrl($geonamesObject){
-		$country = $geonamesObject->getCountryName();
-		$adminName1 = $geonamesObject->getAdminName1();
-		$adminName2 = $geonamesObject->getAdminName2();
-		$name = $geonamesObject->getName();
+		$country = $this->fixWhitespaces($geonamesObject->getCountryName());
+		$adminName1 = $this->fixWhitespaces($geonamesObject->getAdminName1());
+		$adminName2 = $this->fixWhitespaces($geonamesObject->getAdminName2());
+		$name = $this->fixWhitespaces($geonamesObject->getName());
 		if ($country == 'Norway') {
 			$this->url = 'http://www.yr.no/sted/Norge/'.$adminName1.'/'.$adminName2.'/'.$name.'/forecast.xml';
 		}
@@ -45,8 +46,14 @@ class YrModel{
 	public function getYrForecast($cityObject){
 		$urlRequestYr = $this->getUrl($cityObject);
 		$data = $this->yrRequest($urlRequestYr);
-		$dataDecoded = new \SimpleXMLElement($data);
-		return $dataDecoded;
+		try {
+			//om det gav träff hos yr
+			$dataDecoded = new \SimpleXMLElement($data);
+			return $dataDecoded;
+		} catch (Exception $e) {
+			return false;
+		}
+		
 	}
 
 	//Filtrates out html and tags
@@ -57,6 +64,11 @@ class YrModel{
 			return $trimmedText;
 		}
 		return $forecast;
+	}
+
+	public function fixWhitespaces($text){
+		$textWithoutSpaces = preg_replace('/\s+/', '%20', $text);
+		return $textWithoutSpaces;
 	}
 
 }
