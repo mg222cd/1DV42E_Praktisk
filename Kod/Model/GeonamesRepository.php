@@ -97,6 +97,9 @@ class GeonamesRepository extends DatabaseConnection{
 	}
 
 	public function getGeonames($cityname){
+		//rensa array
+		unset($this->geonamesList);
+		$this->geonamesList = array();
 		try {
 			$db = $this->connection();
 			$sql = "SELECT $this->dbTable.geonamesPk, $this->dbTable.geonameId, $this->dbTable.name, $this->dbTable.adminName1, 
@@ -162,6 +165,46 @@ class GeonamesRepository extends DatabaseConnection{
 		} catch (Exception $e) {
 			throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
 		}
+	}
+
+	public function getGeonamesByPk($geonamesPkArr){
+		//rensa array
+		unset($this->geonamesList);
+		$this->geonamesList = array();
+
+		foreach ($geonamesPkArr as $geoname) {
+			$geonamesPk = $geoname;
+			try {
+				$db = $this->connection();
+				$sql = "SELECT $this->dbTable.geonamesPk, $this->dbTable.geonameId, $this->dbTable.name, $this->dbTable.adminName1, 
+							$this->dbTable.adminName2, $this->dbTable.countryName, $this->dbTable.fcodeName, $this->dbTable.lat, $this->dbTable.lng 
+					FROM $this->dbTable
+					WHERE geonamesPk = :geonamesPk
+					";
+
+			$params = array(':geonamesPk' => $geonamesPk);
+			$query = $db->prepare($sql);
+			$query->execute($params);
+			foreach ($query->fetchAll() as $row) {
+				$geonamesPk = $row['geonamesPk'];
+				$geonameId = $row['geonameId'];
+				$name = $row['name'];
+				$adminName1 = $row['adminName1'];
+				$adminName2 = $row['adminName2'];
+				$countryName = $row['countryName'];
+				$fcodeName = $row['fcodeName'];
+				$lat = $row['lat'];
+				$lng = $row['lng'];
+				$latestGeonames = new \Model\Geonames($geonamesPk, $geonameId, $name, 
+					$adminName1, $adminName2, $countryName, $fcodeName, $lat, $lng);
+				//lägg till
+				$this->geonamesList[] = $latestGeonames;
+			}
+			} catch (Exception $e) {
+				throw new \Exception('Fel uppstod i samband med hämtning av städer från databasen.');
+			}
+		}
+	return $this->geonamesList;	
 	}
 
 	public function cityIsAlreadyInDatabase($cityArray){
