@@ -63,9 +63,20 @@ h1{
 	font-weight: bold;
 }
 
+h2{
+	margin-bottom: 0px;
+	font-size: 140%;
+	font-weight: bold;
+}
+
 .startpagePic{
 	width: 151px;
 	height: 39.14px;
+}
+
+.startLogos{
+	margin-left: 2%;
+	margin-right: 2%;
 }
 
 .statusmessage{
