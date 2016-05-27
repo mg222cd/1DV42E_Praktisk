@@ -8,6 +8,7 @@ require_once('./Model/RepositoryHelpclass.php');
 class YrRepository extends DatabaseConnection{
 	private $yrObject;
 	private $yrList = array();
+	private $latestForecasts = array ();
 	private $yrPk = 'yrPk';
 	private $geonamesPk = 'geonamesPk';
 	private $timeOfStorage = 'timeOfStorage';
@@ -212,6 +213,30 @@ class YrRepository extends DatabaseConnection{
 		}
 		catch(\PDOException $e){
 			throw new \Exception('Fel uppstod i samband med hämtning av YR-prognoser från databasen.');
+		}
+	}
+
+	public function latestForecasts(){
+		try {
+			$db = $this->connection();
+			$sql = "SELECT $this->dbTable.geonamesPk
+					FROM $this->dbTable
+					ORDER BY $this->dbTable.timeOfStorage DESC LIMIT 500
+					";
+
+			$query = $db->prepare($sql);
+			$query->execute();
+			foreach ($query->fetchAll() as $yr) {
+				if (!in_array($yr['geonamesPk'], $this->latestForecasts)) {
+					$geonamesPk = $yr['geonamesPk'];
+					$this->latestForecasts[] = $geonamesPk;
+				}
+			}
+			$latestTen = array_slice($this->latestForecasts, 0, 10);
+			return $latestTen;
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+			
 		}
 	}
 }
