@@ -58,6 +58,10 @@ class SearchController{
 			$geonameId = $this->geonamesView->getGeonameId();
 			$geonameIdSanitized = $this->geonamesModel->sanitizeText($geonameId);
 			$validGeonameId = $this->geonamesModel->getCityByGeonameId($geonameIdSanitized);
+			//om geonames är nere ska $validGeonameId inte bli false
+			if ($this->geonamesModel->testGeonames() == false) {
+				$validGeonameId = $this->geonamesRepo->getGeonamesObjectByGeonameId($geonameIdSanitized);
+			}
 			if ($validGeonameId === false) {
 				header('Location: ./');
 			}
@@ -109,8 +113,5 @@ class SearchController{
 		// Geonames är nere... 
 		return $this->geonamesView->geonamesWebserviceErrorMessage() . $this->geonamesView->hitList($this->geonamesRepo->getGeonames($this->city));
 	}
-
-
-
 
 }
