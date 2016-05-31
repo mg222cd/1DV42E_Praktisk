@@ -1,0 +1,105 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.6
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: May 31, 2016 at 03:00 PM
+-- Server version: 5.5.33
+-- PHP Version: 5.5.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `weather`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `geonames`
+--
+
+CREATE TABLE `geonames` (
+  `geonamesPk` int(11) NOT NULL AUTO_INCREMENT,
+  `geonameId` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `adminName1` varchar(255) NOT NULL,
+  `adminName2` varchar(255) NOT NULL,
+  `countryName` varchar(255) NOT NULL,
+  `fcodeName` varchar(255) NOT NULL,
+  `lat` varchar(255) NOT NULL,
+  `lng` varchar(255) NOT NULL,
+  PRIMARY KEY (`geonamesPk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=115 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Smhi`
+--
+
+CREATE TABLE `Smhi` (
+  `smhiPk` int(11) NOT NULL AUTO_INCREMENT,
+  `geonamesPk` int(11) NOT NULL,
+  `timeOfStorage` datetime NOT NULL,
+  `referenceTime` datetime NOT NULL,
+  `validTime` datetime NOT NULL,
+  `temperature` float NOT NULL,
+  `windDirection` double NOT NULL,
+  `windVelocity` varchar(255) NOT NULL,
+  `windGust` varchar(255) NOT NULL,
+  `pressure` varchar(255) NOT NULL,
+  `relativeHumidity` tinyint(4) NOT NULL,
+  `visibility` varchar(255) NOT NULL,
+  `totalCloudCover` tinyint(4) NOT NULL,
+  `probabilityThunderstorm` tinyint(4) NOT NULL,
+  `precipitationIntensity` varchar(255) NOT NULL,
+  `categoryOfPrecipitation` int(11) NOT NULL,
+  PRIMARY KEY (`smhiPk`),
+  KEY `geonamesPk` (`geonamesPk`),
+  KEY `geonamesPk_2` (`geonamesPk`),
+  KEY `categoryOfPrecipitation` (`categoryOfPrecipitation`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48952 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `yr`
+--
+
+CREATE TABLE `yr` (
+  `yrPk` int(11) NOT NULL AUTO_INCREMENT,
+  `geonamesPk` int(11) NOT NULL,
+  `timeOfStorage` datetime NOT NULL,
+  `lastUpdate` datetime NOT NULL,
+  `nextUpdate` datetime NOT NULL,
+  `timeFrom` datetime NOT NULL,
+  `timeTo` datetime NOT NULL,
+  `timeperiod` int(11) NOT NULL,
+  `symbolId` varchar(255) NOT NULL,
+  `temperature` tinyint(4) NOT NULL,
+  `windDirectionDeg` double NOT NULL,
+  `windSpeed` varchar(255) NOT NULL,
+  `pressure` varchar(255) NOT NULL,
+  `precipitation` float NOT NULL,
+  PRIMARY KEY (`yrPk`),
+  KEY `geonamesPk` (`geonamesPk`),
+  KEY `timeperiod` (`timeperiod`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4692 ;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Smhi`
+--
+ALTER TABLE `Smhi`
+  ADD CONSTRAINT `smhi_ibfk_1` FOREIGN KEY (`geonamesPk`) REFERENCES `geonames` (`geonamesPk`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `yr`
+--
+ALTER TABLE `yr`
+  ADD CONSTRAINT `yr_ibfk_1` FOREIGN KEY (`geonamesPk`) REFERENCES `geonames` (`geonamesPk`) ON DELETE NO ACTION ON UPDATE NO ACTION;
