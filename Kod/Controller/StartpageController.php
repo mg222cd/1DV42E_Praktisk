@@ -10,23 +10,20 @@ class StartpageController{
 	private $startView;
 	private $geonamesRepo;
 	private $yrRepo;
-	private $GeonamesView;
+	private $geonamesView;
 
 	public function __construct(){
 		$this->startView = new \View\StartView();
 		$this->geonamesRepo = new \Model\GeonamesRepository();
 		$this->yrRepo = new \Model\YrRepository();
-		$this->GeonamesView = new \View\GeonamesView();
+		$this->geonamesView = new \View\GeonamesView();
 	}
 
 	public function startpage(){
 		$latestForecasts = $this->yrRepo->latestForecasts();
 		$latestGeonames = $this->geonamesRepo->getGeonamesByPk($latestForecasts);
-		$latestList = $this->GeonamesView->hitList($latestGeonames);
+		$latestList = $this->geonamesView->hitList($latestGeonames);
 		return $this->startView->startForm() . $latestList;
 	}
-
-
-
 
 }

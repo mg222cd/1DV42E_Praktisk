@@ -160,7 +160,7 @@ class ForecastView{
 					Sannolikhet för åska:
 					</div>
 					<div>
-					'.$timeInterval[$i]['smhiProbThunder'].'/8
+					'.$timeInterval[$i]['smhiProbThunder'].'%
 					</div>
 					</div>
 					';
@@ -312,7 +312,7 @@ class ForecastView{
 					Sannolikhet för åska:
 					</div>
 					<div>
-					'.$timeInterval['smhiProbThunder'].'/8
+					'.$timeInterval['smhiProbThunder'].'%
 					</div>
 					</div>
 					';
