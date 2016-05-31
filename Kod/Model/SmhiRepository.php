@@ -27,7 +27,7 @@ class SmhiRepository extends DatabaseConnection{
 
 	
 	public function __construct(){
-		$this->dbTable = 'smhi';
+		$this->dbTable = 'Smhi';
 		$this->helper = new \Model\RepositoryHelpclass();
 	}
 	
