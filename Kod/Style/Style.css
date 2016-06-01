@@ -79,6 +79,10 @@ h2{
 	margin-right: 2%;
 }
 
+a:hover { 
+	text-decoration: none; 
+}
+
 .statusmessage{
 	padding-bottom: 5%;
 }
