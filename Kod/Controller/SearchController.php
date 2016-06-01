@@ -63,7 +63,7 @@ class SearchController{
 				$validGeonameId = $this->geonamesRepo->getGeonamesObjectByGeonameId($geonameIdSanitized);
 			}
 			if ($validGeonameId === false) {
-				header('Location: ./');
+				header('Location: ./404.html');
 			}
 			$geonameIsInDB = $this->geonamesRepo->getGeonamesObjectByGeonameId($geonameId);
 			if ($geonameIsInDB === false) {
