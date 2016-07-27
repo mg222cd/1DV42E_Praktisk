@@ -41,6 +41,7 @@ class SmhiModel{
 		if ($smhiDecoded == null || $data == false) {
 			return false;
 		}
+		return $smhiDecoded;
 	}
 
 	public function sanitizeText($forecast){
