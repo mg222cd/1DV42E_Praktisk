@@ -41,11 +41,6 @@ class SmhiModel{
 		if ($smhiDecoded == null || $data == false) {
 			return false;
 		}
-		echo '<pre>';
-		print_r($smhiDecoded);
-		echo '</pre>';
-		exit;
-		return $smhiDecoded;
 	}
 
 	public function sanitizeText($forecast){
