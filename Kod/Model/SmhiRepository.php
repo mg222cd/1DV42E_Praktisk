@@ -36,31 +36,29 @@ class SmhiRepository extends DatabaseConnection{
 		unset($this->smhiList);
 		$this->smhiList = array();
 		//prognosens datumparametrar
-		$currentTime = $this->helper->getCurrentTime();;
+		$currentTime = $this->helper->getCurrentTime();
 		$referenceTime = $this->helper->smhiDateTimeFormat($smhiDecoded['referenceTime']);
-		//lagrar varje prognos i som ett smhi-objekt.
-		$forecasts = (array) $smhiDecoded['timeseries'];
+		//lagrar varje prognos som ett smhi-objekt.
+		$forecasts = (array) $smhiDecoded['timeSeries'];
 		foreach ($forecasts as $forecast) {
-				//fixar fältet med tiden som prognosen gäller.
 				$validTime = $this->helper->smhiDateTimeFormat($forecast['validTime']);
-				//bara prognoser nyare än just nu.
 					$this->smhiList[] = new \Model\Smhi(
 						null, // $smhiPk;
 						$geonamesPk, 
 						$timeOfStorage = $currentTime,
 						$referenceTime,
 						$validTime,
-						$temperature = $forecast['t'],
-						$windDirection = $forecast['wd'],
-						$windVelocity = $forecast['ws'],
-						$windGust = $forecast['gust'],
-						$pressure = $forecast['msl'],
-						$relativeHumidity = $forecast['r'],
-						$visibility = $forecast['vis'],
-						$totalCloudCover = $forecast['tcc'],
-						$probabilityThunderstorm = $forecast['tstm'],
-						$precipitationIntensity = $forecast['pit'],
-						$categoryOfPrecipitation = $forecast['pcat']
+						$temperature = $forecast['parameters'][1]['values'][0],
+						$windDirection = $forecast['parameters'][3]['values'][0],
+						$windVelocity = $forecast['parameters'][4]['values'][0],
+						$windGust = $forecast['parameters'][11]['values'][0],
+						$pressure = $forecast['parameters'][0]['values'][0],
+						$relativeHumidity = $forecast['parameters'][5]['values'][0],
+						$visibility = $forecast['parameters'][5]['values'][0],
+						$totalCloudCover = $forecast['parameters'][7]['values'][0],
+						$probabilityThunderstorm = $forecast['parameters'][6]['values'][0],
+						$precipitationIntensity = $forecast['parameters'][17]['values'][0],
+						$categoryOfPrecipitation = $forecast['parameters'][15]['values'][0]
 						);
 		}
 		foreach ($this->smhiList as $value) {
