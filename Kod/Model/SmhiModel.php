@@ -24,7 +24,7 @@ class SmhiModel{
 	}
 	
 	public function testSmhiWebservice(){
-		$testUrlString = 'http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/58.59/lon/16.18/data.json';
+		$testUrlString = 'http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/16.18/lat/58.59/data.json';
 		$testData = $this->smhiRequest($testUrlString);
 		if ($testData == false) {
 			return false;
@@ -35,12 +35,16 @@ class SmhiModel{
 	public function getSmhiForecast($cityObject){
 		$lat = $cityObject->getLat();
 		$lng = $cityObject->getLng();
-		$urlRequestSmhi = 'http://opendata-download-metfcst.smhi.se/api/category/pmp1.5g/version/1/geopoint/lat/'.$lat.'/lon/'.$lng.'/data.json';
+		$urlRequestSmhi = 'http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/lon/'.$lng.'/lat/'.$lat.'/data.json';
 		$data = $this->smhiRequest($urlRequestSmhi);
 		$smhiDecoded = json_decode($data, true);
 		if ($smhiDecoded == null || $data == false) {
 			return false;
 		}
+		echo '<pre>';
+		print_r($smhiDecoded);
+		echo '</pre>';
+		exit;
 		return $smhiDecoded;
 	}
 
